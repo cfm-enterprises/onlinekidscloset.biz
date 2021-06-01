@@ -1,0 +1,78 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+kansas_spring_internal:
+  id: 1
+  sale_id: 1
+  number_of_spots: 99
+  date: 2000-01-01
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 3600).to_s(:db) %>
+  internal: true
+  
+kansas_current_internal:
+  id: 2
+  sale_id: 2
+  number_of_spots: 99
+  date: 2000-01-01
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 3600).to_s(:db) %>
+  internal: true
+
+kansas_current_1:
+  id: 3
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 3600).to_s(:db) %>
+  internal: false
+
+kansas_current_2:
+  id: 4
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 3600).to_s(:db) %>
+  end_time: <%= (Time.now + 7200).to_s(:db) %>
+  internal: false
+
+florida_spring_internal:
+  id: 5
+  sale_id: 3
+  number_of_spots: 99
+  date: 2000-01-01
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 3600).to_s(:db) %>
+  internal: true
+
+florida_current_internal:
+  id: 6
+  sale_id: 4
+  number_of_spots: 99
+  date: 2000-01-01
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 3600).to_s(:db) %>
+  internal: true
+
+florida_current_1:
+  id: 7
+  sale_id: 4
+  number_of_spots: 2
+  date: <%= Date.today + 59 %>
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 3600).to_s(:db) %>
+  internal: false
+
+florida_current_2:
+  id: 8
+  sale_id: 4
+  number_of_spots: 10
+  date: <%= Date.today + 59 %>
+  start_time: <%= (Time.now + 3600).to_s(:db) %>
+  end_time: <%= (Time.now + 7200).to_s(:db) %>
+  internal: false

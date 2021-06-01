@@ -1,0 +1,86 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+kansas_current_1:
+  id: 1
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 60).to_s(:db) %>
+  job_title: Help with Consignors
+
+kansas_current_2:
+  id: 2
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 60).to_s(:db) %>
+  end_time: <%= (Time.now + 2 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup
+
+kansas_current_3:
+  id: 8
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 2 * 60).to_s(:db) %>
+  end_time: <%= (Time.now + 3 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup
+
+kansas_current_4:
+  id: 9
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 3 * 60).to_s(:db) %>
+  end_time: <%= (Time.now + 4 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup
+
+kansas_current_5:
+  id: 5
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 4 * 60).to_s(:db) %>
+  end_time: <%= (Time.now + 5 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup
+
+kansas_current_6:
+  id: 6
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 5 * 60).to_s(:db) %>
+  end_time: <%= (Time.now + 6 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup
+
+kansas_current_7:
+  id: 7
+  sale_id: 2
+  number_of_spots: 10
+  date: <%= Date.today + 29 %>
+  start_time: <%= (Time.now + 6 * 60).to_s(:db) %>
+  end_time: <%= (Time.now + 7 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup
+
+florida_current_1:
+  id: 3
+  sale_id: 4
+  number_of_spots: 2
+  date: <%= Date.today + 59 %>
+  start_time: <%= Time.now.to_s(:db) %>
+  end_time: <%= (Time.now + 60).to_s(:db) %>
+  job_title: Help with Consignors
+
+florida_current_2:
+  id: 4
+  sale_id: 4
+  number_of_spots: 10
+  date: <%= Date.today + 59 %>
+  start_time: <%= (Time.now + 60).to_s(:db) %>
+  end_time: <%= (Time.now + 2 * 60).to_s(:db) %>
+  job_title: Help with Rack Setup

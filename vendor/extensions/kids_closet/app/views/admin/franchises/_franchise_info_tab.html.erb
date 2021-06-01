@@ -1,0 +1,48 @@
+<div class="list_content" id="franchise_info_tab_id">
+  <table class="left_table">
+    <tr>
+      <td><b>Franchise Name: </b></td>
+      <td><%= @franchise.franchise_name %>
+    </tr>
+    <tr>
+      <td><b>Sales City, State: </b></td>
+      <td><%= @franchise.sale_city %>, <%= @franchise.province.name %></td>
+    </tr>
+    <tr>
+      <td><b>Franchise Email: </b></td>
+      <td><%= @franchise.franchise_email %></td>
+    </tr>
+    <tr>
+      <td><b>Meta Keywords: </b></td>
+      <td><%= @franchise.meta_keywords %></td>
+    </tr>
+    <tr>
+      <td><b>Meta Description: </b></td>
+      <td><%= @franchise.meta_description %></td>
+    </tr>
+<!--    <tr>
+      <td><b>Link to Active Sale: </b></td>
+      <td><%= link_to "http://www.kidscloset.biz/#{@franchise.sale_hash}", "http://www.kidscloset.biz/#{@franchise.sale_hash}" %>
+      </tr> -->
+    <tr>
+      <td><b>Facebook URL: </b></td>
+      <td><%= link_to @franchise.facebook_url, @franchise.facebook_url %>
+    </tr>
+    <tr>
+      <td><b>Facebook Pixel: </b></td>
+      <td><%= @franchise.facebook_pixel %></td>
+    </tr>
+    <tr>
+      <td><b>Twitter URL: </b></td>
+      <td><%= link_to @franchise.twitter_url, @franchise.twitter_url %>
+    </tr>
+    <tr>
+      <td><b>Blogger URL: </b></td>
+      <td><%= link_to @franchise.blogger_url, @franchise.blogger_url %>
+    </tr>
+    <tr>
+      <td><b>Google Analytics Code: </b></td>
+      <td><%= @franchise.google_analytics_code %></td>
+    </tr>
+  </table>
+</div>

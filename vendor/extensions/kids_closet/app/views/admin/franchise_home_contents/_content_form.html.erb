@@ -1,0 +1,37 @@
+<%= render_region :franchise_home_content_content_form_top %>
+<% render_region :franchise_home_content_content_form do |content_form| %>
+  <%= error_messages_for :franchise_home_content %>
+  <% content_form.content_name_tabs do %>
+    <ul id="site_page_parts" class="subsection_tabs">
+    <% @franchise_home_content.mini_content.each do |part| %>
+      <li class="tab"><a href="#<%= part[0] %>"><%= part[1] %></a></li> 
+    <% end %>
+    </ul>
+    <div class="clearfix"></div>
+  <% end %>
+  <% content_form.content_form_editor do %>
+    <% init_only = false %>
+    <% @franchise_home_content.mini_content.each do |part| %>
+      <div class="site_page_part_container" id="<%= part[0] %>">
+        <div class="site_page_part_content" id="<%= part[0] %>_content">
+          <%= f.fckeditor(part[0].to_sym, :toolbarSet => 'KidsCloset', :width => '99%', :height => '400px', :id => "franchise_#{part[0]}") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+<% render_region :franchise_home_content_content_form_bottom do |content_form_bottom| %>
+  <% content_form_bottom.content_form_buttons do %>
+    <div class="site_part_submit">
+      <%= f.submit "Update Franchise Home Content" %>
+    </div>
+  <% end %>
+  <% content_form_bottom.mini_content_tab_javascript do %>
+    <%= javascript_tag(
+          "document.observe('dom:loaded',function(){\n" <<
+          "new Control.Tabs('site_page_parts');\n" <<
+          "});\n"
+        )
+    %>
+  <% end %>
+<% end %>

@@ -1,0 +1,35 @@
+<h1>Found Us Stats for <%= @franchise.franchise_name %></h1>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <%= link_to 'Back', admin_franchise_url(@franchise) %>
+  <% end %>
+<% end %>
+<br /><br />
+<div class="list_content" style="border: none;">
+  <ul id="found_us_tabs" class="subsection_tabs">
+    <% render_region :tab_header do |tab_header| %>
+      <% tab_header.found_us_stats_tab_header do %>
+        <li class="tab"><a href="#found_us_stats_tab_id">Found Us Stats</a></li>
+      <% end %>
+      <% tab_header.referrals_tab_header do %>
+        <li class="tab"><a href="#referrals_tab_id">Referrals</a></li>
+      <% end %>
+      <% tab_header.others_tab_header do %>
+        <li class="tab"><a href="#others_tab_id">Other Entries</a></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="clearfix"></div>
+  <%= render_region :tabs %>
+</div>
+<% render_region :below_content do |below_content| %>
+  <% below_content.tab_javascript do %>
+    <%= javascript_include_tag ['livepipe/livepipe', 'livepipe/tabs'] %>
+    <%= javascript_tag(
+          "document.observe('dom:loaded',function(){\n" <<
+          "new Control.Tabs('found_us_tabs');\n" <<
+          "});\n"
+        )
+    %>
+  <% end %>
+<% end %>

@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+rewards_adjustment_1:
+  id: 1
+  rewards_profile_id: 1
+  franchise_id: 1
+  amount: 5
+  site_id: 1

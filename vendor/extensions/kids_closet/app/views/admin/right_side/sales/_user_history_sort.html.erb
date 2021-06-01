@@ -1,0 +1,8 @@
+<% form_tag consignors_history_admin_sale_url(@sale), {:method => 'get', :id => 'consignor_history_sort_form', :autocomplete => 'off'} do %>
+  <h3>Search Options</h3>
+  <p>
+    Phrase: <%= text_field_tag 'signed_up_consignor_history_search[phrase]', @signed_up_consignor_history_search.phrase %><br>
+    Sort: <%= select_tag 'signed_up_consignor_history_search[sort_order]', options_for_select(Sale.consignor_sort_options, @signed_up_consignor_history_search.sort_order) %> <%= submit_tag 'Go', :disable_with => "Searching..." %> <%= submit_tag 'Clear', :name => "clear", :disable_with => "Clearing..." %>
+    <br />
+  </p>
+<% end %>

@@ -1,0 +1,40 @@
+<h1>Files for <%= @franchise_file.franchise_file_category.title %></h1>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="franchise_file_category_show list_table" id="franchise_file_category_show_id">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.file_name_column_header do %><th>File Name</th><% end %>
+          <% list_headers.description_column_header do %><th>Description</th><% end %>
+          <% list_headers.actions_column_header do %><% if @admin %><th>Actions</th><% end %><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @franchise_files.length == 0 %>
+        <tr><td colspan="<%= admin_interface.franchise_file_categories.show.list_data.length %>" class="no_entries">No Files for this Category</td></tr>
+      <% else %>
+         <%= render :partial => 'franchise_file', :collection => @franchise_files %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= empty_pagination_div %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.index_form do %>
+        <% if @admin %>
+          <% form_for [:admin, @franchise_file.franchise_file_category, @franchise_file], :html => {:class => 'semantic-form', :multipart => true} do |f| %>
+            <%= render :partial => 'form_index', :locals => { :f => f, :save_label => 'Upload' } %>
+          <% end %><br />
+        <% else %>
+          <%= link_to 'Back', admin_franchise_file_category_url %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

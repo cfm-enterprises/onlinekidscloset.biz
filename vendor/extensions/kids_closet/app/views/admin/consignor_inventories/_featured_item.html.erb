@@ -1,0 +1,49 @@
+<tr id="featured_item-<%= featured_item.id.to_s %>" class="asset_row list_row">
+  <% render_region :list_data, :locals => { :featured_item => featured_item } do |list_data| %>
+    <% list_data.consignor_number_column do %>
+      <td><%= featured_item.profile_id %></td>
+    <% end %>
+    <% list_data.consignor_column do %>
+      <td><%= featured_item.profile.full_name %></td>
+    <% end %>  
+    <% list_data.item_number_column do %>
+      <td><%= featured_item.id %></td>
+    <% end %>
+    <% list_data.item_description_column do %>
+      <td><%= link_to featured_item.item_description, admin_sale_consignor_inventory_url(@sale, featured_item) %></td>
+    <% end %>
+    <% list_data.category_column do %>
+      <td>
+        <%= featured_item.category_name %><br>
+        <%= featured_item.sub_category %>
+      </td>
+    <% end %>
+    <% list_data.size_column do %>
+      <td><%= featured_item.size %></td>
+    <% end %>
+    <% list_data.price_column do %>
+      <td align="center"><%= number_to_currency(featured_item.price) %></td>
+    <% end %>
+    <% list_data.donate_column do %>
+      <td><%= featured_item.donate ? "Yes" : "No" %></td>
+    <% end %>
+    <% list_data.discount_column do %>
+      <td><%= featured_item.last_day_discount ? "Yes" : "No" %></td>
+    <% end %>
+    <% list_data.picture_column do %>
+      <td align="center">
+        <% if featured_item.has_featured_photo? %>
+          <a href="<%= featured_item.main_photo.url %>" target="_blank"><%= image_tag featured_item.main_photo.url(:thumb), :class => featured_item.main_photo.rotation_class %></a>
+        <% else %>
+          <b>Item has no photos.</b>
+        <% end -%>
+      </td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td>
+        <%= link_to 'Edit', edit_admin_sale_consignor_inventory_url(@sale, featured_item) %>
+          | <%= link_to "Not Selling Online", remove_featured_item_admin_sale_consignor_inventory_url(@sale, featured_item), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

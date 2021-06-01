@@ -1,0 +1,2 @@
+module Admin::FranchiseRewardsAdjustmentsHelper
+end

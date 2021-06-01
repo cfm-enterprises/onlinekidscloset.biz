@@ -1,0 +1,30 @@
+<tr id="sale-<%= sale.id.to_s %>" class="sale_row list_row">
+  <% render_region :franchise_sale_list_data, :locals => { :sale => sale } do |list_data| %>
+    <% list_data.sale_dates_column do %>
+      <td>
+        <%= "Regular Sale: " if sale.has_online_sale && sale.tentative_date.blank? %><%= sale.sale_dates %>
+        <% if sale.has_online_sale %>
+          <br>Online Sale: <%= sale.online_sale_dates %>
+          <br>Online Sales Tax: <%= sale.tax_rate %>%
+        <% end %>
+      </td>
+    <% end %>
+    <% list_data.sale_address_column do %>
+      <td><%= sale.formatted_address %></td>
+    <% end %>
+    <% list_data.active_sale_column do %>
+      <td align="center"><b><%= sale.active ? "Yes" : "No" %></b></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Manage', admin_sale_url(sale) %> | 
+        <% if sale.active %>
+          <%= link_to 'Take Down', {:controller => '/admin/sales', :action => 'deactivate_sale', :id => sale}, :confirm => "Are you sure?", :method => :post %> |
+        <% else %>
+          <%= link_to 'Make Active', {:controller => '/admin/sales', :action => 'make_active', :id => sale}, :confirm => "Are you sure?", :method => :post %> |
+        <% end %>
+        <%= link_to 'Edit', edit_admin_franchise_sale_url(sale.franchise, sale) %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

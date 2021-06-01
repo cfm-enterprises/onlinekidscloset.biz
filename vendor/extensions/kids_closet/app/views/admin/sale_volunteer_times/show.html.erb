@@ -1,0 +1,37 @@
+<h1><%= @sale_volunteer_time.sale.franchise.franchise_name %>:<%= @sale_volunteer_time.sale.sale_dates %></h1>
+<h3>
+  <%= "#{@sale_volunteer_time.date.strftime("%b %d, %Y")}:#{@sale_volunteer_time.start_time.strftime("%I:%M %p")}-#{@sale_volunteer_time.end_time.strftime("%I:%M %p")}" %><br>
+  <b><%= "#{@sale_volunteer_time.job_title}:</b> #{@sale_volunteer_time.job_description}" %>
+</h3>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <%= "#{link_to 'Make Active', make_active_admin_sale_volunteer_time_path(@sale_volunteer_time), :method => :post} | " if @sale_volunteer_time.draft_status %>
+    <%= link_to "Edit Job", edit_admin_sale_sale_volunteer_time_path(@sale_volunteer_time.sale, @sale_volunteer_time.id) %> | 
+    <%= link_to 'Print', print_volunteer_list_admin_sale_volunteer_time_path(@sale_volunteer_time), :popup => ['volunteer_job_list', 'height=650,width=800'] %> | 
+    <%= link_to 'Email Helpers', email_volunteers_in_job_admin_kids_email_path(@franchise, @sale_volunteer_time) %> | 
+    <%= link_to 'Back', admin_sale_sale_volunteer_times_path(@sale_volunteer_time.sale) %>
+  <% end %>
+<% end %>
+<br /><br />
+<div class="list_content" style="border: none;">
+  <ul id="sale_volunteer_time_tabs" class="subsection_tabs">
+    <% render_region :tab_header do |tab_header| %>
+      <% tab_header.volunteers_tab_header do %>
+        <li class="tab"><a href="#volunteers_tab_id">Helpers Who Have Signed Up</a></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="clearfix"></div>
+  <%= render_region :tabs %>
+</div>
+<% render_region :below_content do |below_content| %>
+  <% below_content.tab_javascript do %>
+    <%= javascript_include_tag ['livepipe/livepipe', 'livepipe/tabs'] %>
+    <%= javascript_tag(
+          "document.observe('dom:loaded',function(){\n" <<
+          "new Control.Tabs('sale_volunteer_time_tabs');\n" <<
+          "});\n"
+        )
+    %>
+  <% end %>
+<% end %>

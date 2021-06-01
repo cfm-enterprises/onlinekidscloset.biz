@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Kid's Closet Sell Confirmation</title>
+<style type="text/css">
+<!--
+h1{
+  font-size: 18pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #004368;
+}
+h2{
+  font-size: 18pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #ea4e96;
+}
+h3{
+  font-size: 18pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #000000;
+}
+h4{
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #004368;
+}
+h5{
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #ea4e96;
+}
+h6{
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #000000;
+}
+pre{
+  font-size: 10pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #004368;
+}
+address{
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #ea4e96;  
+}
+body{
+font-family:Arial, Helvetica, sans-serif;
+font-size:1em;
+color:black;  
+}
+p{
+font-family:Arial, Helvetica, sans-serif;
+font-size:1em;
+color:black;
+}
+td{
+font-family:Arial, Helvetica, sans-serif;
+font-size:1em;
+color:black;  
+}
+a:link{
+color:#004368;
+text-decoration:none;
+font-weight:bold;
+}
+a:hover{
+color:#ea4e96;
+text-decoration:none;
+font-weight:bold;
+}
+li {color: #004368;margin:0 0 1em 0; font-weight: bold; text-align: left;}
+.unsubscribe {
+  font-size: 6pt;
+}
+-->
+</style>
+</head>
+<body style="background-color: #b1d2ef;color: #963">
+  <table border="0" cellpadding="0" cellspacing="0" class="bg1" width="100%" style="background-color: #b1d2ef">
+    <tr>
+      <td align="center">
+        <table border="0" cellpadding="0" cellspacing="0" class="bg2" width="600" style="background-color: #b1d2ef">
+          <tr>
+            <td class="body" valign="top" style="background-color: #b1d2ef;padding: 10px 20px 20px 20px">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="left" class="mainbar" valign="top">     
+                    <div style="background:#f3f3d4; border:5px solid #a797c3 ; padding:10px; margin:10px 0">
+                      <h3 style='color: #963;font-family: "Lucida Grande", Lucida, Arial, Helvetica, serif;font-size: 16px;font-weight: bold;margin: 0;padding: 0 0 10px 0;text-shadow: white 1px 1px 0px'>        
+                      <table width="600" bgcolor="#f3f3d4" align="center">
+                        <tr>
+                          <td valign="top" align="left" colspan="2">
+                            <img src="http://www.kidscloset.biz/assets/1/original/kcc_email_banner.jpg">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" align="left" width="75">
+                          <% unless @facebook_url == "" %>
+                            <a href="<%= @facebook_url %>"><img src="http://www.kidscloset.biz/assets/1/original/facebook_home.png" width="75" border="0"></a>
+                          <% end %>
+                          </td>
+                          <td valign="middle" align="center">
+                            <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:22px;color:black; text-align: center;"><%= @franchise_name %></h2>    
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" align="left"  >
+                            <h2>Kid's Closet Sell Notification</h2>
+                            <p>
+                              Congratulations! Your <i><%= @order.item_name %></i> item number <i><%= @order.consignor_inventory_id %></i> has sold and we have received payment from the buyer! If you have not already done so, please sign up for a <a href="http://www.kidscloset.biz/consignors/drop_off_times?sale_id=<%= @sale_id %>">drop off time</a> in your <a href="http://www.kidscloset.biz/consignors">Control Panel</a>. Make sure all SOLD items have their tag securely placed on the item when you drop off. <%= @order.sale.online_sale_drop_off_date %>
+                            </p>
+                            <table>
+                              <tr>
+                                <td>Item #</td>
+                                <td><%= @order.consignor_inventory_id %></td>
+                              </tr>
+                              <tr>
+                                <td>Sort Code</td>
+                                <td><%= @order.seller.sort_column %></td>
+                              </tr>
+                              <tr>
+                                <td>Name</td>
+                                <td><%= @order.item_name %></td>
+                              </tr>
+                              <tr>
+                                <td>Additional Information</td>
+                                <td><%= @order.consignor_inventory.additional_information %></td>
+                              </tr>
+                              <tr>
+                                <td>Item Price</td>
+                                <td><%= number_to_currency(@order.item_price) %></td>
+                              </tr>
+                              <tr>
+                                <td>Sales Tax</td>
+                                <td><%= number_to_currency(@order.sales_tax) %></td>
+                              </tr>
+                              <tr>
+                                <td>Total Amount</td>
+                                <td><%= number_to_currency(@order.total_amount) %></td>
+                              </tr>
+                            </table>
+                            <p style="font-size:12 pt"><a href="mailto:<%= @franchise_email %>"><%= @franchise_email %></a><%= " | #{@franchise_phone.as_phone}" unless @franchise_phone == "" %></p>
+                          </td>
+                        </tr>
+                      </table>      
+                    </div>  
+                  </td>
+                </tr>        
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
+

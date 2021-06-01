@@ -1,0 +1,13 @@
+<tr id="referred_consignor-<%= referred_consignor.id.to_s %>" class="referred_consignor_row list_row">
+  <% render_region :referrals_list_data, :locals => { :referred_consignor => referred_consignor } do |list_data| %>
+    <% list_data.consignor_column do %>
+      <td class="name"><%= referred_consignor.full_name %></td>
+    <% end %>
+    <% list_data.referred_by_column do %>
+      <td><%= referred_consignor.how_did_you_hear_other %></td>
+    <% end %>
+    <% list_data.date_signed_up_column do %>
+      <td><%= referred_consignor.created_at.strftime("%B %d, %Y") %></td>
+    <% end %>
+  <% end %>
+</tr>

@@ -1,0 +1,34 @@
+<div class="list_content" id="season_sales_tab_id">
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :franchise_sale_list_headers do |list_headers| %>
+          <% list_headers.franchise_column_header do %><th>Franchise</th><% end %>
+          <% list_headers.sale_dates_column_header do %><th>Dates</th><% end %>
+          <% list_headers.sale_address_column_header do %><th>Address</th><% end %>
+          <% list_headers.active_sale_column_header do %><th>Active Sale?</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @sales.length == 0 %>
+        <tr><td colspan="<%= admin_interface.sale_seasons.show.franchise_sale_list_data.length %>" class="no_entries">No Sales Assigned to this Season</td></tr>
+      <% else %>
+         <%= render :partial => 'sale', :collection => @sales %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= empty_pagination_div %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :season_sales_action_row do |action_row| %>
+      <% action_row.back_to_seasons do %>
+        <%= link_to 'Back', admin_sale_seasons_url %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

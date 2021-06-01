@@ -1,0 +1,23 @@
+<tr id="sale-<%= sale.id.to_s %>" class="sale_row list_row">
+  <% render_region :franchise_sale_list_data, :locals => { :sale => sale } do |list_data| %>
+    <% list_data.franchise_column do %>
+      <td class="name"><%= sale.franchise.franchise_name %></td>
+    <% end %>
+    <% list_data.sale_dates_column do %>
+      <td class="name"><%= sale.sale_dates %></td>
+    <% end %>
+    <% list_data.sale_address_column do %>
+      <td><%= sale.formatted_address %></td>
+    <% end %>
+    <% list_data.active_sale_column do %>
+      <td align="center"><b><%= sale.active ? "Yes" : "No" %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Manage', admin_sale_url(sale) %> | 
+        <%= link_to 'Reports', reports_admin_sale_url(sale) %> |
+        <%= link_to 'Edit', edit_admin_franchise_sale_url(sale.franchise, sale) %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

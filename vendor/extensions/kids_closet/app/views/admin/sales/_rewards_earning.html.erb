@@ -1,0 +1,26 @@
+<tr id="rewards_earning-<%= rewards_earning.id.to_s %>" class="profile_row list_row">
+  <% render_region :list_data, :locals => { :rewards_earning => rewards_earning } do |list_data| %>
+    <% list_data.date_column do %>
+      <td class="name"><%= rewards_earning.created_at.strftime("%b %d, %Y") %></td>
+    <% end %>
+    <% list_data.rewards_number_column do %>
+      <td class="name"><%= rewards_earning.rewards_profile.rewards_number %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= rewards_earning.rewards_profile.profile.nil? ? "Not Claimed" : rewards_earning.rewards_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.email_column do %>
+      <td class="name"><%= rewards_earning.rewards_profile.profile.nil? ? "-" : (link_to rewards_earning.rewards_profile.profile.email, "mailto:#{rewards_earning.rewards_profile.profile.email}") %></td>
+    <% end %>
+    <% list_data.amount_applied_column do %>
+      <td align="center">
+        <%= number_to_currency(rewards_earning.amount_applied) %>
+      </td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Remove Award', admin_sale_rewards_earning_url(@sale, rewards_earning), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

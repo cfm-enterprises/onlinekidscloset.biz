@@ -1,0 +1,21 @@
+<tr id="kids_email-<%= kids_email.id.to_s %>" class="kids_email_row list_row">
+  <% render_region :list_data, :locals => { :kids_email => kids_email } do |list_data| %>
+    <% list_data.date_column do %>
+      <td class="name"><%= kids_email.status %></td>
+    <% end %>
+    <% list_data.subject_column do %>
+      <td class="name"><%= kids_email.subject %></td>
+    <% end %>
+    <% list_data.recipients_column do %>
+      <td class="name"><%= kids_email.recipient_friendly_name %></td>
+    <% end %>
+    <% list_data.email_count_column do %>
+      <td class="name"><%= kids_email.estimated_number_of_emails %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to kids_email.draft_mode ? 'Edit' : 'Re-Use', edit_admin_kids_master_email_url(kids_email) %> | <%= link_to "Delete", admin_kids_master_email_url(kids_email), :confirm => "Are you sure?", :method => :delete %> 
+      </td>
+    <% end %>
+  <% end %>
+</tr>

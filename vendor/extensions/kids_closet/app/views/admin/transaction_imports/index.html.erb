@@ -1,0 +1,47 @@
+<h1>Transaction Imports for <%= @transaction_import.sale.franchise.franchise_name %>:<%= @transaction_import.sale.sale_dates %></h1>
+<% render_region :top do |top| %>
+  <% top.pagination_counts do %>
+    <p><%= will_paginate_record_display(@transaction_imports) %></p>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="site_asset_index list_table" id="site_asset_index_id">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.report_dates_column_header do %><th>Report Date</th><% end %>
+          <% list_headers.report_number_column_header do %><th>Report #</th><% end %>
+          <% list_headers.report_name_column_header do %><th>Name</th><% end %>
+          <% list_headers.extra_income_column_header do %><th>Extra Income</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @transaction_imports.length == 0 %>
+        <tr><td colspan="<%= admin_interface.transaction_imports.index.list_data.length %>" class="no_entries">No Transaction Imports for this Sale</td></tr>
+      <% else %>
+         <%= render :partial => 'transaction_import', :collection => @transaction_imports %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= will_paginate_links(@transaction_imports) %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.index_form do %>
+        <% if @transaction_import.sale.eligible_for_financials? %>
+          <% form_for [:admin, @transaction_import.sale, @transaction_import], :html => {:class => 'semantic-form', :multipart => true} do |f| %>
+            <%= render :partial => 'form_index', :locals => { :f => f, :save_label => 'Upload' } %>
+          <% end %><br />
+        <% else %>
+          Can not import files for this sale.  Check your sales season.  Contact Admin for correct sales season.
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,194 @@
+<% field_set_tag "#{save_label} Sale for #{@sale.franchise.franchise_name}" do -%>
+  <%= error_messages_for :sale %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_franchise_id do %>
+      <%= f.hidden_field :franchise_id %>
+    <% end %>
+    <% form.edit_sale_season_id do %>
+      <% unless @sale.sale_season.nil? %>
+        <% if @admin %>
+          <%= f.select :sale_season_id, @sale_seasons.collect { |season| [season.season_name, season.id] }, :label => "Sale Season:", :required => true %>
+        <% else %>
+          <div class="text-field "><label>Sale Season:</label><div class="input"><%= @sale.sale_season.season_name %></div></div>
+        <% end -%>
+      <% end -%>
+    <% end %>
+    <% form.edit_start_date do %>
+      <%= f.date_select :start_date, :label => "Start Date:" %>
+    <% end %>
+    <% form.edit_end_date do %>
+      <%= f.date_select :end_date, :label => "End Date:" %>
+    <% end %>
+    <% form.edit_tentative_date do %>
+      <%= f.text_field :tentative_date, :label => "Tentative Dates:", :help => "Only enter if your not sure of the dates. Remove once you set dates." %>
+    <% end %>
+    <% form.edit_facility_title do %>
+      <%= f.text_field :facility_name, :label => "Facility Name:", :required => true, :help => "For the Sale Flyer", :maxlength => 45 %>
+    <% end %>
+    <% form.edit_address_description do %>
+      <%= f.text_field :sale_address2, :label => "Address Description:", :help => "Will appear above the address on the sale flyer, optional", :maxlength => 38 %>
+    <% end %>
+    <% form.edit_sale_address do %>
+      <%= f.text_field :sale_address, :label => "Sale Address:", :maxlength => 38 %>
+    <% end %>
+    <% form.edit_sale_city do %>
+      <div class="text-field "><label>Sale City:</label><div class="input"><%= @sale.franchise.sale_city %></div></div>
+    <% end %>      
+    <% form.edit_sale_state do %>
+      <div class="text-field "><label>Sale State:</label><div class="input"><%= @sale.franchise.province.name %></div></div>
+    <% end %>      
+    <% form.edit_sale_zip_code do %>
+      <%= f.text_field :sale_zip_code, :label => "Zip Code:" %>
+    <% end %>
+    <% form.edit_has_online_sale do %>
+      <% if @super_admin %>
+        <%= f.select :has_online_sale, [["No", false], ["Yes", true]], {:label => "Has Online Sale?"}, {:onchange => "updateOnlineSale(this);"} %>
+      <script>
+        function updateOnlineSale(item)
+        {
+          if (item.value == "false")
+          {
+            document.getElementById('sale_online_sale_start_date_1i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_start_date_1i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_start_date_2i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_start_date_2i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_start_date_3i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_start_date_3i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_start_date_4i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_start_date_4i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_start_date_5i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_start_date_5i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_end_date_1i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_end_date_1i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_end_date_2i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_end_date_2i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_end_date_3i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_end_date_3i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_end_date_4i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_end_date_4i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_end_date_5i').disabled = 'disabled'
+            document.getElementById('sale_online_sale_end_date_5i').style.backgroundColor = 'gray'
+            document.getElementById('sale_first_discount_start_time_1i').disabled = 'disabled'
+            document.getElementById('sale_first_discount_start_time_1i').style.backgroundColor = 'gray'
+            document.getElementById('sale_first_discount_start_time_2i').disabled = 'disabled'
+            document.getElementById('sale_first_discount_start_time_2i').style.backgroundColor = 'gray'
+            document.getElementById('sale_first_discount_start_time_3i').disabled = 'disabled'
+            document.getElementById('sale_first_discount_start_time_3i').style.backgroundColor = 'gray'
+            document.getElementById('sale_first_discount_start_time_4i').disabled = 'disabled'
+            document.getElementById('sale_first_discount_start_time_4i').style.backgroundColor = 'gray'
+            document.getElementById('sale_first_discount_start_time_5i').disabled = 'disabled'
+            document.getElementById('sale_first_discount_start_time_5i').style.backgroundColor = 'gray'
+            document.getElementById('sale_second_discount_start_time_1i').disabled = 'disabled'
+            document.getElementById('sale_second_discount_start_time_1i').style.backgroundColor = 'gray'
+            document.getElementById('sale_second_discount_start_time_2i').disabled = 'disabled'
+            document.getElementById('sale_second_discount_start_time_2i').style.backgroundColor = 'gray'
+            document.getElementById('sale_second_discount_start_time_3i').disabled = 'disabled'
+            document.getElementById('sale_second_discount_start_time_3i').style.backgroundColor = 'gray'
+            document.getElementById('sale_second_discount_start_time_4i').disabled = 'disabled'
+            document.getElementById('sale_second_discount_start_time_4i').style.backgroundColor = 'gray'
+            document.getElementById('sale_second_discount_start_time_5i').disabled = 'disabled'
+            document.getElementById('sale_second_discount_start_time_5i').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_drop_off_date').disabled = 'disabled'
+            document.getElementById('sale_online_sale_drop_off_date').style.backgroundColor = 'gray'
+            document.getElementById('sale_online_sale_pickup_date').disabled = 'disabled'
+            document.getElementById('sale_online_sale_pickup_date').style.backgroundColor = 'gray'
+            document.getElementById('sale_tax_rate').disabled = 'disabled'
+            document.getElementById('sale_tax_rate').style.backgroundColor = 'gray'
+          }
+          else
+          {
+            document.getElementById('sale_online_sale_start_date_1i').disabled = ''
+            document.getElementById('sale_online_sale_start_date_1i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_start_date_2i').disabled = ''
+            document.getElementById('sale_online_sale_start_date_2i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_start_date_3i').disabled = ''
+            document.getElementById('sale_online_sale_start_date_3i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_start_date_4i').disabled = ''
+            document.getElementById('sale_online_sale_start_date_4i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_start_date_5i').disabled = ''
+            document.getElementById('sale_online_sale_start_date_5i').style.backgroundColor = 'white'
+            document.getElementById('sale_first_discount_start_time_1i').disabled = ''
+            document.getElementById('sale_first_discount_start_time_1i').style.backgroundColor = 'white'
+            document.getElementById('sale_first_discount_start_time_2i').disabled = ''
+            document.getElementById('sale_first_discount_start_time_2i').style.backgroundColor = 'white'
+            document.getElementById('sale_first_discount_start_time_3i').disabled = ''
+            document.getElementById('sale_first_discount_start_time_3i').style.backgroundColor = 'white'
+            document.getElementById('sale_first_discount_start_time_4i').disabled = ''
+            document.getElementById('sale_first_discount_start_time_4i').style.backgroundColor = 'white'
+            document.getElementById('sale_first_discount_start_time_5i').disabled = ''
+            document.getElementById('sale_first_discount_start_time_5i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_end_date_1i').disabled = ''
+            document.getElementById('sale_online_sale_end_date_1i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_end_date_2i').disabled = ''
+            document.getElementById('sale_online_sale_end_date_2i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_end_date_3i').disabled = ''
+            document.getElementById('sale_online_sale_end_date_3i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_end_date_4i').disabled = ''
+            document.getElementById('sale_online_sale_end_date_4i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_end_date_5i').disabled = ''
+            document.getElementById('sale_online_sale_end_date_5i').style.backgroundColor = 'white'
+            document.getElementById('sale_second_discount_start_time_1i').disabled = ''
+            document.getElementById('sale_second_discount_start_time_1i').style.backgroundColor = 'white'
+            document.getElementById('sale_second_discount_start_time_2i').disabled = ''
+            document.getElementById('sale_second_discount_start_time_2i').style.backgroundColor = 'white'
+            document.getElementById('sale_second_discount_start_time_3i').disabled = ''
+            document.getElementById('sale_second_discount_start_time_3i').style.backgroundColor = 'white'
+            document.getElementById('sale_second_discount_start_time_4i').disabled = ''
+            document.getElementById('sale_second_discount_start_time_4i').style.backgroundColor = 'white'
+            document.getElementById('sale_second_discount_start_time_5i').disabled = ''
+            document.getElementById('sale_second_discount_start_time_5i').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_drop_off_date').disabled = ''
+            document.getElementById('sale_online_sale_drop_off_date').style.backgroundColor = 'white'
+            document.getElementById('sale_online_sale_pickup_date').disabled = ''
+            document.getElementById('sale_online_sale_pickup_date').style.backgroundColor = 'white'
+            document.getElementById('sale_tax_rate').disabled = ''
+            document.getElementById('sale_tax_rate').style.backgroundColor = 'white'
+          }
+        }
+      </script>
+      <% end %>
+    <% end -%>
+    <% form.edit_online_start_date do %>
+        <%= f.datetime_select :online_sale_start_date, { :minute_step => 15, :label => "Online Sale Start Date:<br>(Eastern Time Zone)" } %> 
+    <% end -%>
+    <% form.edit_first_discount_start_time do %>
+        <%= f.datetime_select :first_discount_start_time, { :minute_step => 15, :label => "25 Percent Discount Start Time:<br>(Eastern Time Zone)" } %> 
+    <% end -%>
+    <% form.edit_second_discount_start_time do %>
+        <%= f.datetime_select :second_discount_start_time, { :minute_step => 15, :label => "50 Percent Discount Start Time:<br>(Eastern Time Zone)" } %> 
+    <% end -%>
+    <% form.edit_online_start_date do %>
+        <%= f.datetime_select :online_sale_start_date, { :minute_step => 15, :label => "Online Sale Start Date:<br>(Eastern Time Zone)" } %> 
+    <% end -%>
+    <% form.edit_online_end_date do %>
+        <%= f.datetime_select :online_sale_end_date, { :minute_step => 1, :label => "Online Sale End Date:<br>(Eastern Time Zone)" } %> 
+    <% end -%>
+    <% form.edit_online_dropoff_date do %>
+        <%= f.text_area :online_sale_drop_off_date, :label => "Dropoff Information:", :help => "Optional Information for Drop Offs." %>
+    <% end %>
+    <% form.edit_online_pickup_date do %>
+        <%= f.text_area :online_sale_pickup_date, :label => "Pickup Information:", :help => "Dates and Times that purchasers can pick up items." %>
+    <% end %>
+    <% form.edit_tax_rate do %>
+        <%= f.text_field :tax_rate, :label => "Tax Rate Percent:", :help => "Example 10.4, 6.75.  Do not add percent symbol." %>
+    <% end %>    
+    <% form.edit_sale_percentage do %>
+      <%= f.select :sale_percentage, [["<Select a Percentage>", ""]] + Sale.sale_percentage_options.collect { |percentage| [percentage[1], percentage[0]] }, :label => "Sale Percentage" %>
+    <% end %>
+    <% form.edit_sale_advert_cost do %>
+      <%= f.text_field :sale_advert_cost, :label => "Sale Advertisement Cost:" %>
+    <% end %> 
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_franchise_url(@sale.franchise) %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if @super_admin %>
+<script>
+  window.onload = function() {
+    updateOnlineSale(document.getElementById('sale_has_online_sale'));
+  };
+</script>
+<% end -%>

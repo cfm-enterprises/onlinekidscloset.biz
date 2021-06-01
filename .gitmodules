@@ -1,0 +1,9 @@
+[submodule "vendor/bionic"]
+	path = vendor/bionic
+	url = git://github.com/BigRefT/bionic_cms.git
+[submodule "vendor/extensions/profile_plus"]
+	path = vendor/extensions/profile_plus
+	url = git://github.com/BigRefT/bionic-profile_plus-extension.git
+[submodule "vendor/extensions/kids_closet/vendor/plugins/wicked_pdf"]
+	path = vendor/extensions/kids_closet/vendor/plugins/wicked_pdf
+	url = git://github.com/mileszs/wicked_pdf.git

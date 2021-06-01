@@ -1,0 +1,13 @@
+<% field_set_tag "Upload PDF File for Sale" do -%>
+  <%= error_messages_for :sale, :site_asset %>
+  <% render_region :index_form, :locals => { :f => f } do |form| %>
+    <% form.edit_pdf_file do %>
+      <%= f.file_field :asset, :label => "Sale PDF File:", :help => "Use for replacement or to upload new", :size => 25 %>
+    <% end %>      
+  <% end %>
+  <% render_region :index_form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <%= f.submit_or_back save_label, admin_franchises_url(@sale.franchise) %>
+    <% end %>
+  <% end %>
+<% end %>

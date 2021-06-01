@@ -1,0 +1,58 @@
+<div class="list_content">
+<% for buyer in @buyers
+    orders = buyer.orders.find(:all, :conditions => ["sale_id = ?", @sale.id], :order => "consignor_inventory_id")
+    if orders.count > 0
+      item_row = 1 
+      for order in orders 
+        if item_row == 1 %>
+    <table class="kcc_check" cellpadding="1" cellspacing="1" width="100%">
+      <tr>
+        <td nowrap colspan="2">
+          <%= buyer.phone.as_phone %><br>
+          <%= buyer.email %>
+        </td>
+        <td colspan="2"><%= image_tag('k_closet_logo.jpg', :style=>"margin:0px;padding:0px") %></td>
+      </tr>
+      <tr>
+        <th style="border: solid; border-width: 2">Item #</th>
+        <th style="border: solid; border-width: 2">Item Name</th>
+        <th style="border: solid; border-width: 2">Price</th>
+        <th style="border: solid; border-width: 2">Consignor #</th>
+      </tr>
+      <% end %>
+      <tr>
+        <td style="border: solid; border-width: 2"><%= order.consignor_inventory_id %></td>
+        <td style="border: solid; border-width: 2"><%= order.item_name %></td>
+        <td style="border: solid; border-width: 2"><%= number_to_currency(order.item_price) %></td>
+        <td style="border: solid; border-width: 2"><%= order.seller_id %></td>
+      </tr>
+      <% 
+        item_row += 1
+        if item_row > 25
+          item_row = 1 %>
+      <tr>
+        <th colspan="4">Total # Items: <%= orders.count %></th>
+      </tr>
+    </table>  
+    <p>
+      <span style="font-size: 32pt"><%= buyer.last_name %></span>
+      <span style="font-size: 20pt"><%= buyer.first_name %></span>
+    </p>
+    <p class="breakhere">&nbsp;</p>
+      <% end
+     end
+     if item_row != 1 %>
+      <tr>
+        <th colspan="4">Total # Items: <%= orders.count %></th>
+      </tr>
+    </table>  
+    <p>
+      <span style="font-size: 32pt"><%= buyer.last_name %></span>
+      <span style="font-size: 20pt"><%= buyer.first_name %></span>
+    </p>
+    <p class="breakhere">&nbsp;</p>
+<%    
+      end
+    end
+  end %>
+</div>

@@ -1,0 +1,39 @@
+<tr id="item_coming-<%= item_coming.id.to_s %>" class="asset_row list_row">
+  <% render_region :list_data, :locals => { :item_coming => item_coming } do |list_data| %>
+    <% list_data.consignor_number_column do %>
+      <td><%= item_coming.profile_id %></td>
+    <% end %>
+    <% list_data.consignor_column do %>
+      <td><%= item_coming.profile.full_name %></td>
+    <% end %>  
+    <% list_data.item_number_column do %>
+      <td><%= item_coming.id %></td>
+    <% end %>
+    <% list_data.item_description_column do %>
+      <td><%= item_coming.item_description %></td>
+    <% end %>
+    <% list_data.size_column do %>
+      <td><%= item_coming.size %></td>
+    <% end %>
+    <% list_data.price_column do %>
+      <td align="center"><%= number_to_currency(item_coming.price) %></td>
+    <% end %>
+    <% list_data.donate_column do %>
+      <td><%= item_coming.donate ? "Yes" : "No" %></td>
+    <% end %>
+    <% list_data.discount_column do %>
+      <td><%= item_coming.last_day_discount ? "Yes" : "No" %></td>
+    <% end %>
+    <% list_data.featured_column do %>
+      <td><%= item_coming.created_at.strftime("%B %d, %Y") %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td>
+        <%= link_to 'Edit', edit_admin_sale_consignor_inventory_url(@sale, item_coming) %>
+        <% if item_coming.featured_item %>
+          | <%= link_to "Make Not Featured", remove_featured_item_admin_sale_consignor_inventory_url(@sale, item_coming), :confirm => "Are you sure?", :method => :delete %>
+        <% end %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

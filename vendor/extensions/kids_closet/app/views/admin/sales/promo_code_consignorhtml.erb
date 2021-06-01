@@ -1,0 +1,13 @@
+<tr id="consignor-<%= consignor.id.to_s %>" class="profile_row list_row">
+  <% render_region :list_data, :locals => { :consignor => consignor } do |list_data| %>
+    <% list_data.consignor_number_column do %>
+      <td class="name"><%= consignor.consignor_profile.profile_id %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= consignor.consignor_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.email_column do %>
+      <td class="name"><%= link_to consignor.consignor_profile.profile.email, "mailto:#{consignor.consignor_profile.profile.email}") %></td>
+    <% end %>
+  <% end %>
+</tr>

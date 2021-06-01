@@ -1,0 +1,32 @@
+<h1>Helper Jobs Available for <%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %></h1>
+<div class="list_content">
+  <table border=1 cellspacing=2 cellpadding=2>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Times</th>
+        <th align="left">Job Title</th>
+        <th align="left">Job Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @sale_volunteer_times.length == 0 %>
+        <tr><td colspan="5" class="no_entries">No Jobs Scheduled</td></tr>
+      <% else %>
+        <% for sale_volunteer_time in @sale_volunteer_times %>
+          <tr>
+            <td align="center" nowrap><%= sale_volunteer_time.date.strftime("%A %b %d, %Y") unless sale_volunteer_time.none_traditional_job %></td>
+            <td align="center" nowrap><%= "#{sale_volunteer_time.start_time.strftime("%I:%M %p")} - #{sale_volunteer_time.end_time.strftime("%I:%M %p")}" unless sale_volunteer_time.none_traditional_job %></td>
+            <td class="name"><%= sale_volunteer_time.job_title %></td>
+            <td><%= sale_volunteer_time.job_description %></td>
+            <td align="center" nowrap><%= sale_volunteer_time.volunteer_profiles.count(:id) %>/<%= sale_volunteer_time.number_of_spots %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script language="javascript">
+	window.print();
+</script>

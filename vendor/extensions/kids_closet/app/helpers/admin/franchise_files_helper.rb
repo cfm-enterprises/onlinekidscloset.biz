@@ -1,0 +1,2 @@
+module Admin::FranchiseFilesHelper
+end

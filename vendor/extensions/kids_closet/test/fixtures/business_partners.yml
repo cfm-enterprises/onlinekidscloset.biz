@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+kansas_spring_partner_1:
+  id: 1
+  sale_id: 1
+  partner_title: CFM Enterprises
+  partner_url: www.cfmenterprises.com
+  partner_description: CFM Enterprises Link
+  sort_index: 1
+  site_id: 1
+  
+kansas_spring_partner_2:
+  id: 2
+  sale_id: 1
+  partner_title: Recreational Solutions
+  partner_url: www.recsolutions.com
+  partner_description: Recreational Solutions Link
+  sort_index: 2
+  site_id: 1

@@ -1,0 +1,7 @@
+<% form_tag consignors_history_admin_franchise_path(@franchise), {:method => 'get', :id => 'admin_search_form', :autocomplete => 'off'} do %>
+  <h3>User Search</h3>
+  <p>
+    <%= text_field_tag 'franchise_profile_history_search[phrase]', @franchise_profile_history_search.phrase %><%= submit_tag 'Go', :disable_with => "Searching..." %>
+    <br />
+  </p>
+<% end %>

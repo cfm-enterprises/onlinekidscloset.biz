@@ -1,0 +1,7 @@
+<% form_tag rewards_list_admin_sale_path(@sale), {:method => 'get', :id => 'admin_search_form', :autocomplete => 'off'} do %>
+  <h3>Rewards Search</h3>
+  <p>
+    <%= text_field_tag 'rewards_signed_up_consignor_search[phrase]', @rewards_signed_up_consignor_search.phrase %><%= submit_tag 'Go', :disable_with => "Searching..." %>
+    <br />
+  </p>
+<% end %>

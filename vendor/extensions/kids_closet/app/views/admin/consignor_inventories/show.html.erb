@@ -1,0 +1,65 @@
+<h1>Item <%= @consignor_inventory.id %></h1>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <%= link_to 'Edit', edit_admin_sale_consignor_inventory_url(@sale, @consignor_inventory) %>
+    | <%= link_to "Make Not Featured", remove_featured_item_admin_sale_consignor_inventory_url(@sale, @consignor_inventory), :confirm => "Are you sure?", :method => :delete %>
+  <% end %>
+<% end %>
+<br /><br />
+<div class="list_content" style="border: none;">
+  <ul id="item_tabs" class="item_tabs">
+    <% render_region :tab_header do |tab_header| %>
+      <% tab_header.items_tab_header do %>
+        <li class="tab"><a href="#items_tab_id">Item Details</a></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="clearfix"></div>
+  <%= render_region :tabs %>
+</div>
+<% render_region :below_content do |below_content| %>
+  <% below_content.tab_javascript do %>
+    <%= javascript_include_tag ['livepipe/livepipe', 'livepipe/tabs'] %>
+    <%= javascript_tag(
+          "document.observe('dom:loaded',function(){\n" <<
+          "new Control.Tabs('sale_consignor_time_tabs');\n" <<
+          "});\n"
+        )
+    %>
+<style>
+img.rotate270 {
+transform:          rotate(270deg);
+-ms-transform:      rotate(270deg);
+-moz-transform:     rotate(270deg);
+-webkit-transform:  rotate(270deg);
+-o-transform:       rotate(270deg);
+padding-bottom: 20px;
+}
+img.rotate180 {
+transform:          rotate(180deg);
+-ms-transform:      rotate(180deg);
+-moz-transform:     rotate(180deg);
+-webkit-transform:  rotate(180deg);
+-o-transform:       rotate(180deg);
+padding-bottom: 20px;
+}
+img.rotate90 {
+transform:          rotate(90deg);
+-ms-transform:      rotate(90deg);
+-moz-transform:     rotate(90deg);
+-webkit-transform:  rotate(90deg);
+-o-transform:       rotate(90deg);
+padding-bottom: 20px;
+}
+img.rotate0 {
+transform:          rotate(0deg);
+-ms-transform:      rotate(0deg);
+-moz-transform:     rotate(0deg);
+-webkit-transform:  rotate(0deg);
+-o-transform:       rotate(0deg);
+padding-bottom: 20px;
+}
+
+</style>
+  <% end %>
+<% end %>

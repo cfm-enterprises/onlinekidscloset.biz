@@ -1,0 +1,15 @@
+<tr id="franchise_file_category-<%= franchise_file_category.id.to_s %>" class="franchise_file_category_row list_row">
+  <% render_region :list_data, :locals => { :franchise_file_category => franchise_file_category } do |list_data| %>
+    <% list_data.title_column do %>
+      <td class="name"><%= link_to franchise_file_category.title, admin_franchise_file_category_url(franchise_file_category) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <% if @admin %>
+        <td class="actions">
+          <%= link_to 'Edit', edit_admin_franchise_file_category_url(franchise_file_category) %> | 
+          <%= link_to "Delete", admin_franchise_file_category_url(franchise_file_category), :confirm => "Are you sure?", :method => :delete %>
+        </td>
+      <% end %>
+    <% end %>
+  <% end %>
+</tr>

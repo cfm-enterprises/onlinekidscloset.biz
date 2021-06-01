@@ -1,0 +1,18 @@
+<tr id="franchise-<%= franchise.id.to_s %>" class="franchise_row list_row">
+  <% render_region :list_data, :locals => { :franchise => franchise } do |list_data| %>
+    <% list_data.franchise_name_column do %>
+      <td class="name"><%= link_to franchise.franchise_name, admin_franchise_url(franchise) %></td>
+    <% end %>
+    <% list_data.sale_city_column do %>
+      <td class="name"><%= franchise.sale_city %></td>
+    <% end %>
+    <% list_data.sale_state_column do %>
+      <td class="name"><%= franchise.province.name %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_franchise_url(franchise) %><!-- | <%= link_to "Delete", admin_franchise_url(franchise), :confirm => "Are you sure?", :method => :delete %> -->
+      </td>
+    <% end %>
+  <% end %>
+</tr>

@@ -1,0 +1,35 @@
+<h1>Consignors with Promo Code <%= @promo_code %> for <%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %></h1>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="promo_code_list list_table" id="rewards_id">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.consignor_number_column_header do %><th>Consignor #</th><% end %>
+          <% list_headers.name_column_header do %><th>Name</th><% end %>
+          <% list_headers.email_column_header do %><th>Email</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @consignors.length == 0 %>
+        <tr><td colspan="<%= admin_interface.sales.promo_code_profile.list_data.length %>" class="no_entries">No Consignors have this Promo Code for this Sale</td></tr>
+      <% else %>
+        <%= render :partial => 'promo_code_consignor', :collection => @consignors %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= empty_pagination_div %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.sales_path do %>
+        <%= link_to 'Promo Code Report', promo_codes_admin_sale_url(@sale) %> | 
+        <%= link_to 'Back', admin_sale_url(@sale) %>
+      <% end -%>
+    <% end %>
+  </div>
+</div>

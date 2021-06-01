@@ -1,0 +1,7 @@
+<% render_region :main do |main| %>
+  <% main.edit_form do %>
+    <% form_for @franchise, :url => process_member_import_admin_franchise_url(@franchise), :html => {:class => 'semantic-form', :multipart => true} do |f| %>
+      <%= render :partial => 'import_form', :locals => { :f => f, :save_label => 'Update'} %>
+    <% end %>
+  <% end %>
+<% end %>

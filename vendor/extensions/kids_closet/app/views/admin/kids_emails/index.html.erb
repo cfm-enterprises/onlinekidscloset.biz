@@ -1,0 +1,42 @@
+<h1>Email System for <%= @franchise.franchise_name %></h1>
+<% render_region :top do |top| %>
+  <% top.pagination_counts do %>
+    <p><%= will_paginate_record_display(@kids_emails) %></p>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.date_column_header do %><th>Status</th><% end %>
+          <% list_headers.subject_column_header do %><th>Subject</th><% end %>
+          <% list_headers.recipients_column_header do %><th>Recipients</th><% end %>
+          <% list_headers.email_count_column_header do %><th>Estimated # of Emails</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @kids_emails.length == 0 %>
+        <tr><td colspan="<%= admin_interface.kids_emails.index.list_data.length %>" class="no_entries">No Emails Have Been Sent</td></tr>
+      <% else %>
+         <%= render :partial => 'kids_email', :collection => @kids_emails %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= will_paginate_links(@kids_emails) %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.back_to_franchise_link do %>
+        <%= link_to 'New Email', new_admin_franchise_kids_email_url(@franchise) %> | <%= link_to 'Back', admin_franchise_path(@franchise) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<%= render_region :bottom %>

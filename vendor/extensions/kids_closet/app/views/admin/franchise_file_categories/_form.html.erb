@@ -1,0 +1,17 @@
+<% field_set_tag "#{save_label} File Category" do -%>
+  <% render_region :form_top do |form_top| %>
+    <% form_top.edit_form_errors do %>
+      <%= error_messages_for :franchise_file_category %>
+    <% end %>
+  <% end %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_category_title do %>
+      <%= f.text_field :title, :label => "Title:" %>
+    <% end %>      
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <%= f.submit_or_back save_label, admin_franchise_file_categories_url %>
+    <% end %>
+  <% end %>
+<% end %>

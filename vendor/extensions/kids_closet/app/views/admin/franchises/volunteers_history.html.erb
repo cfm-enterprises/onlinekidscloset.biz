@@ -1,0 +1,47 @@
+<h1><%= @franchise.franchise_name %> All Helpers History Report</h1>
+<% render_region :top do |top| %>
+  <% top.pagination_counts do %>
+    <p><%= will_paginate_record_display(@franchise_profiles) %></p>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="franchise_profile list_table" id="site_asset_index_id">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.number_column_header do %><th>#</th><% end %>
+          <% list_headers.sort_group_column_header do %><th>Sort Group</th><% end %>
+          <% list_headers.name_column_header do %><th>Name</th><% end %>
+          <% list_headers.email_column_header do %><th>Email</th><% end %>
+          <% list_headers.phone_column_header do %><th>Phone</th><% end %>
+          <% list_headers.created_at_column_header do %><th>Origination Date</th><% end %>
+          <% list_headers.last_volunteer_date_column_header do %><th>Last Helping Date</th><% end %>
+          <% list_headers.last_sale_jobs_column_header do %><th># Helper Slots this Sale</th><% end %>
+          <% list_headers.lifetime_jobs_column_header do %><th># Lifetime Helper Slots</th><% end %>
+          <% list_headers.number_events_column_header do %><th># Lifetime Events</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @franchise_profiles.length == 0 %>
+        <tr><td colspan="<%= admin_interface.franchises.profile_list.list_data.length %>" class="no_entries">No Franchise Helpers</td></tr>
+      <% else %>
+         <%= render :partial => 'volunteer_history', :collection => @franchise_profiles %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= will_paginate_links(@franchise_profiles) %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.franchises_path do %>
+        <%= link_to 'Export', volunteers_history_export_admin_franchise_url(@franchise) %>
+        <%= link_to 'Back', admin_franchise_url(@franchise) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

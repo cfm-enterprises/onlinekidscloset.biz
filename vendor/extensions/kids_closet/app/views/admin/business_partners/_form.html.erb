@@ -1,0 +1,34 @@
+<% field_set_tag "#{save_label} Business Partner for #{@sale.franchise.franchise_name}:#{@sale.sale_dates}" do -%>
+  <%= error_messages_for :business_partner %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_sale_id do %>
+      <%= f.hidden_field :sale_id %>
+    <% end %>
+    <% form.edit_title do %>
+      <%= f.text_field :partner_title, :label => "Title:" %>
+    <% end %>
+    <% form.edit_url do %>
+      <%= f.text_field :partner_url, :label => "URL:" %>
+    <% end %>
+    <% form.edit_description do %>
+      <%= f.text_area :partner_description, :label => "Description:" %>
+    <% end %>
+    <% form.edit_sort_index do %>
+      <%= f.text_field :sort_index, :label => "Sort Order:" %>
+    <% end %>
+    <% fields_for @site_asset do |site_asset_form| %>
+      <% render_region :site_asset_fields do |site_asset_fields| %>
+        <% site_asset_fields.edit_filename do %>
+          <% if @site_asset.new_record? %>
+            <%= site_asset_form.file_field :asset, :label => "Business Partner Logo:", :help => "File for business partner logo.  For best results, upload logos 175px wide or smaller.", :size => 25 %>
+          <% end %>
+        <% end %>      
+      <% end %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_sale_business_partners_url(@sale) %>
+    <% end %>
+  <% end %>
+<% end %>

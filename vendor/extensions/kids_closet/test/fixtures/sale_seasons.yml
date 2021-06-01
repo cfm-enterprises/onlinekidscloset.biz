@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+spring:
+  id: 1
+  season_name: Spring 2010
+  start_date: 2010-01-01
+  end_date: 2010-06-30
+
+current:
+  id: 2
+  season_name: Current
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 180 %>
+  
+future:
+  id: 3
+  season_name: Future
+  start_date: <%= Date.today + 181 %>
+  end_date: <%= Date.today + 360 %>

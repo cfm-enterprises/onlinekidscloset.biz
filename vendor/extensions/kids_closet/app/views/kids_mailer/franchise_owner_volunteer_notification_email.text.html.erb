@@ -1,0 +1,21 @@
+<p><%= @subject %> You now have <b><%= @franchise_profile.franchise.volunteer_job_status %></b> jobs filled for your sale.<br></p>
+<p>The Users information:<br><br>
+Consignor ID: <%= @franchise_profile.profile_id %><br>
+Name: <%= @franchise_profile.profile.full_name %><br>
+Phone: <%= @franchise_profile.profile.phone %><br>
+Email: <%= @franchise_profile.profile.email %><br>
+<% if @address.not_nil? %>
+  Address: <%= @address.address_line_1 %>; <%= @address.city %>, <%= @address.site_province.province.code %> <%= @address.postal_code %><br>
+<% end %>
+<% if @franchise_profile.profile.how_did_you_hear.not_nil? %>
+  Found Us Selection: <%= @franchise_profile.profile.how_did_you_hear.other ? @franchise_profile.profile.how_did_you_hear_other : @franchise_profile.profile.how_did_you_hear.label %><br>
+<% end %>
+<% if @job.nil? %>
+	Helper Cancelled all Jobs<br>
+<% else %>
+	Helper Date and Time: <%= @job.none_traditional_job ? "None Traditional Job" : "#{@job.date.strftime("%b %d, %Y")} #{@job.start_time.strftime("%I:%M %p")}" %><br>
+	Job Title: <%= @job.job_title %><br>
+	Job Description: <%= @job.job_description %><br>
+<% end -%>
+<br>
+You may go to your <a href="http://www.kidscloset.biz/admin/franchises">Franchise Control Panel</a> and log into your account to view all consignors, volunteers and mailing list members registered for your sale.</p>

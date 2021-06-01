@@ -1,0 +1,13 @@
+<h1><%= @kids_email.franchise.franchise_name unless @admin %> Mailing System</h1>
+<% render_region :main do |main| %>
+  <% main.edit_form do %>
+    <% form_for [:admin, @kids_email.franchise, @kids_email], :html => {:class => 'semantic-form', :autocomplete => "off"} do |f| %>
+      <%= render :partial => 'form', :locals => { :f => f } %>
+    <% end %>
+  <% end %>
+<% end %>
+<% render_region :below_content do |below_content| %>
+  <% below_content.html_content_javascript do %>
+    <%= javascript_include_tag :fckeditor %>
+  <% end %>
+<% end %>

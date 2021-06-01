@@ -1,0 +1,80 @@
+<%
+    if available_profile.profile.nil?
+      @amount_earned = RewardsProfile.rewards_by_rewards_number_and_franchise(available_profile.rewards_number, @sale.franchise_id)
+      if @amount_earned > 0
+        @total_to_apply += @amount_earned %>
+        <tr id="available_profile-<%= available_profile.id.to_s %>" class="available_profile_row list_row">
+          <% render_region :list_data, :locals => { :available_profile => available_profile } do |list_data| %>
+            <% list_data.rewards_number_column do %>
+              <td class="name"><%= available_profile.rewards_number %></td>
+            <% end %>
+            <% list_data.name_column do %>
+              <td class="name">Not Claimed</td>
+            <% end %>
+            <% list_data.sale_season_column do %>
+              <td class="name">N/A</td>
+            <% end %>
+            <% list_data.amount_purchased_column do %>
+              <td align="center">
+                N/A       
+              </td>
+            <% end %>
+            <% list_data.amount_earned_column do %>
+              <td align="center">
+                N/A
+              </td>
+            <% end %>
+            <% list_data.awards_applied_column do %>
+              <td align="center">
+                N/A              
+              </td>
+            <% end %>
+            <% list_data.awards_available_column do %>
+              <td class="name" align="center">
+                <%= number_to_currency(@amount_earned)  %></td>
+            <% end %>
+          <% end %>
+        </tr>
+  <%  end %>  
+<%  else  
+      @amount_applied = RewardsEarning.earnings_by_profile_and_franchise(available_profile.profile, @sale.franchise_id)
+      for sale in @previous_sales
+        @amount_purchased = RewardsProfile.purchases_by_user_and_sale(available_profile.profile.user, sale.id)
+        @amount_earned = RewardsProfile.rewards_for_total_amount(@amount_purchased)           
+        if @amount_earned > @amount_applied
+          @total_to_apply += @amount_earned - @amount_applied %>
+          <tr id="available_profile-<%= available_profile.id.to_s %>" class="available_profile_row list_row">
+            <% render_region :list_data, :locals => { :available_profile => available_profile } do |list_data| %>
+              <% list_data.rewards_number_column do %>
+                <td class="name"><%= available_profile.rewards_number %></td>
+              <% end %>
+              <% list_data.name_column do %>
+                <td class="name"><%= available_profile.profile.full_name %></td>
+              <% end %>
+              <% list_data.sale_season_column do %>
+                <td class="name"><%= sale.sale_season.season_name %></td>
+              <% end %>
+              <% list_data.amount_purchased_column do %>
+                <td align="center">
+                  <%= number_to_currency(@amount_purchased) %>        
+                </td>
+              <% end %>
+              <% list_data.amount_earned_column do %>
+                <td align="center">
+                  <%= number_to_currency(@amount_earned) %>
+                </td>
+              <% end %>
+              <% list_data.awards_applied_column do %>
+                <td align="center">
+                  <%= number_to_currency(@amount_applied)  %></td>
+              <% end %>
+              <% list_data.awards_available_column do %>
+                <td class="name" align="center">
+                  <%= number_to_currency(@amount_earned - @amount_applied)  %></td>
+              <% end %>
+            <% end %>
+          </tr>
+    <%  end %>
+  <%  @amount_applied = @amount_earned > @amount_applied ? 0 : @amount_applied - @amount_earned %>
+  <%  end %>
+<%  end %>

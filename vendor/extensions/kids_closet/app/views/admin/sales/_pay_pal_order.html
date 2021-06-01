@@ -1,0 +1,28 @@
+<tr id="pay_pal_order-<%= pay_pal_order.id.to_s %>" class="pay_pal_order_row list_row">
+  <% render_region :list_data, :locals => { :pay_pal_order => pay_pal_order } do |list_data| %>
+    <% list_data.date_column do %>
+      <td class="name"><%= pay_pal_order.created_at.strftime("%b %d, %y %I:%M %p") %></td>
+    <% end %>
+    <% list_data.consignor_number_column do %>
+      <td class="name"><%= pay_pal_order.profile_id %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td>
+        <%= pay_pal_order.profile.full_name %><br>
+        <%= link_to pay_pal_order.profile.email, "mailto:#{pay_pal_order.profile.email}" %><br>
+        <%= pay_pal_order.profile.phone.as_phone %>
+      </td>
+    <% end %>
+    <% list_data.item_descriptions_column do %>
+      <td class="name"><%= pay_pal_order.order_description("<br>") %></td>
+    <% end -%>
+    <% list_data.amount_column do %>
+      <td align="center"><%= number_to_currency(pay_pal_order.total_amount) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to "Confirm Sale", comfirm_order_admin_pay_pal_order_url(pay_pal_order), :confirm => "Are you sure you received payment for this order?", :method => :delete %> | <%= link_to "Remove Sale", cancel_order_admin_pay_pal_order_url(pay_pal_order), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

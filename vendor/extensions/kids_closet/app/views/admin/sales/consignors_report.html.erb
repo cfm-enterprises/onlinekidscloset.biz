@@ -1,0 +1,48 @@
+<% line_count = 0 %>
+<% for consignor in @consignors %>
+  <% if line_count == 0 %>  
+<h1><%= @sale.franchise.franchise_name %> - <%= @sale.sale_season.season_name %> Consignors Report</h1>
+<div class="list_content">
+  <table class="list_table" cellpadding="2" cellspacing="2">
+    <thead>
+      <tr>
+        <th></th>
+        <th valign="bottom" nowrap>Consignor #</th>
+        <th valign="bottom">Sort<br>Group</th>
+        <th valign="bottom" align="left">Name</th>
+        <th valign="bottom">Sale<br>Percentage</th>
+        <th>Estimated<br>Consignor<br>Fee</th>
+        <th>I agree to seller<br>Terms and Conditions</th>
+        <th>Initials<br>if Not<br>Picking Up</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% end -%>
+      <tr class="list_row">
+        <td align="center"><%= "V" if consignor.franchise_profile.volunteered_in_sale?(@sale.id) %></td>
+        <td align="center">#<%= consignor.franchise_profile.profile_id %></td>
+        <td align="center"><%= consignor.franchise_profile.profile.sort_column %></td>
+        <td nowrap><%= consignor.franchise_profile.profile.legal_name %></td>
+        <td align="center"><%= consignor.sale_percentage %>%</td>
+        <td align="center"><%= number_to_currency(consignor.estimated_advertisement_fee) %></td>
+        <td align="center">_____________________</td>
+        <td align="center">___</td>
+      </tr>
+  <% if line_count == 30
+      line_count = 0 %>
+    </tbody>
+  </table>    
+</div>
+<p style="page-break-after: always;"></p>
+  <% else
+    line_count += 1
+  end 
+end %>
+<% if line_count != 0 %>
+    </tbody>
+  </table>    
+</div>
+<% end %>
+<script language="javascript">
+	window.print();
+</script>

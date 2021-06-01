@@ -1,0 +1,37 @@
+<tr id="transaction_import-<%= transaction_import.id.to_s %>" class="transaction_import_row list_row">
+  <% render_region :list_data, :locals => { :transaction_import => transaction_import } do |list_data| %>
+    <% list_data.report_dates_column do %>
+      <td><%= transaction_import.report_dates %></td>
+    <% end %>
+    <% list_data.report_number_column do %>
+      <td class="name"><%= transaction_import.id  %></td>
+    <% end %>
+    <% list_data.report_name_column do %>
+      <td class="name"><%= transaction_import.site_asset.nil? ? "Legacy Import #{transaction_import.report_date.strftime("%b %d, %Y")}" : transaction_import.site_asset.file_name %></td>
+    <% end %>
+    <% list_data.extra_income_column do %>
+      <td><%= number_to_currency(transaction_import.extra_income) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <% if transaction_import.sale.eligible_for_financials? %>
+          <% if transaction_import.status == "Processing Sale Financials" || transaction_import.status == "Scheduled to Import Transactions" || transaction_import.status == "Scheduled for Deletion" || transaction_import.status == "Recalculating Financials" || transaction_import.status == "Deleting Files" || transaction_import.status == "Adding Phone Numbers" || transaction_import.status == "Verifying Consignors" || transaction_import.status == "Processing Data" || transaction_import.status == "Removing Transactions" %>        
+                  <%= transaction_import.status %>
+          <% elsif transaction_import.status == "Complete" %>
+            <%= "#{link_to 'Log', log_admin_transaction_import_url(transaction_import)} | " if transaction_import.processed %>
+    <!--        <%= transaction_import.processed ? 
+                (link_to 'Rollback', rollback_import_admin_transaction_import_url(transaction_import), :confirm => "Are you sure?  This may take several minutes and can not be undone.", :method => :post) :
+                (link_to 'Process', process_import_admin_transaction_import_url(transaction_import), :confirm => "Are you sure?  This may take several minutes.", :method => :post) %> |   -->
+            <%= link_to 'Edit', edit_admin_transaction_import_url(transaction_import) %> | 
+            <%= link_to "Delete", admin_sale_transaction_import_url(transaction_import.sale, transaction_import), :confirm => "Are you sure?  This will rollback the import and can not be undone.", :method => :delete %>
+          <% else %>
+              <%= transaction_import.status %> | <%= link_to "Delete", admin_sale_transaction_import_url(transaction_import.sale, transaction_import), :confirm => "Are you sure?", :method => :delete %>
+          <% end %>
+        <% else %>
+          <%= link_to 'Log', log_admin_transaction_import_url(transaction_import) if transaction_import.processed %> | 
+          <%= link_to 'Edit', edit_admin_transaction_import_url(transaction_import) %>
+        <% end %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

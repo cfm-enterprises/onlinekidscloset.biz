@@ -21,3 +21,15 @@ $RECYCLE.BIN/
 # =========================
 # Operating System Files
 # =========================
+
+log/[^.]*
+tmp/**/*
+public/assets
+config/database.yml
+config/environment.rb
+db/schema.rb
+config/initializers/abstract_mysql_adapter.tb.rb
+
+
+config/environments/development.rb
+config/environments/production.rb

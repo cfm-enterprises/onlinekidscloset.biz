@@ -1,0 +1,25 @@
+<% field_set_tag "Upload Photo from Past Sales" do -%>
+  <%= error_messages_for :franchise_photo %>
+  <% render_region :index_form, :locals => { :f => f } do |form| %>
+    <% form.edit_index_filename do %>
+      <%= f.file_field :asset, :label => "Franchise Photo File:", :help => "New or Replacement Photo.", :size => 25 %>
+    <% end %>
+    <% form.edit_franchise_id do %>
+      <%= f.hidden_field :franchise_id %>
+    <% end %>
+    <% form.edit_index_caption do %>
+      <%= f.text_field :caption, :label => "Caption:", :size => 25 %>
+    <% end %>      
+    <% form.edit_show_on_slider do %>
+      <%= f.select :show_in_slider, [["Yes", true], ["No", false]], :label => "Show on Home Page Slider", :help => "For best results use images that are 350px x 350px or landscape (horizontal) for slider. <b>DO NOT use portrait (vertical) images</b>" %>
+    <% end %>
+    <% form.edit_sort_order do %>
+      <%= f.text_field :sort_order, :label => "Sort Order:", :size => 10 %> 
+    <% end -%>
+  <% end %>
+  <% render_region :index_form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <%= f.submit_or_back 'Upload Photo', admin_franchise_url(@franchise_photo.franchise) %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,31 @@
+<tr id="volunteer_history-<%= volunteer_history.id.to_s %>" class="volunteer_history_row list_row">
+  <% render_region :list_data, :locals => { :volunteer_history => volunteer_history } do |list_data| %>
+    <% list_data.number_column do %>
+      <td class="name"><%= volunteer_history.profile_id %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= volunteer_history.profile.full_name %></td>
+    <% end %>
+    <% list_data.email_column do %>
+      <td><%= link_to volunteer_history.profile.email, "mailto:#{volunteer_history.profile.email}" %></td>
+    <% end %>
+    <% list_data.phone_column do %>
+      <td><%= volunteer_history.profile.phone.as_phone unless volunteer_history.profile.phone.nil? %></td>
+    <% end %>
+    <% list_data.created_at_column do %>
+      <td><%= volunteer_history.created_at.strftime("%B, %d, %Y") %></td>
+    <% end %>
+    <% list_data.last_volunteer_date_column do %>
+      <td><%= volunteer_history.last_volunteer_date %></td>
+    <% end %>
+    <% list_data.last_sale_jobs_column do %>
+      <td align="center"><%= volunteer_history.last_sale_volunteer_slots %></td>
+    <% end %>
+    <% list_data.lifetime_jobs_column do %>
+      <td align="center"><%= volunteer_history.lifetime_volunteer_slots %></td>
+    <% end %>
+    <% list_data.number_events_column do %>
+      <td align="center"><%= volunteer_history.number_of_sales_volunteered %></td>
+    <% end %>
+  <% end %>
+</tr>

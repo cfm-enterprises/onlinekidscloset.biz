@@ -1,0 +1,37 @@
+<h1><%= @sale_consignor_time.sale.franchise.franchise_name %>:<%= @sale_consignor_time.sale.sale_dates %></h1>
+<h3>
+  <%= @sale_consignor_time.internal ? "Consignors Who Have Not Selected a Drop-off Time" : 
+        "#{@sale_consignor_time.date.strftime("%b %d, %Y")}:#{@sale_consignor_time.start_time.strftime("%I:%M %p")}-#{@sale_consignor_time.end_time.strftime("%I:%M %p")}" %>
+</h3>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <% unless @sale_consignor_time.internal %>
+    <%= link_to "Edit Time", edit_admin_sale_sale_consignor_time_path(@sale_consignor_time.sale, @sale_consignor_time) %> | 
+    <% end %>
+    <%= link_to 'Print', print_consignor_list_admin_sale_consignor_time_path(@sale_consignor_time), :popup => ['consignor_drop_off_list', 'height=650,width=800'] %> | 
+    <%= link_to 'Back', admin_sale_sale_consignor_times_path(@sale_consignor_time.sale) %>
+  <% end %>
+<% end %>
+<br /><br />
+<div class="list_content" style="border: none;">
+  <ul id="sale_consignor_time_tabs" class="subsection_tabs">
+    <% render_region :tab_header do |tab_header| %>
+      <% tab_header.consignors_tab_header do %>
+        <li class="tab"><a href="#consignors_tab_id">Consignors List</a></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="clearfix"></div>
+  <%= render_region :tabs %>
+</div>
+<% render_region :below_content do |below_content| %>
+  <% below_content.tab_javascript do %>
+    <%= javascript_include_tag ['livepipe/livepipe', 'livepipe/tabs'] %>
+    <%= javascript_tag(
+          "document.observe('dom:loaded',function(){\n" <<
+          "new Control.Tabs('sale_consignor_time_tabs');\n" <<
+          "});\n"
+        )
+    %>
+  <% end %>
+<% end %>

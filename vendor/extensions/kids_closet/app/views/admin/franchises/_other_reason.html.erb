@@ -1,0 +1,10 @@
+<tr id="other_reason-<%= other_reason.id.to_s %>" class="other_reason_row list_row">
+  <% render_region :other_reason_list_data, :locals => { :other_reason => other_reason } do |list_data| %>
+    <% list_data.label_column do %>
+      <td class="name"><%= other_reason.profile.how_did_you_hear_other %></td>
+    <% end %>
+    <% list_data.count_column do %>
+      <td><%= @franchise.other_reasons_count(other_reason.profile.how_did_you_hear_other) %></td>
+    <% end %>
+  <% end %>
+</tr>

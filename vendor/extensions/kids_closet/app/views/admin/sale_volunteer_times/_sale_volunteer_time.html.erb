@@ -1,0 +1,30 @@
+<tr id="sale_volunteer_time-<%= sale_volunteer_time.id.to_s %>" class="sale_volunteer_time_row list_row">
+  <% render_region :list_data, :locals => { :sale_volunteer_time => sale_volunteer_time } do |list_data| %>
+    <% list_data.date_column do %>
+      <td><%= sale_volunteer_time.date.strftime("%A %b %d, %Y") unless sale_volunteer_time.none_traditional_job %></td>
+    <% end %>
+    <% list_data.times_column do %>
+      <td><%= "#{sale_volunteer_time.start_time.strftime("%I:%M %p")} - #{sale_volunteer_time.end_time.strftime("%I:%M %p")}" unless sale_volunteer_time.none_traditional_job %></td>
+    <% end %>
+    <% list_data.job_title_column do %>
+      <td class="name"><%= sale_volunteer_time.job_title %></td>
+    <% end %>
+    <% list_data.job_description_column do %>
+      <td><%= sale_volunteer_time.job_description %></td>
+    <% end %>
+    <% list_data.spots_column do %>
+      <td align="center"><%= sale_volunteer_time.volunteer_profiles.count(:id) %>/<%= sale_volunteer_time.number_of_spots %></td>
+    <% end %>
+    <% list_data.draft_column do %>
+      <td align="center"><%= sale_volunteer_time.draft_status ? (link_to 'Draft', make_active_admin_sale_volunteer_time_url(sale_volunteer_time), :method => :post) : 'Active' %></td>
+    <% end -%>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'View Helpers', admin_sale_volunteer_time_url(sale_volunteer_time) %> | 
+        <%= link_to 'Email Helpers', email_volunteers_in_job_admin_kids_email_path(sale_volunteer_time.sale.franchise, sale_volunteer_time) %> | 
+        <%= link_to 'Edit', edit_admin_sale_sale_volunteer_time_url(sale_volunteer_time.sale, sale_volunteer_time) %> | 
+        <%= link_to 'Delete', admin_sale_sale_volunteer_time_url(sale_volunteer_time.sale, sale_volunteer_time), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

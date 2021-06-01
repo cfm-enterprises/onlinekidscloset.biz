@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+florida:
+  id: 1
+  franchise_name: Florida
+  sale_city: Palm Bay
+  province_id: 1
+  franchise_email: florida@kidscloset.biz
+  sale_hash: florida
+  home_content: This is the home page content
+  contact_content: This is the contact us content
+  locations_and_times_content: This is the locations and times content
+  news_content: This is the news content
+  consignors_info_content: This is the consignors info content
+  use_minimum_royalty: false
+    
+kansas:
+  id: 2
+  franchise_name: Overland Park, KS
+  sale_city: Overland Park
+  province_id: 2
+  franchise_email: kansas@kidscloset.biz
+  sale_hash: overland_park__ks
+  use_minimum_royalty: false

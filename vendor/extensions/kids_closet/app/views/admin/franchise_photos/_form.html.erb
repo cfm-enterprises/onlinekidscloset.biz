@@ -1,0 +1,23 @@
+<% field_set_tag "Edit Photo from Past Sales" do -%>
+  <%= error_messages_for :franchise_photo %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_caption do %>
+      <%= f.text_field :caption, :label => "Caption:", :size => 25 %>
+    <% end %>      
+    <% form.edit_show_on_slider do %>
+      <% if @franchise_photo.site_asset.nil? %>
+        <%= f.select :show_in_slider, [["Yes", true], ["No", false]], :label => "Show on Home Page Slider" %>
+      <% else -%>
+        Please delete and re-upload this photo to the system to make it available for the Home Page Slider
+      <% end -%>
+    <% end %>
+    <% form.edit_sort_order do %>
+      <%= f.text_field :sort_order, :label => "Sort Order:", :size => 10 %> 
+    <% end -%>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back 'Update Photo', admin_franchise_franchise_photos_url(@franchise_photo.franchise) %>
+    <% end %>
+  <% end %>
+<% end %>

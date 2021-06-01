@@ -1,0 +1,18 @@
+<td class="name"><%= @sale_consignor_sign_up.franchise_profile.profile_id %></td>
+<td class="name"><%= @sale_consignor_sign_up.franchise_profile.profile.items_coming %></td>
+<td class="name"><%= @sale_consignor_sign_up.franchise_profile.profile.sort_column %></td>
+<td class="name"><%= @sale_consignor_sign_up.franchise_profile.profile.full_name %></td>
+<td><%= link_to @sale_consignor_sign_up.franchise_profile.profile.email, "mailto:#{@sale_consignor_sign_up.franchise_profile.profile.email}" %></td>
+<td><%= @sale_consignor_sign_up.franchise_profile.profile.phone.as_phone %></td>
+<td>
+<% if @row_color == "green" %>
+Sale Percentage Changed to <%= @sale_consignor_sign_up.sale_percentage %>%
+<% else %>
+Could not save percentage.  Click edit to find out more.
+<% end %>
+</td>
+<td><%= number_to_currency(@sale_consignor_sign_up.estimated_advertisement_fee) %></td>
+<td class="actions">
+  <%= link_to 'Disclaimer', consignor_contract_admin_sale_consignor_sign_up_url(@sale_consignor_sign_up), :popup => ['consignor_disclaimer', 'height=650,width=800'] %> | 
+  <%= link_to 'Edit', edit_admin_sale_consignor_sign_up_url(@sale_consignor_sign_up) %> | <%= link_to "Remove", admin_sale_consignor_sign_up_url(@sale_consignor_sign_up), :confirm => "Are you sure?", :method => :delete %>
+</td>

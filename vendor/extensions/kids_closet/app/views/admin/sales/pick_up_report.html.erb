@@ -1,0 +1,37 @@
+<h2>Sort Group Report</h2>
+<table border=0 cellspacing=4 cellpadding=4>
+  <tr>
+    <th align="left">Sort Group</th>
+    <th align="left" nowrap>Consignor #</th>
+    <th aligh="left">Last Name</th>
+    <th nowrap># of Unsold Items</th>
+    <th nowrap>Clothing</th>
+    <th nowrap>Non-clothing</th>
+  </tr>
+  <% for sort_group in Profile.sort_groups %>
+    <% 
+      consignors = @sale.consignor_profiles_for_sort_column(sort_group) 
+      items_to_pick_up = 0
+    %>
+    <% for consignor in consignors  %>
+      <tr>
+        <td><%= sort_group if consignor == consignors[0] %></td>
+        <td><%= consignor.franchise_profile.profile_id %></td>
+        <td><%= consignor.franchise_profile.profile.last_name %></td>
+        <% 
+          consignor_items = consignor.franchise_profile.profile.items_to_pick_up
+          items_to_pick_up += consignor_items
+        %>
+        <td><%= consignor_items %></td>
+        <td><%= consignor.franchise_profile.profile.clothing_items_to_pick_up %></td>
+        <td><%= consignor.franchise_profile.profile.none_clothing_items_to_pick_up %></td>
+      </tr>
+    <% end -%>
+    <% unless consignors.empty? %>
+    <tr>
+      <td colspan="2">Total Items in Sort Group <%= sort_group %></td>
+      <td><%= items_to_pick_up %>
+    </tr>
+    <% end -%>
+  <% end -%>
+</table>

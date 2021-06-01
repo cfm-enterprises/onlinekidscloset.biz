@@ -1,0 +1,22 @@
+<tr id="sale_business_partner-<%= business_partner.id.to_s %>" class="business_partner list_row">
+  <% render_region :list_data, :locals => { :business_partner => business_partner } do |list_data| %>
+    <% list_data.sort_column do %>
+      <td class="name" align="center"><%= business_partner.sort_index %></td>
+    <% end %>
+    <% list_data.title_column do %>
+      <td class="name"><%= business_partner.partner_title %></td>
+    <% end %>
+    <% list_data.url_column do %>
+      <td><%= link_to business_partner.partner_url, business_partner.link_url %></td>
+    <% end %>
+    <% list_data.description_column do %>
+      <td><%= business_partner.partner_description %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_sale_business_partner_url(@sale, business_partner) %> | 
+        <%= link_to 'Delete', admin_sale_business_partner_url(@sale, business_partner), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

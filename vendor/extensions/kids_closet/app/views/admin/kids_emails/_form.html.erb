@@ -1,0 +1,40 @@
+<% field_set_tag "Send General Email" do -%>
+  <%= error_messages_for :kids_email %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_franchise_id do %>
+      <%= f.hidden_field :franchise_id %>
+      <%= f.hidden_field :master_email %>
+      <%= hidden_field_tag :autocomplete, "false" %>
+      <% if @kids_email.draft_mode %>
+        <%= hidden_field_tag :draft_id, @kids_email.id %>
+      <% end %>
+    <% end %>
+    <% form.edit_recipients do %>
+      <%= f.select :recipients, options_for_select(@kids_email.recipients_array, @kids_email.recipients), :label => "Recipients" %><br>
+    <% end %>
+    <% form.edit_subject do %>
+      <%= f.text_field :subject, :label => "Subject", :autocomplete => "off" %>
+    <% end %>
+    <% form.edit_email_html_body do %>
+      <div class="textarea-field ">
+        <label for="kids_email_html_body">HTML Version</label>
+        <div class="input"></div>
+        <%= f.fckeditor(:html_body, :toolbarSet => 'KidsCloset', :width => '99%', :height => '300px', :id => "html_body") %>
+      </div>
+    <% end %>
+    <% form.edit_email_text_body do %>
+    <% end %>
+    <% form.edit_test_email do %>
+      <%= f.text_field :draft_recipient, :label => "Send Test Email To:" %>  
+    <% end %>
+    <% form.edit_schedule do %>
+      <%= f.check_box :schedule_email, :label => "Schedule Email for Future Delivery:" %>
+      <%= f.datetime_select :send_at, { :default => Time.now + 24 * 3600, :minute_step => 15, :label => "Send At:" } %>
+    <% end -%>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= submit_tag "Send Test" %> | <%= submit_tag "Send Emails" %> | <%= submit_tag "Save Draft" %> | <%= submit_tag "Export List" %> | <%= link_to 'Back', admin_franchise_url(@kids_email.franchise) %>
+    <% end %>
+  <% end %>
+<% end %>

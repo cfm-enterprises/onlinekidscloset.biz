@@ -1,0 +1,84 @@
+<% field_set_tag "#{save_label} Helper Job for #{@sale_volunteer_time.sale.franchise.franchise_name}:#{@sale_volunteer_time.sale.sale_dates}" do -%>
+  <%= error_messages_for :sale_volunteer_time %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_sale_id do %>
+      <%= f.hidden_field :sale_id %>
+    <% end %>
+    <% form.edit_date do %>
+      <%= f.date_select :date, :label => "Helper Date:" %>
+    <% end %>
+    <% form.edit_job_type do %>
+      <%= f.select :none_traditional_job, [["No", false], ["Yes", true]], {:label => "Non Traditional Job"}, {:onchange => "updateTraditionalJob(this);"} %>
+      <script>
+        function updateTraditionalJob(item)
+        {
+          if (item.value == "true")
+          {
+            document.getElementById('sale_volunteer_time_start_time_4i').disabled = 'disabled'
+            document.getElementById('sale_volunteer_time_start_time_4i').style.backgroundColor = 'gray'
+            document.getElementById('sale_volunteer_time_start_time_5i').disabled = 'disabled'
+            document.getElementById('sale_volunteer_time_start_time_5i').style.backgroundColor = 'gray'
+            document.getElementById('sale_volunteer_time_start_time_7i').disabled = 'disabled'
+            document.getElementById('sale_volunteer_time_start_time_7i').style.backgroundColor = 'gray'
+            document.getElementById('sale_volunteer_time_end_time_4i').disabled = 'disabled'
+            document.getElementById('sale_volunteer_time_end_time_4i').style.backgroundColor = 'gray'
+            document.getElementById('sale_volunteer_time_end_time_5i').disabled = 'disabled'
+            document.getElementById('sale_volunteer_time_end_time_5i').style.backgroundColor = 'gray'
+            document.getElementById('sale_volunteer_time_end_time_7i').disabled = 'disabled'
+            document.getElementById('sale_volunteer_time_end_time_7i').style.backgroundColor = 'gray'
+          }
+          else
+          {
+            document.getElementById('sale_volunteer_time_start_time_4i').disabled = ''
+            document.getElementById('sale_volunteer_time_start_time_4i').style.backgroundColor = 'white'
+            document.getElementById('sale_volunteer_time_start_time_5i').disabled = ''
+            document.getElementById('sale_volunteer_time_start_time_5i').style.backgroundColor = 'white'
+            document.getElementById('sale_volunteer_time_start_time_7i').disabled = ''
+            document.getElementById('sale_volunteer_time_start_time_7i').style.backgroundColor = 'white'
+            document.getElementById('sale_volunteer_time_end_time_4i').disabled = ''
+            document.getElementById('sale_volunteer_time_end_time_4i').style.backgroundColor = 'white'
+            document.getElementById('sale_volunteer_time_end_time_5i').disabled = ''
+            document.getElementById('sale_volunteer_time_end_time_5i').style.backgroundColor = 'white'
+            document.getElementById('sale_volunteer_time_end_time_7i').disabled = ''
+            document.getElementById('sale_volunteer_time_end_time_7i').style.backgroundColor = 'white'
+          }
+        }
+      </script>
+    <% end %>
+    <% form.edit_start_time do %>
+      <div class="date-field "><label for="sale_volunteer_time_date">Start Time:</label><div class="input">
+        <% if @sale_volunteer_time.none_traditional_job %>
+          <%= f.time_select :start_time, {:twelve_hour => true, :minute_step => 5}, {:disabled => 'disabled', :style => "background: gray;"}  %>
+        <% else %>
+          <%= f.time_select :start_time, {:twelve_hour => true, :minute_step => 5} %>
+        <% end -%>        
+      </div></div>
+    <% end %>
+    <% form.edit_end_time do %>
+      <div class="date-field "><label for="sale_volunteer_time_date">End Time:</label><div class="input">
+        <% if @sale_volunteer_time.none_traditional_job %>
+          <%= f.time_select :end_time, {:twelve_hour => true, :minute_step => 5}, {:disabled => 'disabled', :style => "background: gray;"}  %>
+        <% else %>
+          <%= f.time_select :end_time, {:twelve_hour => true, :minute_step => 5} %>
+        <% end -%>        
+      </div></div>
+    <% end %>
+    <% form.edit_job_title do %>
+      <%= f.text_field :job_title, :label => "Job Title:" %>
+    <% end %>
+    <% form.edit_job_description do %>
+      <%= f.text_field :job_description, :label => "Job Description:" %>
+    <% end %>
+    <% form.edit_number_of_spots do %>
+      <%= f.text_field :number_of_spots, :label => "Spots Available:" %>
+    <% end %>
+    <% form.edit_draft do %>
+      <%= f.select :draft_status, [["Live", false], ["Draft", true]], :label => "Status:" %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_sale_sale_volunteer_times_url(@sale_volunteer_time.sale) %>
+    <% end %>
+  <% end %>
+<% end %>

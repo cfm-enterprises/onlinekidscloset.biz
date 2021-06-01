@@ -1,0 +1,36 @@
+<h1><%= @sale.franchise.franchise_name %> - <%= @sale.sale_season.season_name %> Check Report</h1>
+<h2>Consignor Checks</h2>
+<div class="list_content">
+  <% for consignor in @consignors %>
+    <table class="list_table" cellpadding="3" cellspacing="3">
+      <thead>
+        <tr bgColor="#cccccc">
+          <th valign="bottom" nowrap>Consignor #</th>
+          <th valign="bottom" align="left" width="150">Name</th>
+          <th>Amount<br>Sold</th>
+          <th>Sale<br>Percentage</th>
+          <th>Percent<br>Fee</th>
+          <th>Consignor<br>Fee</th>
+          <th>Additional<br>Proceeds</th>
+          <th>Amount Due<br>to Consignor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="list_row">
+          <td align="center"><%= consignor.franchise_profile.profile_id %></td>
+          <td nowrap><%= consignor.franchise_profile.profile.full_name %></td>
+          <td align="center"><%= number_to_currency(consignor.total_sold) %></td>
+          <td align="center"><%= consignor.sale_percentage %>%</td>
+          <td align="center"><%= number_to_currency(consignor.percentage_fee_paid) %></td>
+          <td align="center"><%= number_to_currency(consignor.advertisement_fee_paid) %></td>
+          <td align="center"><%= number_to_currency(consignor.fee_adjustment) %></td>
+          <td align="center"><%= number_to_currency(consignor.check_amount) %></td>
+        </tr>
+      </tbody>
+    </table>  
+    <br>
+  <% end %>
+</div>
+<script language="javascript">
+	window.print();
+</script>

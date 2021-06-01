@@ -1,0 +1,37 @@
+<% field_set_tag "Print Checks" do -%>
+  <%= error_messages_for :check_printer %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_owner_name do %>
+      <%= f.text_field :owner_name, :label => "Franchise LLC Name" %>
+    <% end %>
+    <% form.edit_company_name do %>
+      <%= f.text_field :company_name, :label => "Company Name" %>
+    <% end %>
+    <% form.edit_address do %>
+      <%= f.text_field :address, :label => "Franchise Address" %>
+    <% end %>
+    <% form.edit_address_2 do %>
+      <%= f.text_field :address_2, :label => "Franchise City, State Zip" %>
+    <% end %>
+    <% form.edit_routing_number do %>
+      <%= f.text_field :routing_number, :label => "Routing Number:" %>  
+    <% end %>
+    <% form.edit_account_number do %>
+      <%= f.text_field :account_number, :label => "Account Number:" %>  
+    <% end %>
+    <% form.edit_transit_number do %>
+      <%= f.text_field :transit_number, :label => "Transit Number:" %>  
+    <% end %>
+    <% form.edit_starting_check_number do %>
+      <%= f.text_field :starting_check_number, :label => "Starting Check Number:" %>  
+    <% end %>
+    <% form.edit_bank_name do %>
+      <%= f.text_field :bank_name, :label => "Bank Name" %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= submit_tag "Generate Checks" %> |  <%= link_to 'Back', admin_sale_url(@sale) %><br>
+    <% end %>
+  <% end %>
+<% end %>

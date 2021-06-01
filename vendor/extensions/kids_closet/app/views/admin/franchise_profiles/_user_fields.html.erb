@@ -1,0 +1,13 @@
+<% fields_for @profile.user do |user_form| %>
+  <% render_region :user_fields do |user_fields| %>
+    <% user_fields.edit_login do %>
+      <%= user_form.text_field :login, :label => "Login:" unless @profile.user.nil? %>
+    <% end %>
+    <% user_fields.edit_password do %>
+      <%= user_form.password_field :password, :label => "Password:" unless @profile.user.nil? %>
+    <% end %>
+    <% user_fields.edit_password_confirmation do %>
+      <%= user_form.password_field :password_confirmation, :label => "Confirmation:" unless @profile.user.nil? %>
+    <% end %>
+  <% end %>
+<% end %>

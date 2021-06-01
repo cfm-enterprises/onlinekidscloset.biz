@@ -1,0 +1,27 @@
+<tr id="transaction-<%= transaction.id.to_s %>" class="asset_row list_row">
+  <% render_region :list_data, :locals => { :transaction => transaction } do |list_data| %>
+    <% list_data.date_column do %>
+      <td><%= transaction.sale_date.strftime("%b %d, %Y") %></td>
+    <% end %>
+    <% list_data.item_number_column do %>
+      <td><%= transaction.id %></td>
+    <% end %>
+    <% list_data.consignor_column do %>
+      <td><%= transaction.profile.full_name %></td>
+    <% end %>
+    <% list_data.item_description_column do %>
+      <td><%= link_to transaction.item_description, admin_sale_consignor_inventory_url(@sale, transaction) %></td>
+    <% end %>
+    <% list_data.sale_price_column do %>
+      <td align="center"><%= number_to_currency(transaction.sale_price) %></td>
+    <% end %>
+    <% list_data.total_price_column do %>
+      <td align="center"><%= number_to_currency(transaction.total_price) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Return', return_admin_sale_consignor_inventory_path(@sale, transaction), :confirm => 'Are you sure?', :method => :post %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

@@ -1,0 +1,40 @@
+<% line_count = 0 %>
+<% for volunteer in @volunteers %>
+  <% if line_count == 0 %>  
+<h1><%= @sale.franchise.franchise_name %> - <%= @sale.sale_season.season_name %> Helpers Report</h1>
+<div class="list_content">
+  <table class="list_table" cellpadding="2" cellspacing="2">
+    <thead>
+      <tr>
+        <th nowrap>Helper #</th>
+        <th valign="bottom" align="left">Name</th>
+        <th align="left">Email</th>
+        <th align="left">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% end -%>
+      <tr class="list_row">
+        <td align="center">#<%= volunteer.profile_id %></td>
+        <td nowrap><%= volunteer.profile.full_name %></td>
+        <td><%= volunteer.profile.email %>&nbsp;</td>
+        <td><%= volunteer.profile.phone.nil? ? "-" : volunteer.profile.phone.as_phone %>&nbsp;</td>          
+      </tr>
+  <% if line_count == 30
+      line_count = 0 %>
+    </tbody>
+  </table>    
+</div>
+<p style="page-break-after: always;"></p>
+  <% else
+    line_count += 1
+  end 
+end %>
+<% if line_count != 0 %>
+    </tbody>
+  </table>    
+</div>
+<% end %>
+<script language="javascript">
+	window.print();
+</script>

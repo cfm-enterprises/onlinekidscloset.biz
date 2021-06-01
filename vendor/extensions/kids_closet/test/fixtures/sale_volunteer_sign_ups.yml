@@ -1,0 +1,66 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+franchise_profile_1_florida_current:
+  id: 1
+  sale_volunteer_time_id: 3
+  franchise_profile_id: 8
+
+franchise_profile_2_kansas_current:
+  id: 2
+  sale_volunteer_time_id: 1
+  franchise_profile_id: 9
+
+franchise_profile_3_florida_current:
+  id: 3
+  sale_volunteer_time_id: 3
+  franchise_profile_id: 10
+
+franchise_profile_4_kansas_current:
+  id: 4
+  sale_volunteer_time_id: 1
+  franchise_profile_id: 11
+
+franchise_profile_5_florida_current:
+  id: 5
+  sale_volunteer_time_id: 4
+  franchise_profile_id: 12
+
+franchise_profile_6_kansas_current:
+  id: 6
+  sale_volunteer_time_id: 2
+  franchise_profile_id: 13
+
+franchise_profile_7_florida_current:
+  id: 7
+  sale_volunteer_time_id: 4
+  franchise_profile_id: 14
+
+franchise_profile_2_kansas_current_2:
+  id: 8
+  sale_volunteer_time_id: 2
+  franchise_profile_id: 9
+
+franchise_profile_2_kansas_current_3:
+  id: 9
+  sale_volunteer_time_id: 8
+  franchise_profile_id: 9
+
+franchise_profile_2_kansas_current_4:
+  id: 10
+  sale_volunteer_time_id: 9
+  franchise_profile_id: 9
+
+franchise_profile_2_kansas_current_5:
+  id: 11
+  sale_volunteer_time_id: 5
+  franchise_profile_id: 9
+
+franchise_profile_2_kansas_current_6:
+  id: 12
+  sale_volunteer_time_id: 6
+  franchise_profile_id: 9
+

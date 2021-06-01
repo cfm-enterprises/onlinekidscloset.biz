@@ -1,0 +1,40 @@
+<tr id="volunteer-<%= volunteer.id.to_s %>" class="volunteer_row list_row">
+  <% render_region :list_data, :locals => { :volunteer => volunteer } do |list_data| %>
+    <% list_data.consignor_column do %>
+      <td class="name" align="center"><%= "C" if volunteer.franchise_profile.consignor %></td>
+    <% end %>
+    <% list_data.account_number_column do %>
+      <td class="name" align="center"><%= volunteer.franchise_profile.profile_id if volunteer.franchise_profile.consignor %></td>
+    <% end %>
+    <% list_data.items_coming_column do %>
+      <td class="name" align="center"><%= volunteer.franchise_profile.profile.items_coming if volunteer.franchise_profile.consignor %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= volunteer.franchise_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.email_column do %>
+      <td><%= link_to volunteer.franchise_profile.profile.email, "mailto:#{volunteer.franchise_profile.profile.email}" %></td>
+    <% end %>
+    <% list_data.phone_column do %>
+      <td><%= volunteer.franchise_profile.profile.phone.as_phone %></td>
+    <% end %>
+    <% list_data.job_title_column do %>
+      <td><%= volunteer.sale_volunteer_time.job_title %></td>
+    <% end %>
+    <% list_data.date_time_column do %>
+      <td>
+        <% unless volunteer.sale_volunteer_time.none_traditional_job %>
+          <%= volunteer.sale_volunteer_time.date.strftime("%A") %>
+          <br><%= volunteer.sale_volunteer_time.date.strftime("%b %d, %Y") %><br>
+          <%= volunteer.sale_volunteer_time.start_time.strftime("%I:%M %p") %>:
+          <%= volunteer.sale_volunteer_time.end_time.strftime("%I:%M %p") %>
+        <% end -%>
+      </td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_sale_volunteer_sign_up_url(volunteer) %> | <%= link_to "Remove", admin_sale_volunteer_sign_up_url(volunteer), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

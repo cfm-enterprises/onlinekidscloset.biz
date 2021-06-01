@@ -1,0 +1,10 @@
+<tr id="how_did_you_hear-<%= how_did_you_hear.id.to_s %>" class="how_did_you_hear_row list_row">
+  <% render_region :found_us_stats_list_data, :locals => { :how_did_you_hear => how_did_you_hear } do |list_data| %>
+    <% list_data.label_column do %>
+      <td class="name"><%= how_did_you_hear.label %></td>
+    <% end %>
+    <% list_data.count_column do %>
+      <td><%= @franchise.how_did_you_hear_count(how_did_you_hear.id) %></td>
+    <% end %>
+  <% end %>
+</tr>

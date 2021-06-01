@@ -1,0 +1,15 @@
+<p><%= @subject %> You now have <b><%= @franchise_profile.franchise.number_of_consignors_in_next_sale %></b> consignors for your sale.<br></p>
+<p>The Users information:<br><br>
+Consignor ID: <%= @franchise_profile.profile_id %><br>
+
+Name: <%= @franchise_profile.profile.full_name %><br>
+Phone: <%= @franchise_profile.profile.phone %><br>
+Email: <%= @franchise_profile.profile.email %><br>
+<% if @address.not_nil? %>
+  Address: <%= @address.address_line_1 %>; <%= @address.city %>, <%= @address.site_province.province.code %> <%= @address.postal_code %><br>
+<% end %>
+<% if @franchise_profile.profile.how_did_you_hear.not_nil? %>
+  Found Us Selection: <%= @franchise_profile.profile.how_did_you_hear.other ? @franchise_profile.profile.how_did_you_hear_other : @franchise_profile.profile.how_did_you_hear.label %><br>
+<% end %>
+<br>
+You may go to your <a href="http://www.kidscloset.biz/admin/franchises">Franchise Control Panel</a> and log into your account to view all consignors, volunteers and mailing list members registered for your sale.</p>

@@ -1,0 +1,25 @@
+<% field_set_tag save_label == "Update" ? 
+          "Editing Helper Info for #{@sale_volunteer_sign_up.franchise_profile.profile.full_name}" : 
+          "Assign New Helper to Job" do -%>
+  <%= error_messages_for :sale_volunteer_sign_up %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_volunteer_time_id do %>
+      <%= f.hidden_field :sale_volunteer_time_id %>
+    <% end %>
+    <% form.edit_volunteer_profile_id do %>
+      <% if save_label == "Update" %>      
+        <%= f.hidden_field :franchise_profile_id %>
+      <% else %>
+        <%= f.select :franchise_profile_id, @available_volunteers.collect { |volunteer_profile| ["#{volunteer_profile.profile.full_name}", volunteer_profile.id] }, :include_blank => "&lt;Select One&gt;", :label => "volunteer:", :required => true %>
+      <% end %>      
+    <% end %>
+    <% form.edit_comments do %>
+      <%= f.text_area :comments, :label => "Comments" %>
+    <% end %>      
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_sale_volunteer_time_url(@sale_volunteer_time) %>
+    <% end %>
+  <% end %>
+<% end %>

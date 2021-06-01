@@ -1,0 +1,19 @@
+<% field_set_tag "#{save_label} Sale Season" do -%>
+  <%= error_messages_for :sale_season %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_sale_season_name do %>
+      <%= f.text_field :season_name, :label => "Season Name:" %>
+    <% end %>
+    <% form.edit_start_date do %>
+      <%= f.date_select :start_date, :label => "Start Date:" %>
+    <% end %>
+    <% form.edit_end_date do %>
+      <%= f.date_select :end_date, :label => "End Date:" %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_sale_seasons_url %>
+    <% end %>
+  <% end %>
+<% end %>

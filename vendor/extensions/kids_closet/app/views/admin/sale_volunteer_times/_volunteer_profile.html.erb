@@ -1,0 +1,19 @@
+<tr id="volunteer_profile-<%= volunteer_profile.id.to_s %>" class="volunteer_profile_row list_row">
+  <% render_region :volunteers_list_data, :locals => { :volunteer_profile => volunteer_profile } do |list_data| %>
+    <% list_data.volunteer_name_column do %>
+      <td class="name"><%= volunteer_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.volunteer_email_column do %>
+      <td><%= link_to volunteer_profile.profile.email, "mailto:#{volunteer_profile.profile.email}" %></td>
+    <% end %>
+    <% list_data.volunteer_phone_column do %>
+      <td><%= volunteer_profile.profile.phone.as_phone %></td>
+    <% end %>
+    <% volunteer_sign_up = volunteer_profile.sale_volunteer_sign_ups.find(:first, :conditions => ["sale_volunteer_time_id = ?", @sale_volunteer_time.id]) %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_sale_volunteer_sign_up_url(volunteer_sign_up) %> | <%= link_to "Remove", admin_sale_volunteer_sign_up_url(volunteer_sign_up), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

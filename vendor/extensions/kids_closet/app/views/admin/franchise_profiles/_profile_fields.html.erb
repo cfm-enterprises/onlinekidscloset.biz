@@ -1,0 +1,41 @@
+<% fields_for @profile do |profile_form| %>
+  <% render_region :profile_fields do |profile_fields| %>
+    <% profile_fields.edit_email do %>
+      <%= profile_form.text_field :email, :label => "Email:", :required => true %>
+    <% end %>
+    <% profile_fields.edit_email_confirmation do %>
+      <%= profile_form.text_field :email_confirmation, :label => "Email Confirmation:", :required => true if @profile.new_record?%>
+    <% end %>
+    <% profile_fields.edit_first_name do %>
+      <%= profile_form.text_field :first_name, :label => "First Name:", :required => true %>
+    <% end %>
+    <% profile_fields.edit_last_name do %>
+      <%= profile_form.text_field :last_name, :label => "Last Name:", :required => true %>
+    <% end %>
+    <% profile_fields.edit_phone do %>
+      <%= profile_form.text_field :phone, :label => "Phone:", :required => true %>
+    <% end %>
+    <% profile_fields.edit_address_1 do %>
+      <%= profile_form.text_field :address_address_line_1, :label => "Address 1:" %>
+    <% end %>
+    <% profile_fields.edit_address_2 do %>
+      <%= profile_form.text_field :address_address_line_2, :label => "Address 2:" %>
+    <% end %>
+    <% profile_fields.edit_city do %>
+      <%= profile_form.text_field :address_city, :label => "City:" %>
+    <% end %>
+    <% profile_fields.edit_country do %>
+      <%= profile_form.hidden_field :address_site_country_id %>
+    <% end %>
+    <% profile_fields.edit_province do %>
+      <%= profile_form.select :address_site_province_id, @site_provinces.collect { |site_province| [site_province.province.name, site_province.id] }, :include_blank => "&lt;Select One&gt;", :label => "States:" %>
+    <% end %>
+    <% profile_fields.edit_postal_code do %>
+      <%= profile_form.text_field :address_postal_code, :label => "Zip Code:" %>
+    <% end %>
+    <% profile_fields.edit_how_did_you_fields do %>
+      <%= profile_form.select :how_did_you_hear_id, HowDidYouHear.all.collect { |how| [how.label, how.id] }, :include_blank => "&lt;Select One&gt;", :label => "How did you hear answer:" %>
+      <%= profile_form.text_field :how_did_you_hear_other, :label => "How did you hear other answer:" %>
+    <% end %>
+  <% end %>
+<% end %>

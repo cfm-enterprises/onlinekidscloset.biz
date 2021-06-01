@@ -1,0 +1,16 @@
+<% field_set_tag "Assign Consignor to this Drop Off Time" do -%>
+  <%= error_messages_for :sale_consignor_sign_up %>
+  <% render_region :index_form, :locals => { :f => f } do |form| %>
+    <% form.edit_consignor_time_id do %>
+      <%= f.hidden_field :sale_consignor_time_id %>
+    <% end %>      
+    <% form.edit_consignor_profile_id do %>
+      <%= f.select :franchise_profile_id, @available_consignors.collect { |consignor_profile| ["#{consignor_profile.profile.full_name}", consignor_profile.id] }, :include_blank => "&lt;Select One&gt;", :label => "Consignor:", :required => true %>
+    <% end %>      
+  <% end %>
+  <% render_region :index_form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <%= f.submit_or_back 'Assign Consignor', admin_sale_sale_consignor_times_path(@sale_consignor_time.sale) %>
+    <% end %>
+  <% end %>
+<% end %>

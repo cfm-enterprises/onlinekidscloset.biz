@@ -1,0 +1,90 @@
+<div class="list_content">
+  <% check_row = 1 
+    for consignor in @consignors
+      if consignor.check_amount > 0 %>
+    <table class="kcc_check" cellpadding="1" cellspacing="1" width="100%">
+      <tr>
+        <td rowspan="4" width="100"><%= pdf_image_tag('k_closet_logo.jpg', :style=>"margin:0px;padding:0px") %></td>
+        <td nowrap colspan="2"><%= @check_printer.owner_name %></td>
+        <td nowrap><%= @check_printer.bank_name %></td>
+        <td align="right"><%= @check_number %></td>
+      </tr>
+      <tr>
+        <td colspan="3"><%= @check_printer.company_name %></td>
+        <td align="right" class="transit_number"><%= @check_printer.transit_number %></td>
+      </tr>
+      <tr>
+        <td colspan="3" nowrap><%= @check_printer.address %></td>
+        <td align="right"><%= Date.today.strftime("%m/%d/%Y") %><td>
+      </tr>
+      <tr>
+        <td colspan="3" nowrap><%= @check_printer.address_2 %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="5" height="34">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="4">Pay to the Order of <%= consignor.franchise_profile.profile.full_name %></td>
+        <td align="right" width="183" style="border-style: solid; border-width: 2px"><%= number_to_currency(consignor.check_amount) %></td>
+      </tr>
+      <tr>
+        <td colspan="5" height="17">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="4"><%= CheckPrinter.written_check_amount(consignor.check_amount) %></td>
+        <td align="right">DOLLARS</td>
+      </tr>
+      <tr>
+        <td colspan="5" height="17">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border-bottom-style: solid; border-bottom-width: 1px">Memo <%= consignor.franchise_profile.profile_id %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td style="border-bottom-style: solid; border-bottom-width: 1px">&nbsp;</td>
+      </tr>      
+      <tr>
+        <td colspan="5" height="45" valign="top" align="right">Void after 90 days</td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <table cellpadding="0" cellspacing="0" align="left">
+            <tr>
+              <td><%= pdf_image_tag('check_routing_symbol.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0) %></td>
+              <% @check_printer.routing_number.to_s.each_char do |digit| %>
+                <td><%= pdf_image_tag("check_#{digit}.jpg", :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <% end %>
+              <td><%= pdf_image_tag('check_routing_symbol.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <td><%= pdf_image_tag('check_blank.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <% @check_printer.account_number.to_s.each_char do |digit| %>
+                <td><%= pdf_image_tag("check_#{digit}.jpg", :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <% end %>
+              <td><%= pdf_image_tag('check_account_symbol.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <td><%= pdf_image_tag('check_blank.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <td><%= pdf_image_tag('check_blank.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <td><%= pdf_image_tag('check_blank.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <td><%= pdf_image_tag('check_blank.jpg', :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <% @check_number.to_s.each_char do |digit| %>
+                <td><%= pdf_image_tag("check_#{digit}.jpg", :style=>"margin:0px;padding:0px", :width => '12', :height => '15', :border => 0 ) %></td>
+              <% end %>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  <%    @check_number += 1 
+        check_row += 1
+        if check_row > 3
+          check_row = 1 %>
+    </table>  
+        <p class="breakhere">&nbsp;</p>
+ <%     else %>
+    <tr height="28">
+      <td colspan="5">&nbsp;</td>
+    </tr>
+  </table>
+  <br>
+ <%     end 
+      end %>
+<%  end %>
+</div>

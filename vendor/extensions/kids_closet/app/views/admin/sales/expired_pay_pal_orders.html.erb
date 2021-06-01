@@ -1,0 +1,45 @@
+<h1><%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %> Expired Pay Pal Orders</h1>
+<% render_region :top do |top| %>
+  <% top.pagination_counts do %>
+    <p><%= will_paginate_record_display(@pay_pal_orders) %><br>
+         The following orders were initiated more than 15 minutes ago.  If you have received a matching PayPal payment confirmation, click on Confirm Order.  If you have not received the order, you can either contact the customer to attempt to complete the sale of cancel the order to return the items to the active inventory.  We recommend you either attempt to reach the purchaser or give them a little more time before cancelling the order.</p>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="pay_pal_orders_list list_table" id="pay_pal_order_id">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.date_column_header do %><th>Date Ordered</th><% end %>
+          <% list_headers.consignor_number_column_header do %><th>Profile #</th><% end %>
+          <% list_headers.name_column_header do %><th>Name<br>Email<br>Phone</th><% end %>
+          <% list_headers.item_descriptions_column_header do %><th>Items Ordered</th><% end %>
+          <% list_headers.amount_column_header do %><th>Order Total</th><% end %>
+          <% list_headers.name_column_header do %><th>Name</th><% end %>
+
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @pay_pal_orders.length == 0 %>
+        <tr><td colspan="<%= admin_interface.sales.expired_pay_pal_orders.list_data.length %>" class="no_entries">No Expired Orders for your Sale</td></tr>
+      <% else %>
+         <%= render :partial => 'pay_pal_order', :collection => @pay_pal_orders %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= will_paginate_links(@pay_pal_orders) %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.sales_path do %>
+         <%= link_to 'Back', admin_sale_url(@sale) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

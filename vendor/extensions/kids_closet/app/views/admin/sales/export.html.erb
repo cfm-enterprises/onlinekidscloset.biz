@@ -1,0 +1,16 @@
+<h1><%= @sale.franchise.franchise_name %>-<%= @sale.sale_season.season_name %> Exports</h1>
+<h2><%= @title %></h2>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <%= link_to 'Back', reports_admin_sale_url(@sale) %>
+  <% end %>
+<% end %>
+<br>
+<div class="action_row">
+  <% render_region :action_row do |action_row| %>
+    <% action_row.download_path do %>
+      <%= link_to 'Download File', "/#{@path}" %>: Right click on the download file link and select save link as to save your file
+    <% end %>
+  <% end %>
+</div>
+<%= render_region :bottom %>

@@ -1,0 +1,31 @@
+<tr id="franchise_photo-<%= franchise_photo.id.to_s %>" class="franshise_photo_row list_row">
+  <% render_region :list_data, :locals => { :franchise_photo => franchise_photo } do |list_data| %>
+    <% list_data.sort_order_column do %>
+      <td class="name"><%= franchise_photo.sort_order %></td>
+    <% end %>
+    <% list_data.icon_column do %>
+      <td>
+        <% if franchise_photo.site_asset.nil? %>
+          <%= image_tag franchise_photo.url(:thumb), :height => 50 %>
+        <% else -%>
+          <%= image_tag franchise_photo.site_asset.url(:thumb), :height => 50 %>
+        <% end -%>
+      </td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= franchise_photo.file_name %></td>
+    <% end %>
+    <% list_data.caption_column do %>
+      <td><%= franchise_photo.caption %></td>
+    <% end %>
+    <% list_data.show_on_slider_column do %>
+      <td><%= franchise_photo.site_asset.nil? ? (franchise_photo.show_in_slider ? "Yes" : "No") : "N/A" %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_franchise_franchise_photo_url(franchise_photo.franchise, franchise_photo) %> | 
+        <%= link_to 'Delete', admin_franchise_franchise_photo_url(franchise_photo.franchise, franchise_photo), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

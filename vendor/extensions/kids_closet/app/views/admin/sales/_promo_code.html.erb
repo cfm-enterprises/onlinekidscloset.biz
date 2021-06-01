@@ -1,0 +1,13 @@
+<tr id="promo_code-<%= promo_code %>" class="promo_code_row list_row">
+  <% render_region :promo_codes_list_data, :locals => { :promo_code => promo_code } do |list_data| %>
+    <% list_data.promo_code_column do %>
+      <td class="name"><%= promo_code.promo_code %></td>
+    <% end %>
+    <% list_data.count_column do %>
+      <td><%= @sale.promo_codes_count(promo_code.promo_code) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td><%= link_to 'View Consignors', :controller => '/admin/sales', :action => 'promo_code_report', :id => @sale.id, :promo_code => promo_code.promo_code %></td>
+    <% end %>
+  <% end %>
+</tr>

@@ -1,0 +1,27 @@
+<% field_set_tag "Upload Rewards Import File" do -%>
+  <% render_region :form_top do |form_top| %>
+    <% form_top.edit_index_errors do %>
+      <%= error_messages_for :rewards_import, :site_asset %>
+    <% end %>
+  <% end %>
+  <% render_region :index_form, :locals => { :f => f } do |form| %>
+    <% fields_for @site_asset do |site_asset_form| %>
+      <% render_region :site_asset_fields do |site_asset_fields| %>
+        <% site_asset_fields.edit_index_filename do %>
+          <%= site_asset_form.file_field :asset, :label => "Sale CSV File:", :help => "New Import Files Only", :size => 25, :required => true if @rewards_import.new_record? %>
+        <% end %>      
+      <% end %>
+    <% end %>
+    <% form.edit_sale_id do %>
+      <%= f.hidden_field :sale_id %>
+    <% end %>
+    <% form.edit_index_report_date do %>
+      <%= f.date_select :rewards_date, :label => "Rewards Date:", :help => "Date Rewards Applied" %>
+    <% end %>      
+  <% end %>
+  <% render_region :index_form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <%= f.submit_or_back "#{save_label} Rewards Import", admin_sale_rewards_imports_url(@rewards_import.sale) %>
+    <% end %>
+  <% end %>
+<% end %>

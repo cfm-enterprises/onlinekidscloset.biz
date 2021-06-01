@@ -1,0 +1,13 @@
+<h1>Kids Closet Master Mailing System</h1>
+<% render_region :main do |main| %>
+  <% main.edit_form do %>
+    <% form_for @kids_email, :url => { :action => 'create'}, :html => {:class => 'semantic-form', :autocomplete => "off"} do |f| %>
+      <%= render :partial => 'form', :locals => { :f => f } %>
+    <% end %>
+  <% end %>
+<% end %>
+<% render_region :below_content do |below_content| %>
+  <% below_content.html_content_javascript do %>
+    <%= javascript_include_tag :fckeditor %>
+  <% end %>
+<% end %>

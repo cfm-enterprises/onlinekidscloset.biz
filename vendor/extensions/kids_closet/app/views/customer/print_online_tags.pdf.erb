@@ -1,0 +1,67 @@
+<% page_count = 1 %>
+<% @consignor_items.each do |item| %>
+<% if @row_count == 0 && !@right_side %>
+  <div id="consignor_print_area">
+    <table>
+<% end %>
+      <% if !@right_side %><tr><% end %>
+        <td>
+          <div id="consignor_tag">
+            <div id="ct_content_table">
+            	<table cellpadding="1" cellspacing="1" width="410">
+              	<tr>
+              	  <td colspan="3">
+                	  <table cellpadding="0" cellspacing="0" width="410">
+                	    <tr>
+                	      <td width="73" rowspan="2"><%= pdf_image_tag('k_closet_logo.jpg', :style=>"margin:0px;padding:0px", :width => '73', :height => '63') %></td>
+                	      <td align="center" valign="top">www.KidsCloset.biz</td>
+                	      <td width="54" rowspan="2"><% if item.donate %><%= pdf_image_tag('d.jpg', :style=>"margin:0px;padding:0px") %><% elsif !item.profile.sort_column.nil? %><%= pdf_image_tag("#{item.profile.sort_column}.jpg", :style => "margin:0px;padding:0px") %><% end %></td>
+                	    </tr>
+                	  </table>
+              	  </td>
+                </tr>
+          	    <tr>
+                  <td rowspan="2" valign="middle" style="font-size: 18pt"><b><%= item.profile_id %></span></b></td>
+                  <td align="center" valign="bottom"><%= "Size: #{item.size}" if item.size.not_nil? %></td>
+                  <td align="right" rowspan="2" valign="middle" style="font-size: 18pt"><b><%= number_to_currency(item.price) %></b></td>
+                </tr>
+                <tr>
+                  <td>Item #: <%= item.id %></td>
+                </tr>
+                <tr>
+                  <td colspan="3" nowrap><%= item.item_description %></td>
+                <tr>
+                <tr>
+                	<td>&nbsp;</td>
+                  <td colspan="2"><%= item.last_day_discount ? "Marked down on discount day" : "NOT marked down on discount day" %></td>
+                </tr>
+                <tr>
+                	<td colspan="3"><span style="font-size: 36pt"><%= item.order.buyer.last_name[0,3] %>, </span><span style="font-size: 16pt"><%= item.order.buyer.first_name[0,3] %></span></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </td>
+<% if @right_side %>
+      </tr>
+<%  @row_count += 1 %>
+<%  if @row_count == 4 %>
+    </table>
+  </div>
+  <p class="breakhere">&nbsp;<!-- Page <%= page_count %> --><p>
+<%    @row_count = 0
+      page_count += 1 %>
+<%  else %>
+      <tr><td colspan="3" height="20">&nbsp;</td></tr>
+<%  end %>
+<% else %>
+    <td width="40"><div id="consignor_tag_column_break"></div></td>
+<% end %>
+<% @right_side = !@right_side %>
+<% end %>
+<% if @row_count != 0 || (@row_count == 0 && @right_side) %>
+    <% if @right_side %><td></td></tr><% end %>
+    </table>
+<!--    <p>Page <%= page_count %><p> -->
+  </div>
+<% end %> 

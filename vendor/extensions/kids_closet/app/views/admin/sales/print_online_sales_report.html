@@ -1,0 +1,35 @@
+<h2>Online Sales Report - <%= @sale.sale_title %></h2>
+<table border=0 cellspacing=4 cellpadding=4>
+  <tr>
+    <th align="left">Buyer Information</th>
+    <th>Sort Code</th>
+    <th align="left">Item Number</th>
+    <th align="left">Description</th>
+    <th nowrap>Price</th>
+    <th nowrap>Tax</th>
+    <th nowrap>Total</th>
+    <th align="left" nowrap>Consignor #</th>
+    <th align="left" nowrap>Consignor Information</th>
+  </tr>
+  <% for order in @orders %>
+    <tr>
+      <td>
+        <%= order.buyer.full_name %><br>
+        <%= order.buyer.email %><br>
+        <%= order.buyer.phone.as_phone %>
+      </td>
+      <td align="center"><%= order.buyer.sort_column %></td>
+      <td align="center"><%= order.consignor_inventory_id %></td>
+      <td><%= order.item_name %></td>
+      <td align="center"><%= number_to_currency(order.item_price) %></td>
+      <td align="center"><%= number_to_currency(order.sales_tax) %></td>
+      <td align="center"><%= number_to_currency(order.total_amount) %></td>
+      <td align="center"><%= order.seller_id %></td>
+      <td>
+        <%= order.seller.full_name %><br>
+        <%= order.seller.email %><br>
+        <%= order.seller.phone.as_phone %>
+      </td>
+    </tr>
+  <% end -%>
+</table>

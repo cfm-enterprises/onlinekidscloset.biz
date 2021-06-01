@@ -1,0 +1,20 @@
+<div class="list_content" id="referrals_tab_id">
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :referrals_list_headers do |list_headers| %>
+          <% list_headers.consignor_column_header do %><th>Consignor</th><% end %>
+          <% list_headers.referred_by_column_header do %><th>Referred By</th><% end %>
+          <% list_headers.date_signed_up_column_header do %><th>Sign Up Date</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @referred_consignors.length == 0 %>
+        <tr><td colspan="<%= admin_interface.franchises.found_us_report.referrals_list_data.length %>" class="no_entries">No Referrals Reports for this Franchise</td></tr>
+      <% else %>
+         <%= render :partial => 'referred_consignor', :collection => @referred_consignors %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

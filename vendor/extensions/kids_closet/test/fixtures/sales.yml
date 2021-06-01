@@ -1,0 +1,79 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+kansas_spring:
+  id: 1
+  franchise_id: 2
+  sale_season_id: 1
+  sale_address: 8903 W 132nd Pl
+  sale_address2: Behind HyVee
+  sale_zip_code: 66213
+  sale_percentage: 70
+  sale_advert_cost: 12.50
+  start_date: 2010-03-01
+  end_date: 2010-03-03
+  active: 0
+  facility_name: Cartagena Home
+  sale_hours_1: 1PM - 7PM
+  sale_hours_2: 1PM - 7PM
+  sale_hours_3: 1PM - 7PM
+  sale_hours_4: 1PM - 7PM
+  
+kansas_current:
+  id: 2
+  franchise_id: 2
+  sale_season_id: 2
+  sale_address: 8903 W 132nd Pl
+  sale_address2: Behind HyVee at the corner of antioch and 133rd st in overland park
+  sale_zip_code: 66213
+  sale_percentage: 70
+  sale_advert_cost: 12.50
+  start_date: <%= Date.today + 30 %>
+  end_date: <%= Date.today + 34 %>
+  active: 1
+  facility_name: Cartagena Home
+  sale_hours_1: 1PM - 7PM
+  sale_hours_2: 1PM - 7PM
+  sale_hours_3: 1PM - 7PM
+  sale_hours_4: 1PM - 7PM
+  sale_hours_5: 1PM - 7PM
+
+florida_spring:
+  id: 3
+  franchise_id: 1
+  sale_season_id: 1
+  sale_address: 575 Laurel Oaks Ct NE
+  sale_zip_code: 32907
+  sale_percentage: 70
+  sale_advert_cost: 10.00
+  start_date: 2010-03-30
+  end_date: 2010-04-02
+  tentative_date: Spring 2010
+  active: 0
+  facility_name: Cartagena Home
+  sale_hours_1: 8AM - 7PM
+  sale_hours_2: 8AM - 7PM
+  sale_hours_3: 8AM - 7PM
+  sale_hours_4: 8AM - 7PM
+
+florida_current:
+  id: 4
+  franchise_id: 1
+  sale_season_id: 2
+  sale_address: 575 Laurel Oaks Ct NE
+  sale_address2: Pool House
+  sale_zip_code: 32907
+  sale_percentage: 70
+  sale_advert_cost: 10.00
+  start_date: <%= Date.today + 60 %>
+  end_date: <%= Date.today + 64 %>
+  active: 1
+  facility_name: Cartagena Home
+  sale_hours_1: 8AM - 7PM
+  sale_hours_2: 8AM - 7PM
+  sale_hours_3: 8AM - 7PM
+  sale_hours_4: 8AM - 7PM
+  sale_hours_5: 8AM - 7PM

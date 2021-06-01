@@ -1,0 +1,95 @@
+<h1><%= @sale.franchise.franchise_name %>-<%= @sale.sale_season.season_name %> Reports</h1>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <%= link_to 'Back', admin_sale_url(@sale) %>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="list_table">
+    <thead>
+      <tr>
+        <th colspan="2">Financial Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="report_row list_row">
+        <td class="name">Number of Signed Up Helpers</td>
+        <td class="name"><%= @sale.number_of_volunteers %></td>
+      </tr>
+    <% if @sale.start_date > Date.today || (@sale.online_sale_start_date.not_nil? && @sale.online_sale_start_date.to_date > Date.today) %>  
+      <tr class="report_row list_row">
+        <td class="name">Number of Signed Up Consignors</td>
+        <td class="name"><%= @sale.number_of_consignors %></td>
+      </tr>
+    <% end %>
+    <tr class="report_row list_row">
+      <td class="name">Possible Items Coming to Sale</td>
+      <td class="name"><%= @sale.number_of_possible_sale_items %></td>
+    </tr>
+    <% if @sale.start_date - 2 < Date.today || (@sale.online_sale_start_date.not_nil? && (@sale.online_sale_start_date.to_date - 2) < Date.today) %>
+      <tr class="report_row list_row">
+        <td class="name">Number of Consignors with Sold Item</td>
+        <td class="name"><%= @sale.calculate_consignors_that_sold_items %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Number of Items Sold</td>
+        <td class="name"><%= @sale.total_items_sold %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Number of Transactions</td>
+        <td class="name"><%= @sale.transaction_count %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Total Sold</td>
+        <td class="name"><%= number_to_currency(@sale.total_amount_sold) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Tax Collected</td>
+        <td class="name"><%= number_to_currency(@sale.tax_received ) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Total Collected</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_total_collected) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Percent Fees Collected</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_percent_fees_collected) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Consignor Fees Collected</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_advertisement_fees_collected) %></td>
+      </tr>  
+      <tr class="report_row list_row">
+        <td class="name">Extra Income</td>
+        <td class="name"><%= number_to_currency(@sale.extra_income) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Gross Revenue</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_gross_revenue) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Owners Revenue<br>(Percent Fees + Adv. Fees + Additional Revenue)</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_gross_profit) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Royalty Fee<%= "(Minimum $500)" if @sale.franchise.use_minimum_royalty %></td>
+        <td class="name"><%= number_to_currency(@sale.calculate_royalty_fee) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name">Owners Revenue after Royalty</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_net_profit) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="action_row">
+  <% render_region :action_row do |action_row| %>
+    <% action_row.full_breakdown_path do %>
+      <%= link_to 'Print Full Breakdown', financial_report_admin_sale_url(@sale), :popup => ['consignor_contract', 'height=650,width=800,scrollbars=1'] %>
+      <% if @sale.eligible_for_financials? %> | <%= link_to 'Re-Calculate Totals (if you changed advertisement fees/percentages)', calculate_financials_admin_sale_url(@sale) %><% end %>
+    <% end %>
+  <% end %>
+</div>
+<%= render_region :bottom %>

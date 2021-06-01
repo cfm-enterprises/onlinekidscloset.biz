@@ -1,0 +1,42 @@
+<tr id="sale_report-<%= sale_report.id.to_s %>" class="sale_report_row list_row">
+  <% render_region :season_sales_list_data, :locals => { :sale_report => sale_report } do |list_data| %>
+    <% list_data.franchise_column do %>
+      <td class="name"><%= sale_report.franchise.franchise_name %></td>
+    <% end %>
+    <% list_data.sale_dates_column do %>
+      <td class="name"><%= sale_report.sale_dates %></td>
+    <% end %>
+    <% list_data.transactions_column do %>
+      <td valign="top" nowrap>
+        # Items: <%= sale_report.total_items_sold %><br>
+        # Tranx: <%= sale_report.transaction_count %>
+      </td>
+    <% end %>
+    <% list_data.sale_revenues_column do %>
+      <td valign="top" nowrap>
+        ST: <%= number_to_currency(sale_report.total_amount_sold) %><br>
+        Tax: <%= number_to_currency(sale_report.tax_received) %><br>
+        Total: <%= number_to_currency(sale_report.calculate_total_collected) %>
+      </td>
+    <% end %>
+    <% list_data.consignor_fees_column do %>
+      <td valign="top" nowrap>
+        %F: <%= number_to_currency(sale_report.calculate_percent_fees_collected) %><br>
+        AF: <%= number_to_currency(sale_report.calculate_advertisement_fees_collected) %>
+      </td>
+    <% end %>
+    <% list_data.revenues_column do %>
+      <td valign="top" nowrap>
+        EI: <%= number_to_currency(sale_report.extra_income) %><br>
+        GR: <%= number_to_currency(sale_report.calculate_gross_revenue) %>
+      </td>
+    <% end %>
+    <% list_data.profit_column do %>
+      <td valign="top" nowrap>
+        GP: <%= number_to_currency(sale_report.calculate_gross_profit) %><br>
+        RF: <%= number_to_currency(sale_report.calculate_royalty_fee) %><br>
+        NP: <%= number_to_currency(sale_report.calculate_net_profit) %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

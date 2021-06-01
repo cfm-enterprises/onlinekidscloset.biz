@@ -1,0 +1,22 @@
+<% render_region :right_side do |right_side| %>
+  <% right_side.search do %>
+    <b>Transaction Search Form</b><br>
+    <% form_tag admin_sale_consignor_inventories_path(@sale), {:method => 'get', :id => 'transaction_search_form', :autocomplete => 'off'} do %>
+      Item ID<br>
+      <%= text_field_tag :item_id, params[:item_id] %><br>
+      Item Name<br>
+      <%= text_field_tag :item_name, params[:item_name] %><br>
+      Consignor Number<br>
+      <%= text_field_tag :profile_id, params[:profile_id] %><br>
+      Consignor Name<br>
+      <%= select_tag :consignor_search, options_for_select(@consignors_array, params[:consignor_search].to_i) %><br>
+      Transaction Date<br>
+      <%= select_tag :transaction_date, options_for_select(@date_options, (params[:transaction_date].nil? || params[:transaction_date].blank? ? nil : params[:transaction_date].to_date)) %><br>
+      Import File<br>
+      <%= select_tag :import_id, options_for_select(@imports_array, params[:import_id].to_i) %><br>
+      Transaction Number<br>
+      <%= text_field_tag :transaction_number, params[:transaction_number] %><br>
+      <%= submit_tag 'Quick Search', :disable_with => "Searching..." %><br>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Kid's Closet Email</title>
+<style type="text/css">
+<!--
+h1{
+  font-size: 18pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #004368;
+}
+h2{
+  font-size: 18pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #ea4e96;
+}
+h3{
+  font-size: 18pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #000000;
+}
+h4{
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #004368;
+}
+h5{
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #ea4e96;
+}
+h6{
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #000000;
+}
+pre{
+  font-size: 10pt;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #004368;
+}
+address{
+  font-size: 10pt;
+  font-weight: bold;
+  font-style: normal;
+  color: #ea4e96;  
+}
+body{
+font-family:Arial, Helvetica, sans-serif;
+font-size:1em;
+color:black;  
+}
+p{
+font-family:Arial, Helvetica, sans-serif;
+font-size:1em;
+color:black;
+}
+td{
+font-family:Arial, Helvetica, sans-serif;
+font-size:1em;
+color:black;  
+}
+a:link{
+color:#004368;
+text-decoration:none;
+font-weight:bold;
+}
+a:hover{
+color:#ea4e96;
+text-decoration:none;
+font-weight:bold;
+}
+li {color: #004368;margin:0 0 1em 0; font-weight: bold; text-align: left;}
+.unsubscribe {
+  font-size: 6pt;
+}
+-->
+</style>
+</head>
+<body style="background-color: #b1d2ef;color: #963">
+  <table border="0" cellpadding="0" cellspacing="0" class="bg1" width="100%" style="background-color: #b1d2ef">
+    <tr>
+      <td align="center">
+        <table border="0" cellpadding="0" cellspacing="0" class="bg2" width="600" style="background-color: #b1d2ef">
+          <tr>
+            <td class="body" valign="top" style="background-color: #b1d2ef;padding: 10px 20px 20px 20px">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="left" class="mainbar" valign="top">     
+                    <div style="background:#f3f3d4; border:5px solid #a797c3 ; padding:10px; margin:10px 0">
+                      <h3 style='color: #963;font-family: "Lucida Grande", Lucida, Arial, Helvetica, serif;font-size: 16px;font-weight: bold;margin: 0;padding: 0 0 10px 0;text-shadow: white 1px 1px 0px'>        
+                      <table width="600" bgcolor="#f3f3d4" align="center">
+                        <tr>
+                          <td valign="top" align="left" colspan="2">
+                            <img src="http://www.kidscloset.biz/assets/1/original/kcc_email_banner.jpg">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td valign="top" align="left" width="75">
+                          <% unless @facebook_url == "" %>
+                            <a href="<%= @facebook_url %>"><img src="http://www.kidscloset.biz/assets/1/original/facebook_home.png" width="75" border="0"></a>
+                          <% end %>
+                          </td>
+                          <td valign="middle" align="center">
+                            <h2 style="font-family:Arial, Helvetica, sans-serif;font-size:22px;color:black; text-align: center;"><%= @franchise_name %></h2>    
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" align="left"  >
+                            <h2><%= @subject %></h2>
+                            <p>We are so excited that you are a part of our upcoming children’s consignment sale in <b><%= @franchise_name %></b>!</p>
+                            <p><i>Important Consignor Information:</i>
+                            <ul>
+                            <li>If you haven't already, <a href='http://www.kidscloset.biz/consignors/drop_off_times?sale_id=<%= @sale_id %>'>select a drop-off time</a>.  You can do this by logging into your <a href='http://www.kidscloset.biz/consignors'>Control Panel</a>.  <b>Drop-off</b> typically takes about 30-45 minutes. </li>
+                            <li>Items from last season's sale were moved to the <b>&quot;Inactive Inventory&quot;</b> tab. You can easily move these items back to <b>&quot;Active Inventory&quot;</b> and vice-versa. Check out the <a href='http://www.kidscloset.biz/assets/1/original/Inventory_tutorial.pdf'>step-by-step tutorial</a> if you have any questions.</li>
+                            <li><b>Sort</b> your clothing by gender and size to help when you put your items on the sales floor. </li>
+                            <li>Sales are uploaded each night.  You can <b>view your daily sales</b> by clicking on <a href='http://www.kidscloset.biz/consignors/sold_inventory'>&quot;View Sales and Printing Inventory&quot;</a> on your <a href='http://www.kidscloset.biz/consignors'>Control Panel</a></li>
+                            <li>Please be aware of the time and date of Consignor Pickup.  You can print your <b>&quot;unsold inventory&quot;</b> report before consignor pickup so you know what items you will be picking up.  All items left after this time are donated to our designated charity.  We cannot hold back items or make any exceptions. </li>
+                            </ul>
+                            </p>
+                            <p><i>Special Perks!</i></p>
+                            <ul>
+                            <li>Refer a friend to consign and your consignor fee will be waived!</li>
+                            <li>You are invited to our special &quot;Consignor Presale&quot; which is before we open to the public! Check out our <a href='http://www.kidscloset.biz/sale/sale_locations?sale_id=<%= @sale_id %>'>website</a> for more details!</li>
+                            <li>Pick up your items after the sale and transfer them to another KCC sale in your area.  Or, consider donating to our local charity.</li>
+                            </ul>
+                            <p><i>Receive Even More Perks by Helping!</i></p>
+                            <ul>
+                            <li>We could not run a sale like ours if not for the wonderful helpers!  If you would like to help out before, during or after the sale and meet other moms, consider signing up to help!  Special incentives for helpers can be found on our website!</li>
+                            </ul>
+                            <p><i>Our Moms Are Picky...and So Are We!</i></p>
+                            <p>To ensure <i>all</i> of your items make it through our inspection process, please make sure your items are:
+                            <ul>
+                            <li><b>Clean</b> - We cannot accept clothing that have any stains (even slight ones), tears, holes, fuzz balls, soiled/worn areas, odors or loose/broken/missing buttons. Other items should be clean, and not show extreme wear, missing decals or excessive fading.</li>
+                            <li><b>Complete</b> - all items need to be 100% complete (no missing pieces) and in fully working condition (batteries included, in battery operated toys and baby gear.) Bags need to be secure and sealed with clear packing tape.</li>
+                            <li><b>Current</b> - items must have been purchased within the last five years and reflect current styles and fashion trends. Car seats must be less than five years old and you will need to sign a disclaimer at drop-off stating it has not been in an accident or recalled. Cribs must have been manufactured after 6/28/11.</li>
+                            <li><b>Compliant</b> – We do not accept any recalled products.  <a href='http://www.kidscloset.biz/safety_information'>Click here</a> to check if your item may have been recalled.</li>
+                            </ul>
+                            </p>
+                            <p><i>Need a Little Assistance?</i></p>
+                            <ul>
+                            <li><b>Create Your Tags:</b> <a href='http://www.kidscloset.biz/assets/1/original/ConsignorRegistrationTutorial_NEW.pdf'>Click here for step-by-step instructions</a>.</li>
+                            <li><b>Merchandise Preparation and Tagging:</b>  <a href='http://www.kidscloset.biz/assets/1/original/NEW_Merchandise_Preparation_pg.pdf'>Click here</a> for a detailed explanation on how to prepare and tag your items for consignment.</li>
+                            <li><b>Acceptable Items:</b>  <a href='http://www.kidscloset.biz/assets/1/original/AcceptableItems.pdf'>Check out</a> what items we accept for our seasonal sales.</li>
+                            <li><b>Recall Information:</b>  We do not accept any recalled products; <a href='http://www.kidscloset.biz/safety_information'>click here</a> to see if you have an item that has been recalled.</li>
+                            <li><b>Pricing Guidelines:</b> We typically recommend pricing your items between 1/4 and 1/3 of the original price that you paid for your item.  </li>
+                            </ul>
+                            Please visit your <a href='http://www.kidscloset.biz/consignors'>Control Panel</a> where you can sign up for a drop off time, help for a sale, create and print your tags or select another event to consign at.
+                        <% if !@cancel_text.blank? %>
+                        <%  if @cancel_text == "special" %>
+                            <p>Go to your <a href="http://www.kidscloset.biz/consignors">Control Panel</a> to cancel consignment or helping.  Mailing list members can <a href="<%= @cancel_link %>">click here</a> to be removed from the <%= @franchise_name %> mailing list</p>
+                        <%  else%>
+                            <p style="font-size: 8pt;"><a href="<%= @cancel_link %>"><%= @cancel_text %></a></p>
+                        <%  end %>
+                        <% end %>
+                        <% if !@unsubscribe_link.blank? %>
+                            <p style="font-size: 8pt;"><a href="<%= @unsubscribe_link %>">Click Here</a> to stop receiving all emails from Kids Closet Connection.</p>  
+                        <% end %>
+                          <p style="font-size:12 pt"><a href="mailto:<%= @franchise_email %>"><%= @franchise_email %></a> | <%= @franchise_phone.as_phone %></p>
+                          </td>
+                        </tr>
+                      </table>      
+                    </div>  
+                  </td>
+                </tr>        
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+

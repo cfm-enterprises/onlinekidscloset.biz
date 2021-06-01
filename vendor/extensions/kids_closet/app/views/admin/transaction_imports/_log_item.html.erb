@@ -1,0 +1,16 @@
+<tr id="log_item-<%= log_item.id.to_s %>" class="log_item_row list_row">
+  <% render_region :list_data, :locals => { :log_item => log_item } do |list_data| %>
+    <% list_data.item_number_column do %>
+      <td class="name"><%= log_item.id %></td>
+    <% end %>
+    <% list_data.consignor_number_column do %>
+      <td class="name"><%= log_item.profile_id %></td>
+    <% end %>
+    <% list_data.consignor_name_column do %>
+      <td><%= log_item.profile.full_name %></td>
+    <% end %>
+    <% list_data.error_message_column do %>
+      <td><%= log_item.import_error_comment %></td>
+    <% end %>
+  <% end %>
+</tr>

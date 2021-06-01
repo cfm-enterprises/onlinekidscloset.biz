@@ -1,0 +1,106 @@
+--- !ruby/object:Gem::Specification 
+name: geocoder
+version: !ruby/object:Gem::Version 
+  hash: 45
+  prerelease: false
+  segments: 
+  - 0
+  - 9
+  - 11
+  version: 0.9.11
+platform: ruby
+authors: 
+- Alex Reisner
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-03-24 00:00:00 -05:00
+default_executable: 
+dependencies: []
+
+description: Provides object geocoding (by street or IP address), reverse geocoding (coordinates to street address), and distance calculations. Designed for Rails but works with other Rack frameworks too.
+email: 
+- alex@alexreisner.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- .gitignore
+- CHANGELOG.rdoc
+- LICENSE
+- README.rdoc
+- Rakefile
+- VERSION
+- lib/geocoder.rb
+- lib/geocoder/cache.rb
+- lib/geocoder/calculations.rb
+- lib/geocoder/configuration.rb
+- lib/geocoder/lookups/base.rb
+- lib/geocoder/lookups/freegeoip.rb
+- lib/geocoder/lookups/geocoder_ca.rb
+- lib/geocoder/lookups/google.rb
+- lib/geocoder/lookups/yahoo.rb
+- lib/geocoder/orms/active_record.rb
+- lib/geocoder/orms/active_record_legacy.rb
+- lib/geocoder/orms/base.rb
+- lib/geocoder/railtie.rb
+- lib/geocoder/request.rb
+- lib/geocoder/results/base.rb
+- lib/geocoder/results/freegeoip.rb
+- lib/geocoder/results/geocoder_ca.rb
+- lib/geocoder/results/google.rb
+- lib/geocoder/results/yahoo.rb
+- lib/tasks/geocoder.rake
+- test/fixtures/freegeoip_74_200_247_59.json
+- test/fixtures/geocoder_ca_madison_square_garden.json
+- test/fixtures/geocoder_ca_no_results.json
+- test/fixtures/geocoder_ca_reverse.json
+- test/fixtures/google_garbage.json
+- test/fixtures/google_madison_square_garden.json
+- test/fixtures/google_no_locality.json
+- test/fixtures/google_no_results.json
+- test/fixtures/yahoo_garbage.json
+- test/fixtures/yahoo_madison_square_garden.json
+- test/fixtures/yahoo_no_results.json
+- test/geocoder_test.rb
+- test/test_helper.rb
+has_rdoc: true
+homepage: http://www.rubygeocoder.com
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: Complete geocoding solution for Ruby.
+test_files: []
+

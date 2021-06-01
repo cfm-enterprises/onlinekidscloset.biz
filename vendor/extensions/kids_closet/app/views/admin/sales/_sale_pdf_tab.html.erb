@@ -1,0 +1,13 @@
+<div class="list_content" id="sale_pdf_tab_id">
+  <br><br>&nbsp;<br>
+  <div class="action_row">
+    <h3><%= @sale.site_asset.nil? ? "No PDF File Stored for this sale" : "File #{@sale.site_asset.asset_file_name} uploaded" %></h3><br><br>
+    <% render_region :action_row do |action_row| %>
+      <% action_row.index_form do %>
+        <% form_for [:admin, @sale], :url => {:action => 'upload_pdf'}, :html => {:class => 'semantic-form', :multipart => true} do |f| %>
+          <%= render :partial => 'pdf_form', :locals => { :f => f, :save_label => 'Upload' } %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

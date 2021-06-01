@@ -1,0 +1,7 @@
+<% render_region :main do |main| %>
+  <% main.index_form do %>
+    <% form_for [:admin, @rewards_import.sale, @rewards_import], :html => {:class => 'semantic-form', :multipart => true} do |f| %>
+      <%= render :partial => 'form_index', :locals => { :f => f, :save_label => 'Upload' } %>
+    <% end %>
+  <% end %>
+<% end %>

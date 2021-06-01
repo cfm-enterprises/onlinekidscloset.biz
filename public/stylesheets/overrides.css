@@ -1,0 +1,117 @@
+/* Apply CSS overrides here. This file will not be updated by Bionic */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#consignor_print_area{
+  width: 900px;
+  height: 1200px;
+}
+#consignor_tag{
+  position: relative;
+	float:left;
+	color: #000;
+	width: 418px;
+	height: 275px;
+	font-size: 14pt;	
+}
+.tag-bolder{
+  font-size: 16pt;
+}
+#consignor_tag_column_break{
+  float:left;
+  width:40px;
+	height: 225px;  
+}
+#ct_kids_logo{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+	width: 73px;
+	height: 63px;
+}
+#ct_title{
+  position: absolute;
+  top: 0px;
+  left: 74px;
+	text-align:center;
+	width: 198px;
+	height: 63px;
+}
+#ct_donate_logo{
+  position: absolute;
+	top: 0px;
+  left: 257px;
+	width: 54px;
+	height: 63px;
+}
+#ct_content_table{
+  position: absolute;
+  top:64px;
+  left: 0px;
+	width: 100%;
+}
+#clear {
+	clear:both;		
+}
+p.breakhere {
+  page-break-after: always;
+  color: #ccc;
+}
+
+p.facility_location {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-weight: bold;
+  font-size: 48pt; 
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: 40px;
+  padding-top: 0px;
+  margin-top: 24px;
+}
+
+.normal{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-size: 30pt;
+  margin-bottom: 8pt;
+}
+.footnote{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-size: 22pt;
+}
+.dates{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-weight: bold;
+  font-size: 30pt;   
+}
+.sale_hours{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-weight: bold;
+  font-size: 30pt;     
+}
+.details{
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-size: 30pt; 
+  font-weight: bold;
+    
+}    
+p.flyer {
+  margin-bottom: 18pt;
+}
+p.normal {
+  margin-bottom: 8pt;  
+}
+.kcc_check {
+  font-size: 10pt;
+  font-family: Arial, Helvetica, sans-serif ;
+}
+.transit_number {
+  font-size: 6pt;
+}

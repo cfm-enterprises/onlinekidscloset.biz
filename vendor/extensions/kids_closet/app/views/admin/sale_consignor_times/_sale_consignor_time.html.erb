@@ -1,0 +1,23 @@
+<tr id="sale_consignor_time-<%= sale_consignor_time.id.to_s %>" class="sale_consignor_time_row list_row">
+  <% render_region :list_data, :locals => { :sale_consignor_time => sale_consignor_time } do |list_data| %>
+    <% list_data.date_column do %>
+      <td class="name"><%= sale_consignor_time.date.strftime("%b %d, %Y") %></td>
+    <% end %>
+    <% list_data.times_column do %>
+      <td class="name"><%= sale_consignor_time.start_time.strftime("%I:%M %p") %> - <%= sale_consignor_time.end_time.strftime("%I:%M %p") %></td>
+    <% end %>
+    <% list_data.items_column do %>
+      <td align="center"><%= sale_consignor_time.items_coming %></td>
+    <% end %>
+    <% list_data.spots_column do %>
+      <td align="center"><%= sale_consignor_time.consignor_profiles.count(:id) %>/<%= sale_consignor_time.number_of_spots %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'View Consignors', admin_sale_consignor_time_url(sale_consignor_time) %> | 
+        <%= link_to 'Edit', edit_admin_sale_sale_consignor_time_url(sale_consignor_time.sale, sale_consignor_time) %> | 
+        <%= link_to 'Delete', admin_sale_sale_consignor_time_url(sale_consignor_time.sale, sale_consignor_time), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

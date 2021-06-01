@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+florida:
+  id: 1
+  franchise_id: 1
+  about_content: This is the about us content
+  links_content: This is the links area content
+  charity_content: This is the charity content
+  incentives_content: This is the incentives content
+  shoppers_info_content: This is the shoppers info content
+  volunteers_info_content: This is the volunteers info content
+
+kansas:
+  id: 2
+  franchise_id: 2
+  about_content: This is the about us content
+  links_content: This is the links area content
+  charity_content: This is the charity content
+  incentives_content: This is the incentives content
+  shoppers_info_content: This is the shoppers info content
+  volunteers_info_content: This is the volunteers info content

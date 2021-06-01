@@ -1,0 +1,19 @@
+<h3>Sale Reports</h3>
+<ul>
+  <li><%= link_to 'Financials', financial_report_admin_sale_url(@sale), :popup => ['financial_report', 'height=650,width=800,scrollbars=1'] %></li>
+  <li><%= link_to 'Consignors', consignors_report_admin_sale_url(@sale), :popup => ['consignors_report', 'height=650,width=800,scrollbars=1'] %></li>
+  <li><%= link_to 'Helpers', volunteers_report_admin_sale_url(@sale), :popup => ['volunteers_report', 'height=650,width=800,scrollbars=1'] %></li>
+  <li><%= link_to 'Print Sort Labels', formatted_print_sort_labels_admin_sale_url(@sale, :pdf) %></li>
+  <li><%= link_to 'Items Sold Online', online_sales_report_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Sort Group Report', pick_up_report_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Promo Codes Report', promo_codes_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Print Checks', new_admin_sale_check_printer_url(@sale) %></li>
+  <li><%= link_to 'Print Buyer Reports', buyer_item_reports_admin_sale_url(@sale) %></li>
+</ul>
+<h3>Sale Exports</h3>
+<ul>
+<!--  <li><%= link_to 'Rewards Available', rewards_export_admin_franchise_url(@sale.franchise) %></li> -->
+  <li><%= link_to 'Consignors for POS', consignors_export_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Items Sold', sales_export_admin_sale_url(@sale) %></li>
+ <li><%= link_to 'Checks Export', checks_export_admin_sale_url(@sale) %></li>
+</ul>

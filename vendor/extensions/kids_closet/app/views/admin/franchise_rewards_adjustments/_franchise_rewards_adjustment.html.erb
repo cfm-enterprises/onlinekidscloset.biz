@@ -1,0 +1,22 @@
+<tr id="franchise_rewards_adjustment-<%= franchise_rewards_adjustment.id.to_s %>" class="franchise_rewards_adjustment_row list_row">
+  <% render_region :list_data, :locals => { :franchise_rewards_adjustment => franchise_rewards_adjustment } do |list_data| %>
+    <% list_data.rewards_number_column do %>
+      <td class="name"><%= franchise_rewards_adjustment.rewards_profile.rewards_number %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= franchise_rewards_adjustment.customer_name %></td>
+    <% end %>
+    <% list_data.amount_column do %>
+      <td class="name" align="center"><%= number_to_currency(franchise_rewards_adjustment.amount) %></td>
+    <% end %>
+    <% list_data.comment_column do %>
+      <td class="name"><%= franchise_rewards_adjustment.comment %></td>
+    <% end %>    
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_franchise_franchise_rewards_adjustment_url(@franchise, franchise_rewards_adjustment) %> | 
+        <%= link_to 'Delete', admin_franchise_franchise_rewards_adjustment_url(@franchise, franchise_rewards_adjustment), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

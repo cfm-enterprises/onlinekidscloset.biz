@@ -1,0 +1,31 @@
+<% field_set_tag "Upload File for #{@franchise_file.franchise_file_category.title}" do -%>
+  <% render_region :form_top do |form_top| %>
+    <% form_top.edit_errors do %>
+      <%= error_messages_for :franchise_file, :site_asset %>
+    <% end %>
+  <% end %>
+  <% render_region :index_form, :locals => { :f => f } do |form| %>
+
+    <% fields_for @site_asset do |site_asset_form| %>
+      <% render_region :site_asset_fields do |site_asset_fields| %>
+        <% site_asset_fields.edit_index_filename do %>
+          <%= site_asset_form.file_field :asset, :label => "Franchise File:", :size => 25, :required => true %>
+        <% end %>      
+        <% site_asset_fields.edit_index_display_name do %>
+          <%= site_asset_form.text_field :display_name, :label => "Name:" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% form.edit_franchise_file_category_id do %>
+      <%= f.hidden_field :franchise_file_category_id %>
+    <% end %>
+    <% form.edit_description do %>
+      <%= f.text_field :file_description, :label => "Description:" %>
+    <% end %>      
+  <% end %>
+  <% render_region :index_form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <%= f.submit_or_back "Upload", admin_franchise_file_categories_url(@franchise_file.franchise_file_category) %>
+    <% end %>
+  <% end %>
+<% end %>

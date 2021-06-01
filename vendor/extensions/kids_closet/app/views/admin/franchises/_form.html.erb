@@ -1,0 +1,54 @@
+<% field_set_tag "#{save_label} Franchise#{": #{@franchise.franchise_name}" unless @franchise.new_record?}" do -%>
+  <%= error_messages_for :franchise %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_franchise_name do %>
+      <%= f.text_field :franchise_name, :label => "Franchise Name:", :required => true %>
+    <% end %>
+    <% form.edit_sale_city do %>
+      <%= f.text_field :sale_city, :label => "Sale City:", :required => true %>
+    <% end %>
+    <% form.edit_province_id do %>
+      <%= f.select :province_id, @provinces.collect { |province| [province.name, province.id] }, :include_blank => "&lt;Select One&gt;", :label => "Sale State:", :required => true %>
+    <% end %>
+    <% form.edit_franchise_email do %>
+      <%= f.text_field :franchise_email, :label => "Franchise Email:", :required => true %>
+    <% end %>
+    <% form.edit_external_email do %>
+      <%= f.text_field :external_email, :label => "External Email:" %>
+    <% end %>
+    <% form.edit_pay_pal_email do %>
+      <%= f.text_field :pay_pal_email, :label => "Pay Pal Client ID:" %>
+    <% end %>
+    <% form.edit_royalty_status do %>
+      <% if @admin %>
+        <%= f.select :use_minimum_royalty, [["Charge Minimum Royalty", true], ["Do Not Charge Minimum Royalty", false]], :label => "Royalty Status:" %>
+      <% end %>
+    <% end -%>
+    <% form.edit_franchise_meta_keywords do %>
+      <%= f.text_field :meta_keywords, :label => "Meta Keywords:" %>
+    <% end %>
+    <% form.edit_franchise_meta_description do %>
+      <%= f.text_field :meta_description, :label => "Meta Description:" %>
+    <% end %>
+    <% form.edit_facebook_url do %>
+      <%= f.text_field :facebook_url, :label => "Facebook URL:", :help => "Example: http://www.facebook.com/#!/group.php?gid=68615377592&ref=ts" %>
+    <% end %>
+    <% form.edit_facebook_pixel do %>
+      <%= f.text_field :facebook_pixel, :label => "Facebook Pixel:", :help => "The number on the init line of the code: fbq('init', 'xxxxxxxxxxxxxxxxx');" %>
+    <% end %>
+    <% form.edit_google_analytics do %>
+      <%= f.text_field :google_analytics_code, :label => "Google Analytics Code:", :help => "The account code on the setAccount line of the code: (['_setAccount', 'xxxxxxxxxxxxxx']);" %>
+    <% end %>
+    <% form.edit_twitter_url do %>
+      <%= f.text_field :twitter_url, :label => "Twitter URL:", :help => "Example: http://www.twitter.com/kccsale" %>
+    <% end %>
+    <% form.edit_blogger_url do %>
+      <%= f.text_field :blogger_url, :label => "Blogger URL:", :help => "Example: http://www.kidsclosetsale.blogspot.com" %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_franchises_path %>
+    <% end %>
+  <% end %>
+<% end %>

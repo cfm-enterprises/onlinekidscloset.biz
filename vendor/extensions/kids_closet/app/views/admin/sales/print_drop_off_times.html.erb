@@ -1,0 +1,40 @@
+<h1>Consignor Drop Off Times for <%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %></h1>
+<div class="list_content">
+  <table border=1 cellspacing=2 cellpadding=2>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Times</th>
+        <th>Spots Used/Available</th>
+        <th>Items Coming</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @sale_consignor_times.length == 0 %>
+        <tr><td colspan="3" class="no_entries">No Times Scheduled</td></tr>
+      <% else %>
+        <% for sale_consignor_time in @sale_consignor_times %>
+          <tr>
+          <% if sale_consignor_time.internal %>
+            <td class="name" colspan="2">Not Selected</td>
+            <td align="center"><%= sale_consignor_time.consignor_profiles.count(:id) %></td>
+          <% else %>          
+            <td class="name"><%= sale_consignor_time.date.strftime("%b %d, %Y") %></td>
+            <td class="name"><%= sale_consignor_time.start_time.strftime("%I:%M %p") %> - <%= sale_consignor_time.end_time.strftime("%I:%M %p") %></td>
+            <td align="center"><%= sale_consignor_time.consignor_profiles.count(:id) %>/<%= sale_consignor_time.number_of_spots %></td>
+          <% end -%>
+            <td align="center"><%= sale_consignor_time.items_coming %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <td colspan="4">
+          <%= @sale.number_of_possible_sale_items %> Total Items Coming to Sale.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<script language="javascript">
+	window.print();
+</script>

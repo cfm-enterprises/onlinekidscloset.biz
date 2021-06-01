@@ -1,0 +1,31 @@
+<h1>Business Partners for <%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %></h1>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.sort_column_header do %><th>#</th><% end %>
+          <% list_headers.title_column_header do %><th>Title</th><% end %>
+          <% list_headers.url_column_header do %><th>URL</th><% end %>
+          <% list_headers.description_column_header do %><th>Description</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @sale.business_partners.length == 0 %>
+        <tr><td colspan="<%= admin_interface.business_partners.index.list_data.length %>" class="no_entries">No Business Partners for this Sale</td></tr>
+      <% else %>
+         <%= render :partial => 'business_partner', :collection => @sale.business_partners %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.new_business_partner do %>
+        <%= link_to 'Add Business Partner', new_admin_sale_business_partner_url(@sale) %> | <%= link_to 'Back', admin_sale_url(@sale) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

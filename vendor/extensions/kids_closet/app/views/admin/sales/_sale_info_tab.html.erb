@@ -1,0 +1,34 @@
+<div class="list_content" id="sale_info_tab_id">
+  <table class="left_table">
+    <tr>
+      <td><b>Sale Dates: </b></td>
+      <td><%= @sale.sale_dates %></td>
+    </tr>
+    <tr>
+      <td valign="top"><b>Sale Times: </b></td>
+      <td>
+        <%= @sale.sale_hours_1 %>
+        <%= "<br>#{@sale.sale_hours_2}" unless @sale.sale_hours_2.blank? %>
+        <%= "<br>#{@sale.sale_hours_3}" unless @sale.sale_hours_3.blank? %>
+        <%= "<br>#{@sale.sale_hours_4}" unless @sale.sale_hours_4.blank? %>
+        <%= "<br>#{@sale.sale_hours_5}" unless @sale.sale_hours_5.blank? %>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Sale Address: </b></td>
+      <td><%= @sale.formatted_address %></td>
+    </tr>
+    <tr>
+      <td><b>Status: </b></td>
+      <td><%= @sale.active ? "Active Sale" : "Inactive Sale" %></td>
+    </tr>
+    <tr>
+      <td><b>Sale Advertisement Cost: </b></td>
+      <td><%= @sale.sale_advert_cost %></td>
+    </tr>
+    <tr>
+      <td><b>Sale Percentage: </b></td>
+      <td><%= @sale.sale_percentage %></td>
+    </tr>
+  </table>
+</div>

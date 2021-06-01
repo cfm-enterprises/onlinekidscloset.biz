@@ -1,0 +1,42 @@
+<tr id="consignor-<%= consignor.id.to_s %>" class="consignor_row list_row <%= 'error_row' if consignor.franchise_profile.profile.items_coming == 0 %>">
+  <% render_region :list_data, :locals => { :consignor => consignor } do |list_data| %>
+    <% list_data.consignor_number_column do %>
+      <td class="name"><%= consignor.franchise_profile.profile_id %></td>
+    <% end %>
+    <% list_data.active_items_column do %>
+      <td class="name"><%= consignor.franchise_profile.profile.items_coming %></td>
+    <% end -%>
+    <% list_data.sort_column do %>
+      <td class="name"><%= consignor.franchise_profile.profile.sort_column %></td>
+    <% end %>
+    <% list_data.name_column do %>
+      <td class="name"><%= consignor.franchise_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.email_column do %>
+      <td><%= link_to consignor.franchise_profile.profile.email, "mailto:#{consignor.franchise_profile.profile.email}" %></td>
+    <% end %>
+    <% list_data.phone_column do %>
+      <td><%= consignor.franchise_profile.profile.phone.as_phone %></td>
+    <% end %>
+    <% list_data.sale_percentage_column do %>
+      <td>
+        <% form_remote_tag(:update => "consignor-#{consignor.id}", :url => { :controller => '/admin/sale_consignor_sign_ups', :action => :update_sale_percentage, :id =>consignor.id  }) do %>
+          <%= select_tag 'new_sale_percentage', options_for_select(SaleConsignorSignUp.sale_percentage_options(consignor.sale_percentage), consignor.sale_percentage) %>
+          <%= submit_tag "Change" %>
+        <% end -%>
+      </td>
+    <% end %>
+    <% list_data.fee_adjustment_column do %>
+      <td><%= number_to_currency(consignor.fee_adjustment) %></td>
+    <% end %>
+    <% list_data.est_advert_cost_column do %>
+      <td><%= number_to_currency(consignor.estimated_advertisement_fee) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Disclaimer', consignor_contract_admin_sale_consignor_sign_up_url(consignor), :popup => ['consignor_disclaimer', 'height=650,width=800'] %> | 
+        <%= link_to 'Edit', edit_admin_sale_consignor_sign_up_url(consignor) %> | <%= link_to "Remove", admin_sale_consignor_sign_up_url(consignor), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

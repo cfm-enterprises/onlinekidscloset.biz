@@ -1,0 +1,35 @@
+<tr id="consignor_profile-<%= consignor_profile.id.to_s %>" class="consignor_profile_row list_row">
+  <% render_region :consignors_list_data, :locals => { :consignor_profile => consignor_profile } do |list_data| %>
+    <% list_data.consignor_number_column do %>
+      <td class="name"><%= consignor_profile.profile_id %></td>
+    <% end %>
+    <% list_data.items_coming_column do %>
+      <td class="name"><%= consignor_profile.profile.items_coming %></td>
+    <% end -%>
+    <% list_data.consignor_name_column do %>
+      <td class="name"><%= consignor_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.consignor_email_column do %>
+      <td><%= link_to consignor_profile.profile.email, "mailto:#{consignor_profile.profile.email}" %></td>
+    <% end %>
+    <% list_data.consignor_phone_column do %>
+      <td><%= consignor_profile.profile.phone.to_s.as_phone %></td>
+    <% end %>
+    <% consignor_sign_up = consignor_profile.sale_consignor_sign_ups.find(:first, :conditions => ["sale_consignor_time_id = ?", @sale_consignor_time.id]) %>
+    <% list_data.sale_advertisement_cost_column do %>
+      <td><%= number_to_currency(consignor_sign_up.sale_advert_cost) %></td>
+    <% end %>
+    <% list_data.sale_percentage_column do %>
+      <td><%= consignor_sign_up.sale_percentage %>%</td>
+    <% end %>
+    <% list_data.promo_code_column do %>
+      <td><%= consignor_sign_up.promo_code %></td>
+    <% end -%>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_sale_consignor_sign_up_url(consignor_sign_up) %> | 
+        <%= link_to "Remove", admin_sale_consignor_sign_up_url(consignor_sign_up), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

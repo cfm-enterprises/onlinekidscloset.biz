@@ -1,0 +1,32 @@
+<h4><%= @sale_volunteer_time.sale.franchise.franchise_name %>:<%= @sale_volunteer_time.sale.sale_dates %></h4>
+<h2>
+  <%= "#{@sale_volunteer_time.date.strftime("%A %b %d, %Y")}:#{@sale_volunteer_time.start_time.strftime("%I:%M %p")}-#{@sale_volunteer_time.end_time.strftime("%I:%M %p")}" unless @sale_volunteer_time.none_traditional_job %></h2>
+<h4><%= "#{@sale_volunteer_time.job_title}:</b> #{@sale_volunteer_time.job_description}" %></h4>
+<br />
+<div class="list_content" id="volunteers_tab_id">
+  <table border=1 cellspacing=2 cellpadding=2>
+    <thead>
+      <tr>
+        <th align="left">Helper</th>
+        <th align="left">Email</th>
+        <th align="left">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @volunteer_profiles.length == 0 %>
+        <tr><td colspan="3" class="no_entries">No Helpers Signed Up for this this Job</td></tr>
+      <% else %>
+        <% for volunteer_profile in @volunteer_profiles %>
+          <tr id="volunteer_profile-<%= volunteer_profile.id.to_s %>" class="volunteer_profile_row list_row">
+            <td><%= volunteer_profile.profile.full_name %>&nbsp;</td>
+            <td><%= volunteer_profile.profile.email %>&nbsp;</td>
+            <td><%= volunteer_profile.profile.phone.nil? ? "-" : volunteer_profile.profile.phone.as_phone %>&nbsp;</td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script language="javascript">
+	window.print();
+</script>

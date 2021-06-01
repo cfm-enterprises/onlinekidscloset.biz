@@ -1,0 +1,47 @@
+<h1>Helper Jobs Available for <%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %></h1>
+<% render_region :top do |top| %>
+  <% top.pagination_counts do %>
+    <p><%= will_paginate_record_display(@sale_volunteer_times) %></p>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.date_column_header do %><th>Date</th><% end %>
+          <% list_headers.times_column_header do %><th>Times</th><% end %>
+          <% list_headers.job_title_column_header do %><th>Job Title</th><% end %>
+          <% list_headers.job_description_column_header do %><th>Job Description</th><% end %>
+          <% list_headers.spots_column_header do %><th>Spots Used/Available</th><% end %>
+          <% list_headers.draft_column_header do %><th>Status</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @sale_volunteer_times.length == 0 %>
+        <tr><td colspan="<%= admin_interface.sale_volunteer_times.index.list_data.length %>" class="no_entries">No Jobs Scheduled</td></tr>
+      <% else %>
+         <%= render :partial => 'sale_volunteer_time', :collection => @sale_volunteer_times %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= will_paginate_links(@sale_volunteer_times) %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.new_volunteer_time do %>
+        <%= link_to 'Add Times', new_admin_sale_sale_volunteer_time_url(@sale) %> | 
+        <%= link_to 'Print List', print_volunteer_jobs_admin_sale_url(@sale), :popup => ['volunteers_report', 'height=650,width=800,scrollbars=1']  %> | 
+        <%= link_to 'Print All Times', print_all_volunteer_lists_admin_sale_url(@sale), :popup => ['volunteers_report', 'height=650,width=800,scrollbars=1']  %> |  
+        <%= link_to 'Make All Active', make_all_jobs_active_admin_sale_url(@sale), :method => :post %> | 
+        <%= link_to 'Back', admin_sale_url(@sale) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

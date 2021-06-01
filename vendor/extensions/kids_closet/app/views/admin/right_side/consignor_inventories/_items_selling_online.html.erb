@@ -1,0 +1,20 @@
+<% render_region :right_side do |right_side| %>
+  <% right_side.search do %>
+    <b>Items Search Form</b><br>
+    <% form_tag items_selling_online_admin_sale_consignor_inventory_path(@sale), {:method => 'get', :id => 'transaction_search_form', :autocomplete => 'off'} do %>
+      Category<br>
+      <%= select_tag :category_search, options_for_select(@categories_array, params[:category_search]) %><br>
+      Size<br>
+      <%= text_field_tag :size, params[:size] %><br>
+      Item ID<br>
+      <%= text_field_tag :item_id, params[:item_id] %><br>
+      Item Name<br>
+      <%= text_field_tag :item_name, params[:item_name] %><br>
+      Consignor Number<br>
+      <%= text_field_tag :profile_id, params[:profile_id] %><br>
+      Consignor Name<br>
+      <%= select_tag :consignor_search, options_for_select(@consignors_array, params[:consignor_search].to_i) %><br>
+      <%= submit_tag 'Quick Search', :disable_with => "Searching..." %><br>
+    <% end %>
+  <% end %>
+<% end %>

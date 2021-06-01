@@ -1,0 +1,34 @@
+<h1>Rewards Imports for <%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %></h1>
+<% render_region :above_content do |above_content| %>
+  <% above_content.action_list do %>
+    <%= link_to "Back", rewards_manager_admin_sale_path(@sale) %>
+  <% end %>
+<% end %>
+<div class="list_content">
+  <%= render_region :before_list %>
+  <table class="site_asset_index list_table" id="site_asset_index_id">
+    <thead>
+      <tr>
+        <% render_region :list_headers do |list_headers| %>
+          <% list_headers.report_dates_column_header do %><th>Report Date</th><% end %>
+          <% list_headers.report_name_column_header do %><th>Name</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @rewards_imports.length == 0 %>
+        <tr><td colspan="<%= admin_interface.rewards_imports.index.list_data.length %>" class="no_entries">No Rewards Imports for this Sale</td></tr>
+      <% else %>
+         <%= render :partial => 'rewards_import', :collection => @rewards_imports %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.rewards_import_path do %>
+        <%= link_to "New Rewards Import", new_admin_sale_rewards_import_url(@sale) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

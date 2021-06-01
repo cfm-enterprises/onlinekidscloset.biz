@@ -1,0 +1,84 @@
+<% field_set_tag "#{save_label} Item#{": #{@consignor_inventory.id}" unless @consignor_inventory.new_record?}" do -%>
+  <%= error_messages_for :consignor_inventory %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_featured_item do %>
+      <%= f.radio_button_group :featured_item, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Sell Online?:", :required => true, :onchange => "updateFeatured(this);" %>
+      <script>
+        function updateFeatured(item)
+        {
+          <% unless @consignor_inventory.has_featured_photo? %>
+          if (item.value == "true")
+          {
+            document.getElementById('featured_item_div').style.display = 'block'
+          }
+          else
+          {
+            document.getElementById('featured_item_div').style.display = 'none'
+          }
+          <% end %>
+          if (item.value == "true")
+          {
+            document.getElementById('featured_item_more_info_div').style.display = 'block'
+            document.getElementById('category_div').style.display = 'block'
+            document.getElementById('sub_category_div').style.display = 'block'
+          }
+          else
+          {
+            document.getElementById('featured_item_more_info_div').style.display = 'none'
+            document.getElementById('category_div').style.display = 'none'
+            document.getElementById('sub_category_div').style.display = 'none'
+          }
+          setSize(item)
+        }
+      </script>
+    <% end -%>
+    <% form.edit_category do %>
+      <div id="category_div" style="display: <%= @consignor_inventory.featured_item ? 'block' : 'none' %>">
+        <%= f.select :category, [["<Select a Category>", ""]] + ConsignorInventory.category_array.collect { |category| [category[0], category[1]] }, {:label => "Category:", :required => true}, {:onchange => "updateCategory(this);"} %>
+        <%= ConsignorInventory.backend_category_javascript %>
+      </div>
+    <% end %>
+    <% form.edit_sub_category do %>
+      <div id="sub_category_div" style="display: <%= @consignor_inventory.featured_item ? 'block' : 'none' %>">
+        <%= f.select :sub_category, [[ConsignorInventory.sub_category_array(@consignor_inventory.category_name).empty? ? "<No Sub Categories for this Category>" : "<Select a Sub Category>", ""]] + ConsignorInventory.sub_category_array(@consignor_inventory.category_name).collect { |sub_category| [sub_category, sub_category] }, :label => "Sub Category:", :required => true %>
+      </div>
+    <% end %>
+    <% form.edit_price do %>
+      <%= f.text_field :price, :label => "Price:", :required => true %>
+    <% end %>
+    <% form.edit_description do %>
+      <%= f.text_field :item_description, :label => "Description:", :required => true %>
+    <% end %>
+    <% form.edit_size do %>
+      <%= f.select :size, [[ConsignorInventory.size_array(@consignor_inventory.category_name).empty? ? "<No Sizes for this Category>" : "<Select a Size>", ""]] + ConsignorInventory.size_array(@consignor_inventory.category_name).collect { |size| [size, size] }, :label => "Size:", :required => true %>
+    <% end %>
+    <% form.edit_discount do %>
+      <%= f.radio_button_group :last_day_discount, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Discount?:", :required => true %>
+    <% end %>
+    <% form.edit_donate do %>
+      <%= f.radio_button_group :donate, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Donate?:", :required => true %>
+    <% end -%>
+    <% form.edit_item_coming do %>
+      <%= f.radio_button_group :bring_to_sale, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Coming to Sale?:", :required => true %>
+    <% end -%>
+    <% form.edit_additional_information do %>
+      <div id="featured_item_more_info_div" style="display: <%= @consignor_inventory.featured_item ? 'block' : 'none' %>">
+        <%= f.text_field :additional_information, :label => "Additional Information:" %>
+      </div>
+    <% end %>
+  <% end %>
+  <div id="featured_item_div" style="display: <%= @consignor_inventory.has_featured_photo? ? 'none' : (@consignor_inventory.featured_item ? 'block' : 'none') %>">
+    <% fields_for @featured_photo do |featured_photo_form| %>
+      <% render_region :featured_photo_fields do |featured_photo_fields| %>
+        <% featured_photo_fields.edit_filename do %>
+            <%= featured_photo_form.file_field :asset, :label => "Featured Photo:", :size => 25 %>
+        <% end %>      
+      <% end %>
+    <% end %>
+  </div>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, items_coming_admin_sale_consignor_inventory_url(@sale, @sale) %>
+    <% end %>
+  <% end %>
+<% end %>

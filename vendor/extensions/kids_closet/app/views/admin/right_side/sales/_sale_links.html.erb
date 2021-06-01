@@ -1,0 +1,23 @@
+<h3>General Sale Options</h3>
+<ul>
+  <li><%= link_to 'Consignor Drop Off Times', admin_sale_sale_consignor_times_url(@sale) %></li>
+  <li><%= link_to 'Signed Up Consignors', consignors_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Signed Up Consignors History', consignors_history_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Helper Jobs', admin_sale_sale_volunteer_times_url(@sale) %></li>
+  <li><%= link_to 'Signed Up Helpers', volunteers_admin_sale_url(@sale) %></li>
+  <li><%= link_to 'Signed Up Helpers History', volunteers_history_admin_sale_url(@sale) %></li>
+<!--  <li><%= link_to 'Business Partners', admin_sale_business_partners_url(@sale) %></li> -->
+  <li><%= link_to 'Items Coming to Sale', items_coming_admin_sale_consignor_inventory_url(@sale, @sale) %></li>
+  <li><%= link_to 'Items Selling Online', items_selling_online_admin_sale_consignor_inventory_url(@sale, @sale) %></li>
+  <% if (@sale.start_date - 2 <= Date.today) || (@sale.online_sale_start_date.not_nil? && (@sale.online_sale_start_date.to_date - 1) <= Date.today) %>
+    <li><%= link_to 'Sold Items/Return Items', admin_sale_consignor_inventories_url(@sale) %></li>
+<!--    <li><%= link_to 'Rewards Manager', rewards_manager_admin_sale_url(@sale) %></li> -->
+    <li><%= link_to 'Transaction Imports', admin_sale_transaction_imports_url(@sale) %></li>
+  <% else %>
+<!--    <li><%= link_to 'Rewards Available', rewards_available_admin_franchise_url(@sale.franchise) %></li> -->
+  <% end %>
+  <% unless @sale.expired_pay_pal_orders.length == 0 %>
+    <li><b><%= link_to 'Pay Pal Orders Requiring Attention', expired_pay_pal_orders_admin_sale_url(@sale) %></b></li>
+  <% end %>
+  <li><%= link_to 'Reports', reports_admin_sale_url(@sale) %></li>
+</ul>

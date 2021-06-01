@@ -1,0 +1,24 @@
+<div class="list_content" id="others_tab_id">
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :other_reasons_list_headers do |list_headers| %>
+          <% list_headers.other_reason_column_header do %><th>Other Reason</th><% end %>
+          <% list_headers.count_column_header do %><th>Count</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @other_reasons.length == 0 %>
+        <tr><td colspan="<%= admin_interface.franchises.found_us_report.other_reasons_list_data.length %>" class="no_entries">No Other Reasons Reported for this Franchise</td></tr>
+      <% else %>
+         <%= render :partial => 'other_reason', :collection => @other_reasons %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= empty_pagination_div %>
+    <% end %>
+  <% end %>
+</div>

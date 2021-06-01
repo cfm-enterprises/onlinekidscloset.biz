@@ -1,0 +1,23 @@
+<tr id="sale_season-<%= sale_season.id.to_s %>" class="sale_season_row list_row">
+  <% render_region :list_data, :locals => { :sale_season => sale_season } do |list_data| %>
+    <% list_data.season_name_column do %>
+      <td class="name"><%= sale_season.season_name %></td>
+    <% end %>
+    <% list_data.season_dates_column do %>
+      <td class="name"><%= sale_season.season_dates %></td>
+    <% end %>
+    <% list_data.number_of_sales_column do %>
+      <td class="name" align="center"><%= sale_season.sales.count %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'View Sales', admin_sale_season_url(sale_season) %> | 
+        <%= link_to 'Edit', edit_admin_sale_season_url(sale_season) %> | 
+        <% if sale_season.id != SaleSeason.current_sale_season_id && !sale_season.items_sold.empty? %>
+          <%= link_to 'Archive', archive_admin_sale_season_url(sale_season), :confirm => "Are you sure?  This can NOT be undone.", :method => :post %> | 
+        <% end %>
+        <%= link_to 'Delete', admin_sale_season_url(sale_season), :confirm => "Are you sure?  Reports will not be available for this season going forward.", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

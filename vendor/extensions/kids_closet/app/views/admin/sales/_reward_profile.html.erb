@@ -1,0 +1,75 @@
+<% if reward_profile.profile.nil?
+    @amount_earned = reward_profile.single_card_rewards_for_franchise(@sale.franchise)
+    @total_earned += @amount_earned
+    @amount_applied = RewardsEarning.earnings_by_card(reward_profile, @sale.franchise_id)
+    @total_applied += @amount_applied
+    @max_available = @amount_earned - @amount_applied %>
+    <tr id="reward_profile-<%= reward_profile.id.to_s %>" class="profile_row list_row">
+      <% render_region :list_data, :locals => { :reward_profile => reward_profile } do |list_data| %>
+        <% list_data.rewards_number_column do %>
+          <td class="name"><%= reward_profile.rewards_number %></td>
+        <% end %>
+        <% list_data.name_column do %>
+          <td class="name"><%= "Not Claimed" %></td>
+        <% end %>
+        <% list_data.email_column do %>
+          <td>"N/A"</td>
+        <% end %>
+        <% list_data.amount_earned_column do %>
+          <td align="center">
+            <%= number_to_currency(@amount_earned) %>
+          </td>
+        <% end %>
+        <% list_data.awards_applied_column do %>
+          <td align="center">
+            <%= number_to_currency(@amount_applied)  %></td>
+        <% end %>
+        <% list_data.actions_column do %>
+          <td class="actions">
+            <% form_tag(apply_reward_admin_sale_url(@sale)) do %>
+              <%= hidden_field_tag :rewards_profile_id, reward_profile.id%>
+              <%= select_tag 'amount_earned',  options_for_select(RewardsProfile.reward_amount_drop_down_options(@max_available)) %>
+              <%= submit_tag "Apply Reward" %>
+            <% end %>
+          </td>
+        <% end %>
+      <% end %>
+    </tr>
+<% else 
+    @amount_earned = reward_profile.rewards_for_franchise(@sale.franchise)
+    @total_earned += @amount_earned
+    @amount_applied = RewardsEarning.earnings_by_profile_and_franchise(reward_profile.profile, @sale.franchise_id)
+    @total_applied += @amount_applied 
+    @max_available = @amount_earned - @amount_applied %>
+    <tr id="reward_profile-<%= reward_profile.id.to_s %>" class="profile_row list_row">
+      <% render_region :list_data, :locals => { :reward_profile => reward_profile } do |list_data| %>
+        <% list_data.rewards_number_column do %>
+          <td class="name"><%= reward_profile.rewards_number %></td>
+        <% end %>
+        <% list_data.name_column do %>
+          <td class="name"><%= reward_profile.profile.nil? ? "Not Claimed" : reward_profile.profile.full_name %></td>
+        <% end %>
+        <% list_data.email_column do %>
+          <td><%= link_to reward_profile.profile.nil? ? "N/A" : reward_profile.profile.email, "mailto:#{reward_profile.profile.email}"%></td>
+        <% end %>
+        <% list_data.amount_earned_column do %>
+          <td align="center">
+            <%= number_to_currency(@amount_earned) %>
+          </td>
+        <% end %>
+        <% list_data.awards_applied_column do %>
+          <td align="center">
+            <%= number_to_currency(@amount_applied)  %></td>
+        <% end %>
+        <% list_data.actions_column do %>
+          <td class="actions">
+            <% form_tag(apply_reward_admin_sale_url(@sale)) do %>
+              <%= hidden_field_tag :rewards_profile_id, reward_profile.id%>
+              <%= select_tag 'amount_earned',  options_for_select(RewardsProfile.reward_amount_drop_down_options(@max_available)) %>
+              <%= submit_tag "Apply Reward" %>
+            <% end %>
+          </td>
+        <% end %>
+      <% end %>
+    </tr>
+<% end %>

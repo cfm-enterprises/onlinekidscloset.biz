@@ -1,0 +1,20 @@
+<% field_set_tag "Upload Additional Featured Photo" do -%>
+  <%= error_messages_for :featured_photo %>
+  <% render_region :index_form, :locals => { :f => f } do |form| %>
+    <% form.edit_asset do %>
+      <%= f.file_field :asset, :label => "Featured Photo File:", :size => 25 %>
+    <% end %>
+    <% form.edit_item_id do %>
+      <%= f.hidden_field :consignor_inventory_id %>
+    <% end %>
+  <% end %>
+  <% render_region :index_form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_index_buttons do %>
+      <% if @consignor_inventory.featured_item %>
+        <%= f.submit_or_back 'Upload Photo', items_selling_online_admin_sale_consignor_inventory_url(@sale, @sale)  %>
+      <% else %>
+        <b>Item must be featured to add photos.  Edit the item and mark it as featured.  You can add the first photo during the edit.</b>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

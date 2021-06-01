@@ -1,0 +1,46 @@
+<tr id="consignor_history-<%= consignor_history.franchise_profile.id.to_s %>" class="consignor_history_row list_row">
+  <% render_region :list_data, :locals => { :consignor_history => consignor_history } do |list_data| %>
+    <% list_data.number_column do %>
+      <td class="name"><%= consignor_history.franchise_profile.profile_id %></td>
+    <% end %>
+    <% list_data.sort_group_column do %>
+      <td class="name"><%= consignor_history.franchise_profile.profile.sort_column %></td>
+    <% end %>
+    <% list_data.first_name_column do %>
+      <td><%= consignor_history.franchise_profile.profile.first_name %></td>
+    <% end %>
+    <% list_data.last_name_column do %>
+      <td><%= consignor_history.franchise_profile.profile.last_name %></td>
+    <% end %>
+    <% list_data.created_at_column do %>
+      <td><%= consignor_history.franchise_profile.created_at.strftime("%B, %d, %Y") %></td>
+    <% end %>
+    <% list_data.last_consign_date_column do %>
+      <td><%= consignor_history.franchise_profile.last_consign_date %></td>
+    <% end %>
+    <% list_data.number_events_column do %>
+      <td align="center"><%= consignor_history.franchise_profile.number_of_sales_consigned %></td>
+    <% end %>
+    <% list_data.life_time_proceeds_column do %>
+      <td align="center"><%= number_to_currency(consignor_history.franchise_profile.lifetime_total_sold) %></td>
+    <% end %>
+    <% list_data.last_sale_proceeds_column do %>
+      <td align="center"><%= number_to_currency(consignor_history.franchise_profile.last_sale_proceeds(@sale.id)) %></td>
+    <% end %>
+    <% list_data.lifetime_items_column do %>
+      <td align="center"><%= consignor_history.franchise_profile.lifetime_quantity_sold %></td>
+    <% end %>
+    <% list_data.last_sale_items_column do %>
+      <td align="center"><%= consignor_history.franchise_profile.last_sale_quantity_sold(@sale.id) %></td>
+    <% end %>
+    <% list_data.unsold_items_column do %>
+      <td align="center"><%= consignor_history.franchise_profile.unsold_items %></td>
+    <% end %>
+    <% list_data.unsold_value_column do %>
+      <td align="center"><%= number_to_currency(consignor_history.franchise_profile.unsold_items_value) %></td>
+    <% end %>
+    <% list_data.inactive_items_column do %>
+      <td align="center"><%= consignor_history.franchise_profile.inactive_items %></td>
+    <% end %>
+  <% end %>
+</tr>

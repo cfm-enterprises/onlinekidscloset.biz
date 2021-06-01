@@ -1,0 +1,97 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+franchise_profile_1_florida_spring:
+  id: 1
+  sale_consignor_time_id: 5
+  franchise_profile_id: 1
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_2_kansas_spring:
+  id: 2
+  sale_consignor_time_id: 1
+  franchise_profile_id: 2
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+
+franchise_profile_3_florida_spring:
+  id: 3
+  sale_consignor_time_id: 5
+  franchise_profile_id: 3
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_4_kansas_spring:
+  id: 4
+  sale_consignor_time_id: 1
+  franchise_profile_id: 4
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_5_florida_spring:
+  id: 5
+  sale_consignor_time_id: 5
+  franchise_profile_id: 5
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_6_kansas_spring:
+  id: 6
+  sale_consignor_time_id: 1
+  franchise_profile_id: 6
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_1_florida_current:
+  id: 7
+  sale_consignor_time_id: 7
+  franchise_profile_id: 1
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_2_kansas_current:
+  id: 8
+  sale_consignor_time_id: 3
+  franchise_profile_id: 2
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+
+franchise_profile_3_florida_current:
+  id: 9
+  sale_consignor_time_id: 7
+  franchise_profile_id: 3
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_4_kansas_current:
+  id: 10
+  sale_consignor_time_id: 3
+  franchise_profile_id: 4
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_5_florida_current:
+  id: 11
+  sale_consignor_time_id: 8
+  franchise_profile_id: 5
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_6_kansas_current:
+  id: 12
+  sale_consignor_time_id: 4
+  franchise_profile_id: 6
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  
+franchise_profile_7_florida_current:
+  id: 13
+  sale_consignor_time_id: 8
+  franchise_profile_id: 7
+  sale_advert_cost: 12.50
+  sale_percentage: 70
+  

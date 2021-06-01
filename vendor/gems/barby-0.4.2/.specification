@@ -1,0 +1,116 @@
+--- !ruby/object:Gem::Specification 
+name: barby
+version: !ruby/object:Gem::Version 
+  hash: 11
+  prerelease: false
+  segments: 
+  - 0
+  - 4
+  - 2
+  version: 0.4.2
+platform: ruby
+authors: 
+- Tore Darell
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-10-07 00:00:00 -05:00
+default_executable: 
+dependencies: []
+
+description: Barby creates barcodes.
+email: toredarell@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+files: 
+- lib/barby/barcode/bookland.rb
+- lib/barby/barcode/code_128.rb
+- lib/barby/barcode/code_25.rb
+- lib/barby/barcode/code_25_iata.rb
+- lib/barby/barcode/code_25_interleaved.rb
+- lib/barby/barcode/code_39.rb
+- lib/barby/barcode/code_93.rb
+- lib/barby/barcode/data_matrix.rb
+- lib/barby/barcode/ean_13.rb
+- lib/barby/barcode/ean_8.rb
+- lib/barby/barcode/gs1_128.rb
+- lib/barby/barcode/pdf_417.rb
+- lib/barby/barcode/qr_code.rb
+- lib/barby/barcode.rb
+- lib/barby/outputter/ascii_outputter.rb
+- lib/barby/outputter/cairo_outputter.rb
+- lib/barby/outputter/chunky_png_outputter.rb
+- lib/barby/outputter/pdfwriter_outputter.rb
+- lib/barby/outputter/png_outputter.rb
+- lib/barby/outputter/prawn_outputter.rb
+- lib/barby/outputter/rmagick_outputter.rb
+- lib/barby/outputter/svg_outputter.rb
+- lib/barby/outputter.rb
+- lib/barby/vendor.rb
+- lib/barby/version.rb
+- lib/barby.rb
+- bin/barby
+- vendor/Pdf417lib-java-0.91/lib/Pdf417lib.jar
+- vendor/Pdf417lib-java-0.91/lib/Pdf417lib.java
+- vendor/rqrcode/CHANGELOG
+- vendor/rqrcode/COPYING
+- vendor/rqrcode/lib/rqrcode/core_ext/array/behavior.rb
+- vendor/rqrcode/lib/rqrcode/core_ext/array.rb
+- vendor/rqrcode/lib/rqrcode/core_ext/integer/bitwise.rb
+- vendor/rqrcode/lib/rqrcode/core_ext/integer.rb
+- vendor/rqrcode/lib/rqrcode/core_ext.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_8bit_byte.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_bit_buffer.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_code.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_math.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_polynomial.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_rs_block.rb
+- vendor/rqrcode/lib/rqrcode/qrcode/qr_util.rb
+- vendor/rqrcode/lib/rqrcode/qrcode.rb
+- vendor/rqrcode/lib/rqrcode.rb
+- vendor/rqrcode/Rakefile
+- vendor/rqrcode/README
+- vendor/rqrcode/test/runtest.rb
+- vendor/rqrcode/test/test_data.rb
+- README
+has_rdoc: true
+homepage: http://toretore.github.com/barby
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: barby
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: The Ruby barcode generator
+test_files: []
+

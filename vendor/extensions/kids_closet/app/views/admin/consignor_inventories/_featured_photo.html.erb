@@ -1,0 +1,18 @@
+<tr id="featured_photo-<%= featured_photo.id.to_s %>" class="featured_photo_row list_row">
+  <% render_region :featured_photos_list_data, :locals => { :featured_photo => featured_photo } do |list_data| %>
+    <% list_data.rotate_counter_clockwise_column do %>
+      <td><%= link_to image_tag('/assets/1/original/rotate_counter_clockwise.png'), rotate_counter_clockwise_admin_sale_featured_photo_url(@sale, featured_photo) %></td>
+    <% end %>
+    <% list_data.photo_column do %>
+      <td class="name"><%= link_to (image_tag featured_photo.url(:thumb), :class => featured_photo.rotation_class), "#{featured_photo.url(:original)}" %></td>
+    <% end -%>
+    <% list_data.rotate_clockwise_column do %>
+      <td><%= link_to image_tag('/assets/1/original/rotate_clockwise.png'), rotate_clockwise_admin_sale_featured_photo_url(@sale, featured_photo) %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to "Remove", admin_sale_featured_photo_url(@sale, featured_photo), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

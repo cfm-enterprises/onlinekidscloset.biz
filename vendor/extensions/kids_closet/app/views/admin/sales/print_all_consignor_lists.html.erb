@@ -1,0 +1,49 @@
+<% for sale_consignor_time in @sale_consignor_times %>
+  <h1><%= sale_consignor_time.sale.franchise.franchise_name %>:<%= sale_consignor_time.sale.sale_dates %></h1>
+  <h3>
+    <%= sale_consignor_time.internal ? "Consignors Added Manually or that Showed Up at Sale Without Selecting a Drop Off Time" : 
+          "#{sale_consignor_time.date.strftime("%b %d, %Y")}:#{sale_consignor_time.start_time.strftime("%I:%M %p")}-#{sale_consignor_time.end_time.strftime("%I:%M %p")}" %>
+  </h3>
+  <br />
+  <div class="list_content" id="consignors_tab_id">
+    <table border=1 cellspacing=2 cellpadding=2>
+      <thead>
+        <tr>
+          <th align="left">Consignor #</th>
+          <th align="left">Consignor</th>
+          <th align="left">Email</th>
+          <th align="left">Phone</th>
+          <th>Estimated<br>Advert. Cost</th>
+          <th>Sale Percentage</th>
+          <th>Items Coming</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if sale_consignor_time.consignor_profiles.length == 0 %>
+          <tr><td colspan="6" class="no_entries">No Consignors Signed Up for this this Time Slot</td></tr>
+        <% else %>
+          <% for consignor_profile in sale_consignor_time.consignor_profiles%>
+            <tr id="consignor_profile-<%= consignor_profile.id.to_s %>" class="consignor_profile_row list_row">
+              <td><%= consignor_profile.profile_id %>&nbsp;</td>
+              <td><%= consignor_profile.profile.full_name %>&nbsp;</td>
+              <td><%= link_to consignor_profile.profile.email, "mailto:#{consignor_profile.profile.email}" %>&nbsp;</td>
+              <td><%= consignor_profile.profile.phone.nil? ? "-" : consignor_profile.profile.phone.as_phone %>&nbsp;</td>
+              <% consignor_sign_up = consignor_profile.sale_consignor_sign_ups.find(:first, :conditions => ["sale_consignor_time_id = ?", sale_consignor_time.id]) %>
+              <td align="center"><%= number_to_currency(consignor_sign_up.estimated_advertisement_fee) %></td>
+              <td align="center"><%= consignor_sign_up.sale_percentage %>%&nbsp;</td>
+              <td align="center"><%= consignor_profile.profile.items_coming %>&nbsp;</td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr>
+          <th colspan="6" align="right">Total Items Coming:</th>
+          <th align='center'><%= sale_consignor_time.items_coming %></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="page-break-after: always;"></p>
+<% end -%>
+<script language="javascript">
+	window.print();
+</script>

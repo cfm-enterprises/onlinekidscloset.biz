@@ -1,0 +1,48 @@
+<div class="list_content" id="consignors_tab_id">
+  <p>
+    <b>Consignor Number:</b> <%= @consignor_inventory.profile_id %><br>
+    <b>Consignor:</b> <%= @consignor_inventory.profile.full_name %><br>
+    <b>Item Name:</b> <%= @consignor_inventory.item_description %></br>
+    <% if @consignor_inventory.featured_item %>
+      <b>Additional Information:</b> <%= @consignor_inventory.additional_information %><br>
+    <% end %>
+    <b>Size:</b> <%= @consignor_inventory.size %><br>
+    <b>Price:</b> <%= number_to_currency(@consignor_inventory.price) %><br>
+    <b>Donate:</b> <%= @consignor_inventory.donate ? "Yes" : "No" %><br>
+    <b>Discount:</b> <%= @consignor_inventory.last_day_discount ? "Yes" : "No" %><br>
+    <b>Featured Item</b> <%= @consignor_inventory.featured_item ? "Yes" : "No" %>
+  </p>
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :featured_photos_list_headers do |list_headers| %>
+          <% list_headers.rotate_counter_clockwise_column_header do %><th>Rotate<br>Counter<br>Clockwise</th><% end %>
+          <% list_headers.photo_column_header do %><th>Photo</th><% end %>
+          <% list_headers.rotate_clockwise_column_header do %><th>Rotate<br>Clockwise</th><% end %>
+          <% list_headers.actions_column_header do %><th>Actions</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @consignor_inventory.featured_photos.count == 0 %>
+        <tr><td colspan="<%= admin_interface.consignor_inventories.show.featured_photos_list_data.length %>" class="no_entries">No Photos Assigned to this Item</td></tr>
+      <% else %>
+         <%= render :partial => 'featured_photo', :collection => @consignor_inventory.featured_photos %>
+      <% end %>
+    </tbody>
+  </table>
+  <% render_region :after_list do |after_list| %>
+    <% after_list.pagination_links do %>
+      <%= empty_pagination_div %>
+    <% end %>
+  <% end %>
+  <div class="action_row">
+    <% render_region :action_row do |action_row| %>
+      <% action_row.index_form do %>
+        <% form_for [:admin, @sale, @featured_photo], :html => {:class => 'semantic-form', :multipart => true} do |f| %>
+          <%= render :partial => 'form_index', :locals => { :f => f } %>
+        <% end %><br />
+      <% end %>
+    <% end %>
+  </div>
+</div>

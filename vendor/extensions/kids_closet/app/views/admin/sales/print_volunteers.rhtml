@@ -1,0 +1,37 @@
+<h1><%= @sale.franchise.franchise_name %>:<%= @sale.sale_dates %> Helpers</h1>
+<div class="list_content">
+  <table border=1 cellspacing=2 cellpadding=2>
+    <thead>
+      <tr>
+        <th>&nbsp;</th>
+        <th>Acct #</th>
+        <th>Active Inventory</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Job Title</th>
+        <th>Date/Time</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for volunteer in @volunteers %>
+      <tr>
+        <td class="name" align="center"><%= "C" if volunteer.franchise_profile.consignor %></td>
+        <td class="name" align="center"><%= volunteer.franchise_profile.profile_id %></td>
+        <td class="name" align="center"><%= volunteer.franchise_profile.profile.items_coming if volunteer.franchise_profile.consignor %></td>
+        <td class="name"><%= volunteer.franchise_profile.profile.full_name %></td>
+        <td><%= link_to volunteer.franchise_profile.profile.email, "mailto:#{volunteer.franchise_profile.profile.email}" %></td>
+        <td><%= volunteer.franchise_profile.profile.phone.as_phone %></td>
+        <td><%= volunteer.sale_volunteer_time.job_title %></td>
+        <td>
+          <%= volunteer.sale_volunteer_time.date.strftime("%A") %>
+          <br><%= "#{volunteer.sale_volunteer_time.date.strftime("%b %d, %Y")}<br>#{volunteer.sale_volunteer_time.start_time.strftime("%I:%M %p")}:#{volunteer.sale_volunteer_time.end_time.strftime("%I:%M %p")}" unless volunteer.sale_volunteer_time.none_traditional_job %>
+        </td>
+      </tr>
+    <% end -%>
+    </tbody>
+  </table>
+</div>
+<script language="javascript">
+	window.print();
+</script>

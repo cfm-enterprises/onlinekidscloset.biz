@@ -1,0 +1,16 @@
+<% field_set_tag "#{save_label} to #{@franchise_owner_profile.franchise.franchise_name}" do -%>
+  <%= error_messages_for :franchise_owner_profile %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_franchise_id do %>
+      <%= f.hidden_field :franchise_id %>
+    <% end %>
+    <% form.edit_profile_id do %>
+      <%= f.select :profile_id, @available_owners.collect { |profile| ["#{profile.first_name} #{profile.last_name}", profile.id] }, :include_blank => "&lt;Select One&gt;", :label => "Franchise Owner:", :required => true %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_franchise_url(@franchise_owner_profile.franchise_id) %>
+    <% end %>
+  <% end %>
+<% end %>

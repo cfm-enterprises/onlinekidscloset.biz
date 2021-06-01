@@ -1,0 +1,2 @@
+module Admin::SaleVolunteerSignUpsHelper
+end

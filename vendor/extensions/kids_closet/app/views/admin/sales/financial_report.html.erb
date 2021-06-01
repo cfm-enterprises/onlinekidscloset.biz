@@ -1,0 +1,51 @@
+<h1><%= @sale.franchise.franchise_name %> - <%= @sale.sale_season.season_name %> Financial Report</h1>
+<h2>Consignor Breakdown</h2>
+<div class="list_content">
+  <table class="list_table" cellpadding="2" cellspacing="2">
+    <thead>
+      <tr>
+        <th nowrap>Consignor #</th>
+        <th valign="bottom" align="left">Name</th>
+        <th>Amount<br>Sold</th>
+        <th>Sale<br>Percentage</th>
+        <th>Percent<br>Fee</th>
+        <th>Consignor<br>Fee</th>
+        <th>Additional<br>Proceeds</th>
+        <th>Amount Due to<br>Consignor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for consignor in @consignors %>
+        <tr class="list_row">
+          <td align="center"><%= consignor.franchise_profile.profile_id %></td>
+          <td nowrap><%= consignor.franchise_profile.profile.full_name %></td>
+          <td align="center"><%= number_to_currency(consignor.total_sold) %></td>
+          <td align="center"><%= consignor.sale_percentage %>%</td>
+          <td align="center"><%= number_to_currency(consignor.percentage_fee_paid) %></td>
+          <td align="center"><%= number_to_currency(consignor.advertisement_fee_paid) %></td>
+          <td align="center"><%= number_to_currency(consignor.fee_adjustment) %></td>
+          <td align="center"><%= number_to_currency(consignor.check_amount) %></td>
+        </tr>
+      <% end %>
+      <tr class="report_row list_row">
+        <th class="name" colspan="6" align="right">Number of Items Sold</td>
+        <td class="name"><%= @sale.total_items_sold %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name" colspan="6" align="right">Total Sold</td>
+        <td class="name"><%= number_to_currency(@sale.total_amount_sold) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name" colspan="6" align="right">Percent Fees Collected</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_percent_fees_collected) %></td>
+      </tr>
+      <tr class="report_row list_row">
+        <td class="name" colspan="6" align="right">Consignor Fees Collected</td>
+        <td class="name"><%= number_to_currency(@sale.calculate_advertisement_fees_collected) %></td>
+      </tr>  
+    </tbody>
+  </table>  
+</div>
+<script language="javascript">
+	window.print();
+</script>

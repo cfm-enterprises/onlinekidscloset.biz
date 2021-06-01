@@ -1,0 +1,52 @@
+<% @consignor_items.each do |item| %>
+<% if @row_count == 0 && !@right_side %>
+  <div id="consignor_print_area">
+<% end %>
+    <div id="consignor_tag">
+    	<div id="ct_kids_logo"><img src="/assets/1/original/k_closet_logo.jpg"/></div>
+      <div id="ct_title">KidsCloset.biz</div>
+      <div id="ct_donate_logo"><% if item.donate %><img src="/assets/1/original/d.jpg"/><% end %></div>
+      <div id="ct_content_table">
+      	<table cellpadding="0" cellspacing="1" width="310">
+        	<tr>
+          	<td>&nbsp;</td>
+            <td colspan="2" align="center"><%= "Size: #{item.size}" if item.size.not_nil? %></td>
+          </tr>
+          <tr>
+          	<td><b><%= current_profile_id %></b></td>
+            <td>Item #: <%= item.id %></td>
+            <td align="right"><b><%= number_to_currency(item.price) %></b></td>
+          </tr>
+          <tr>
+            <td colspan="3" nowrap><%= item.item_description %></td>
+          <tr>
+          <tr>
+          	<td>&nbsp;</td>
+            <td colspan="2"><%= item.last_day_discount ? "Marked down on discount day" : "NOT marked down on discount day" %></td>
+          </tr>
+          <tr>
+          	<td colspan="3" align="center"><%= image_tag item.site_asset.url, :width => 310  %></td>
+          </tr>
+          <tr>
+          	<td colspan="3" align="center"><%= ConsignorInventory.get_barcode(item) %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+<% if @right_side %>
+<%  @row_count += 1 %>
+<%  if @row_count == 4 %>
+  </div>
+  <p class="breakhere"><p>
+<%    @row_count = 0 %>
+<%  else %>
+    <div id="clear"></div>
+<%  end %>
+<% else %>
+    <div id="consignor_tag_column_break"></div>
+<% end %>
+<% @right_side = !@right_side %>
+<% end %>
+<% if @row_count != 0 || (@row_count == 0 && @right_side) %>
+  </div>
+<% end %>

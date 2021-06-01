@@ -1,0 +1,141 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+consignor_1_florida:
+  id: 1
+  franchise_id: 1
+  profile_id: 1
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+  
+consignor_1_kansas:
+  id: 2
+  franchise_id: 2
+  profile_id: 1
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+  
+consignor_2_florida:
+  id: 3
+  franchise_id: 1
+  profile_id: 2
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+  
+consignor_2_kansas:
+  id: 4
+  franchise_id: 2
+  profile_id: 2
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+
+consignor_3_florida:
+  id: 5
+  franchise_id: 1
+  profile_id: 3
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+  
+consignor_3_kansas:
+  id: 6
+  franchise_id: 2
+  profile_id: 3
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+
+consignor_4_florida:
+  id: 7
+  franchise_id: 1
+  profile_id: 4
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+
+consignor_5_florida:
+  id: 15
+  franchise_id: 1
+  profile_id: 5
+  consignor: true
+  volunteer: false
+  active: 1
+  mailing_list: false
+
+volunteer_1_florida:
+  id: 8
+  franchise_id: 1
+  profile_id: 26
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false
+  
+volunteer_1_kansas:
+  id: 9
+  franchise_id: 2
+  profile_id: 26
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false
+  
+volunteer_2_florida:
+  id: 10
+  franchise_id: 1
+  profile_id: 27
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false
+  
+volunteer_2_kansas:
+  id: 11
+  franchise_id: 2
+  profile_id: 27
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false
+
+volunteer_3_florida:
+  id: 12
+  franchise_id: 1
+  profile_id: 28
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false
+  
+volunteer_3_kansas:
+  id: 13
+  franchise_id: 2
+  profile_id: 28
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false
+
+volunteer_4_florida:
+  id: 14
+  franchise_id: 1
+  profile_id: 29
+  consignor: false
+  volunteer: true
+  active: 1
+  mailing_list: false

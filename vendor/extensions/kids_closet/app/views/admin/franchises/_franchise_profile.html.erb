@@ -1,0 +1,42 @@
+<tr id="franchise_profile-<%= franchise_profile.id.to_s %>" class="franchise_profile_row list_row">
+  <% render_region :list_data, :locals => { :franchise_profile => franchise_profile } do |list_data| %>
+    <% list_data.number_column do %>
+      <td class="name"><%= franchise_profile.profile_id %></td>
+    <% end %>
+    <% list_data.sort_column do %>
+      <td class="name" align="center"><%= franchise_profile.profile.sort_column %></td>
+    <% end -%>
+    <% list_data.name_column do %>
+      <td class="name"><%= franchise_profile.profile.full_name %></td>
+    <% end %>
+    <% list_data.email_column do %>
+      <td><%= link_to franchise_profile.profile.email, "mailto:#{franchise_profile.profile.email}" %></td>
+    <% end %>
+    <% list_data.phone_column do %>
+      <td><%= franchise_profile.profile.phone.as_phone unless franchise_profile.profile.phone.nil? %></td>
+    <% end %>
+    <% list_data.consignor_column do %>
+      <td align="center"><%= "X" if franchise_profile.consignor %></td>
+    <% end %>
+    <% list_data.volunteer_column do %>
+      <td align="center"><%= "X" if franchise_profile.volunteer %></td>
+    <% end %>
+    <% list_data.mailing_list_column do %>
+      <td align="center"><%= "X" if franchise_profile.mailing_list %></td>
+    <% end %>
+    <% list_data.transfer_column do %>
+      <td align="center"><%= "X" if franchise_profile.transfer? %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit', edit_admin_franchise_franchise_profile_url(franchise_profile.franchise, franchise_profile) %> | 
+        <% if franchise_profile.profile.bad_email %>
+          <%= link_to 'Restore Email', good_email_admin_franchise_franchise_profile_url(franchise_profile.franchise, franchise_profile) , :confirm => "Are you sure?", :method => :post %> | 
+        <% else %>
+          <%= link_to 'Bad Email', bad_email_admin_franchise_franchise_profile_url(franchise_profile.franchise, franchise_profile) , :confirm => "Are you sure?", :method => :post %> |      
+        <% end %>
+        <%= link_to 'Remove', remove_admin_franchise_franchise_profile_url(franchise_profile.franchise, franchise_profile) , :confirm => "Are you sure?", :method => :post %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

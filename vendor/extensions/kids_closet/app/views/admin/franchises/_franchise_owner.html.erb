@@ -1,0 +1,18 @@
+<tr id="franchise_owner-<%= franchise_owner.id.to_s %>" class="franchise_owner_row list_row">
+  <% render_region :franchise_owner_list_data, :locals => { :franchise_owner => franchise_owner } do |list_data| %>
+    <% list_data.franchise_owner_name_column do %>
+      <td class="name"><%= franchise_owner.full_name %></td>
+    <% end %>
+    <% list_data.franchise_owner_email_column do %>
+      <td><%= link_to franchise_owner.email, "mailto:#{franchise_owner.email}" %></td>
+    <% end %>
+    <% list_data.franchise_owner_phone_column do %>
+      <td><%= franchise_owner.phone.as_phone %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to 'Edit Profile', edit_admin_profile_url(franchise_owner) %> | <%= link_to "Remove Ownership", admin_franchise_franchise_owner_profile_url(@franchise, franchise_owner), :confirm => "Are you sure?", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

@@ -1,0 +1,165 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+<% for i in 1..150 %>
+profile_1_item_<%= i %>:
+  id: <%= i %>
+  profile_id: 1
+  price: 1
+  item_description: Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: true
+  donate: false
+  printed: false
+  transaction_import_id: 1
+  sale_id: 3
+  discounted_at_sale: false
+  sale_price: 1
+  tax_collected: 0.08
+  total_price: 1.08
+  sale_date: 2010-03-30
+  transaction_number: 1
+  rewards_profile_id: 3
+  bring_to_sale: true
+  created_at: 2009-02-07 05:35:41
+<% end %>
+
+<% for i in 1..10 %>
+profile_2_item_<%= i %>:
+  id: <%= i + 150 %>
+  profile_id: 2
+  price: 1
+  item_description: Item <%= i %>
+  size: "1234567890123456"
+  last_day_discount: false
+  status: true
+  donate: false
+  printed: false
+  transaction_import_id: 2
+  sale_id: 1
+  discounted_at_sale: false
+  sale_price: 1
+  tax_collected: 0.08
+  total_price: 1.08
+  sale_date: 2010-03-02
+  transaction_number: 2
+  rewards_profile_id: 2
+  bring_to_sale: false
+<% end %>
+
+<% for i in 11..100 %>
+profile_2_item_<%= i %>:
+  id: <%= i + 150 %>
+  profile_id: 2
+  price: 1
+  item_description: Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: true
+  donate: false
+  printed: false
+  transaction_import_id: 1
+  sale_id: 3
+  discounted_at_sale: false
+  sale_price: 1
+  tax_collected: 0.08
+  total_price: 1.08
+  sale_date: 2010-03-30
+  transaction_number: 2
+  rewards_profile_id: 2
+  bring_to_sale: false
+<% end %>
+
+<% for i in 1..100 %>
+profile_3_item_<%= i %>:
+  id: <%= i + 250 %>
+  profile_id: 3
+  price: 1
+  item_description: Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: true
+  donate: false
+  printed: false
+  transaction_import_id: 2
+  sale_id: 1
+  discounted_at_sale: false
+  sale_price: 1
+  tax_collected: 0.08
+  total_price: 1.08
+  sale_date: 2010-03-02
+  transaction_number: 3
+  rewards_profile_id: 3
+  bring_to_sale: true
+<% end %>
+
+<% for i in 101..200 %>
+profile_3_item_<%= i %>:
+  id: <%= i + 250 %>
+  profile_id: 3
+  price: 1
+  item_description: Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: true
+  donate: false
+  printed: false
+  transaction_import_id: 1
+  sale_id: 3
+  discounted_at_sale: false
+  sale_price: 1
+  tax_collected: 0.08
+  total_price: 1.08
+  sale_date: 2010-03-30
+  transaction_number: 3
+  rewards_profile_id: 3
+  bring_to_sale: true
+<% end %>
+
+<% for i in 1..100 %>
+profile_1_un_sold_item_<%= i %>:
+  id: <%= i + 450 %>
+  profile_id: 1
+  price: 1
+  item_description: Un Sold Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: false
+  donate: false
+  printed: false
+  bring_to_sale: true
+<% end %>
+
+<% for i in 1..100 %>
+profile_2_un_sold_item_<%= i %>:
+  id: <%= i + 550 %>
+  profile_id: 2
+  price: 1
+  item_description: Un Sold Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: false
+  donate: false
+  printed: false
+  bring_to_sale: false
+<% end %>
+
+<% for i in 1..100 %>
+profile_3_un_sold_item_<%= i %>:
+  id: <%= i + 650 %>
+  profile_id: 3
+  price: 1
+  item_description: Un Sold Item <%= i %>
+  size: 1
+  last_day_discount: false
+  status: false
+  donate: false
+  printed: false
+  bring_to_sale: true
+  created_at: 2009-02-07 05:35:41
+<% end %>

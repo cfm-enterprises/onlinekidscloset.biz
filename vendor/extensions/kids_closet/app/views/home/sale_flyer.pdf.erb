@@ -1,0 +1,54 @@
+<table id="Table_01" width="2550" height="3300" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td colspan="2">
+		  <%= pdf_image_tag('kcc_spring_flyer_top.jpg', :style=>"margin:0px;padding:0px", :width => '2550', :height => '1279') %>
+    </td>
+	</tr>
+	<tr>
+		<td>
+		  <%= pdf_image_tag('kcc_spring_flyer_left.jpg', :style=>"margin:0px;padding:0px", :width => '1324', :height => '844') %>
+		</td>
+		<td width="1226" height="844" background="<%= pdf_path('kcc_spring_flyer_content.jpg') %>" align="center" valign="top">
+			<p class="facility_location"><%= @sale.facility_name %></p>
+			<p class="normal"><%= @sale.pdf_address %></p>
+			<table border="0" cellspacing="1" cellpadding="1">
+			  <tr>
+			    <td colspan="2" class="sale_hours" align="center">Sale Dates and Hours:</td>
+			  </tr>
+			  <tr>
+			    <td colspan="2" class="dates" align="center"><%= @sale.pdf_dates %></td>
+			  </tr>
+			  <tr>
+			    <td align="right" class="normal"><%= @sale.start_date.strftime("%A, %B %d") %></td>
+			    <td align="right" class="normal">&nbsp;&nbsp;&nbsp;<%= @sale.sale_hours_1 %></td>
+			  </tr>
+			  <tr>
+			    <td align="right" class="normal"><%= (@sale.start_date + 1).strftime("%A, %B %d") unless @sale.end_date < (@sale.start_date + 1) %></td>
+			    <td align="right" class="normal">&nbsp;&nbsp;&nbsp;<%= @sale.sale_hours_2 %></td>
+			  </tr>
+			  <tr>
+			    <td align="right" class="normal"><%= (@sale.start_date + 2).strftime("%A, %B %d") unless @sale.end_date < (@sale.start_date + 2) %></td>
+			    <td align="right" class="normal">&nbsp;&nbsp;&nbsp;<%= @sale.sale_hours_3 %></td>
+			  </tr>
+			  <tr>
+			    <td align="right" class="normal"><%= (@sale.start_date + 3).strftime("%A, %B %d") unless @sale.end_date < (@sale.start_date + 3) %></td>
+			    <td align="right" class="normal">&nbsp;&nbsp;&nbsp;<%= @sale.sale_hours_4 %></td>
+			  </tr>
+			  <tr>
+			    <td align="right" class="normal"><%= (@sale.start_date + 4).strftime("%A, %B %d") unless @sale.end_date < (@sale.start_date + 4) %></td>
+			    <td align="right" class="normal">&nbsp;&nbsp;&nbsp;<%= @sale.sale_hours_5 unless @sale.end_date < (@sale.start_date + 4) %></td>
+			  </tr>
+			  <tr>
+			    <td align="center" class="footnote" colspan="2">(most items 1/2 price on last day)</td>
+			  </tr>
+			</table>
+			<p style="margin-bottom: 0px;"><span class="details">For more details email:</span><br>
+			<span class="normal"><%= @sale.franchise.franchise_email %></span></p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		  <%= pdf_image_tag(@sale.flyer_footer_image, :style=>"margin:0px;padding:0px", :width => '2550', :height => '1175') %>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,37 @@
+<% field_set_tag save_label == "Update" ? 
+          "Editing Sign Up Info for #{@sale_consignor_sign_up.franchise_profile.profile.full_name}" : 
+          "Assign New Consignor to this Drop Off Time" do -%>
+  <%= error_messages_for :sale_consignor_sign_up %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_consignor_time_id do %>
+      <%= f.hidden_field :sale_consignor_time_id %>
+    <% end %>
+    <% form.edit_consignor_profile_id do %>
+      <% if save_label == "Update" %>      
+        <%= f.hidden_field :franchise_profile_id %>
+      <% else %>
+        <%= f.select :franchise_profile_id, @available_consignors.collect { |consignor_profile| ["#{consignor_profile.profile.full_name}", consignor_profile.id] }, :include_blank => "&lt;Select One&gt;", :label => "Consignor:", :required => true %>
+      <% end %>      
+    <% end %>
+    <% form.edit_advertisement_cost do %>
+      <%= f.text_field :sale_advert_cost, :label => "Consignor Fee:" %>
+    <% end %>      
+    <% form.edit_check_adjustment do %>
+      <%= f.text_field :fee_adjustment, :label => "Additional Proceeds:" %>
+    <% end %>      
+    <% form.edit_sale_percentage do %>
+      <%= f.text_field :sale_percentage, :label => "Percentage of Sales:" %>
+    <% end %>    
+    <% form.edit_promo_code do %>
+      <%= f.text_field :promo_code, :label => "Promo Code:" %>
+    <% end -%>  
+    <% form.edit_comments do %>
+      <%= f.text_area :comments, :label => "Comments" %>
+    <% end %>      
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_sale_consignor_time_url(@sale_consignor_sign_up.sale_consignor_time) %>
+    <% end %>
+  <% end %>
+<% end %>

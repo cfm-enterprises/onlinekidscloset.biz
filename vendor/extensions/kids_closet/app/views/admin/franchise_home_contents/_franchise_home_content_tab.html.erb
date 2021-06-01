@@ -1,0 +1,12 @@
+<div class="list_content" id="franchise_home_content_tab_id">
+  <% render_region :franchise_home_content_list_content do |list_headers| %>
+    <% list_headers.content_form_header do %>
+      <h3>Franchise Home Page Content:</h3>
+    <% end %>
+    <% list_headers.franchise_home_content_form do %>
+      <% form_for [:admin, @franchise, @franchise_home_content], :html => {:class => 'semantic-form'} do |f| %>
+        <%= render :partial => 'content_form', :locals => { :f => f } %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

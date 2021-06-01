@@ -1,0 +1,15 @@
+<tr id="rewards_import-<%= rewards_import.id.to_s %>" class="rewards_import_row list_row">
+  <% render_region :list_data, :locals => { :rewards_import => rewards_import } do |list_data| %>
+    <% list_data.report_dates_column do %>
+      <td><%= rewards_import.rewards_file_date %></td>
+    <% end %>
+    <% list_data.report_name_column do %>
+      <td class="name"><%= rewards_import.site_asset.file_name %></td>
+    <% end %>
+    <% list_data.actions_column do %>
+      <td class="actions">
+        <%= link_to "Delete", admin_sale_rewards_import_url(rewards_import.sale, rewards_import), :confirm => "Are you sure?  This will rollback the import and can not be undone.", :method => :delete %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

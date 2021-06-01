@@ -1,0 +1,42 @@
+<tr id="order-<%= order.id.to_s %>" class="order_row list_row">
+  <% render_region :list_data, :locals => { :order => order } do |list_data| %>
+    <% list_data.buyer_name_column do %>
+      <td>
+        <%= order.buyer.full_name %><br>
+        <%= order.buyer.email %><br>
+        <%= order.buyer.phone.as_phone %>
+      </td>
+    <% end %>
+    <% list_data.sort_column_column do %>
+      <td align="center"><%= order.seller.sort_column %></td>
+    <% end %>
+    <% list_data.item_number_column do %>
+      <td align="center"><%= order.consignor_inventory_id %></td>
+    <% end %>
+    <% list_data.item_name_column do %>
+      <td>
+        <%= order.item_name %><%= " (#{order.consignor_inventory.size})" unless order.consignor_inventory.nil? %>
+        <%= "<br>#{order.consignor_inventory.additional_information}" unless order.consignor_inventory.nil? %>
+      </td>
+    <% end %>
+    <% list_data.item_price_column do %>
+      <td align="center"><%= number_to_currency(order.item_price) %></td>
+    <% end %>
+    <% list_data.item_sales_tax_column do %>
+      <td align="center"><%= number_to_currency(order.sales_tax) %></td>
+    <% end %>
+    <% list_data.item_total_price_column do %>
+      <td align="center"><%= number_to_currency(order.total_amount) %></td>
+    <% end %>
+    <% list_data.consignor_number_column do %>
+      <td align="center"><%= order.seller_id %></td>
+    <% end %>
+    <% list_data.seller_name_column do %>
+      <td>
+        <%= order.seller.full_name %><br>
+        <%= order.seller.email %><br>
+        <%= order.seller.phone.as_phone %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

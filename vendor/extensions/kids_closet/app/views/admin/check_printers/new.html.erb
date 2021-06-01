@@ -1,0 +1,15 @@
+<h1>Print Checks for <%= @sale.franchise.franchise_name %> <% @sale.sale_dates %></h1>
+<% if @sale.eligible_for_financials? %><p style="font-weight: bolder;font-size:16pt;"><img height="50" src="/assets/1/original/alert.jpg" align="left">If you have made any changes to consignor fees, percentages, or have returned any items, the system must recalculate financials prior to generating checks.  Please click <%= link_to 'here', calculate_financials_admin_sale_url(@sale) %> to recalculate financials.</p><% end %>
+<% render_region :main do |main| %>
+  <% main.edit_form do %>
+
+    <% form_for [:admin, @sale, @check_printer], :html => {:class => 'semantic-form'} do |f| %>
+      <%= render :partial => 'form', :locals => { :f => f } %>
+    <% end %>
+  <% end %>
+<% end %>
+<% render_region :below_content do |below_content| %>
+  <% below_content.sample_check do %>
+    <img src="/assets/1/original/example_check.jpg">
+  <% end %>
+<% end %>

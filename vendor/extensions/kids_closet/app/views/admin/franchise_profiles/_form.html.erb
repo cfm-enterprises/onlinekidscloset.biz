@@ -1,0 +1,33 @@
+<% field_set_tag "#{save_label} Profile" do -%>
+  <% @user = @profile.user %>
+  <% render_region :form_top, :locals => { :f => f } do |form_top| %>
+    <% form_top.edit_errors do %>
+      <%= error_messages_for :franchise_profile, :profile, :user %>
+    <% end %>
+  <% end %>
+  <% render_region :form, :locals => { :f => f } do |form| %>
+    <% form.edit_profile_fields do %>
+      <%= render :partial => 'profile_fields', :locals => {:f => f} %>
+    <% end %>
+    <% form.edit_user_fields do %>
+      <%= render :partial => 'user_fields', :locals => { :f => f } %>
+    <% end %>
+    <% form.edit_franchise_id do %>
+      <%= f.hidden_field :franchise_id %>
+    <% end %>
+    <% form.edit_consignor do %>
+      <%= f.radio_button_group :consignor, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Consignor:", :required => true %>
+    <% end %>
+    <% form.edit_volunteer do %>
+      <%= f.radio_button_group :volunteer, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Helper:", :required => true %>
+    <% end %>
+    <% form.edit_mailing_list do %>
+      <%= f.radio_button_group :mailing_list, [{:label => 'No', :value => false}, {:label => 'Yes', :value => true}], :label => "Mailing List:", :required => true %>
+    <% end %>
+  <% end %>
+  <% render_region :form_bottom, :locals => { :f => f } do |form_bottom| %>
+    <% form_bottom.edit_buttons do %>
+      <%= f.submit_or_back save_label, admin_franchise_url(@franchise_profile.franchise) %>
+    <% end %>
+  <% end %>
+<% end -%>

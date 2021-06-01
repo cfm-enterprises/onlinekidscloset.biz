@@ -1,0 +1,19 @@
+<div class="list_content" id="found_us_stats_tab_id">
+  <table class="list_table">
+    <thead>
+      <tr>
+        <% render_region :found_us_stats_list_headers do |list_headers| %>
+          <% list_headers.label_column_header do %><th>Label</th><% end %>
+          <% list_headers.count_column_header do %><th>Count</th><% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @how_did_you_hears.length == 0 %>
+        <tr><td colspan="<%= admin_interface.franchises.found_us_report.found_us_stats_list_data.length %>" class="no_entries">No Found Us Stats for this Franchise</td></tr>
+      <% else %>
+         <%= render :partial => 'how_did_you_hear', :collection => @how_did_you_hears %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

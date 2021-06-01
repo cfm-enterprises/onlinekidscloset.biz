@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+<% for i in 1..2 %>
+rewards_profile_<%= i %>:
+  id: <%= i %>
+  profile_id: <%= i + 55 %>
+  rewards_number: <%= 10000000 + i %>
+  primary_card: true
+<% end %>
+
+<% for i in 1..2 %>
+rewards_profile_<%= i + 2 %>:
+  id: <%= i + 2 %>
+  profile_id: <%= i + 55 %>
+  rewards_number: <%= 10000000 + i + 2 %>
+  primary_card: false
+<% end %>
+
+rewards_profile_5:
+  id: 5
+  rewards_number: 10000005
+  primary_card: false
+  
